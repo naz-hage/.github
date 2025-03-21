@@ -1,2 +1,2 @@
 # .github
-Repository Teamplate
+Repository Template
