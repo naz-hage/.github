@@ -17,10 +17,47 @@ from typing import List, Dict, Set
 class HardcodedValuesChecker:
     """Checks for hardcoded values in template files."""
 
-    def __init__(self, template_dir: str = ".temp"):
+    def __init__(self, template_dir: str = ".temp", patterns_file: str = None):
         self.template_dir = Path(template_dir)
         self.issues: List[Dict[str, str]] = []
         self.checked_files: int = 0
+        self.patterns_file = patterns_file or str(Path(__file__).parent / "hardcoded_patterns.txt")
+        self.patterns_file = patterns_file or str(Path(__file__).parent / "hardcoded_patterns.txt")
+        self.hardcoded_patterns = self._load_patterns()
+
+    def _load_patterns(self) -> List[tuple]:
+        """Load hardcoded patterns from file."""
+        patterns = []
+        try:
+            with open(self.patterns_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    # Skip empty lines and comments
+                    if not line or line.startswith('#'):
+                        continue
+                    
+                    # Parse pattern|description|severity
+                    parts = line.split('|')
+                    if len(parts) == 3:
+                        pattern, description, severity = parts
+                        patterns.append((pattern.strip(), description.strip(), severity.strip()))
+        except FileNotFoundError:
+            print(f"⚠️  Patterns file not found: {self.patterns_file}")
+            print("Using default patterns instead.")
+            # Fallback to minimal default patterns
+            patterns = [
+                (r'\b(?:Proto|proto)\b', 'project name', 'warning'),
+                (r'\b(?:nazh|naz-hage)\b', 'organization/user name', 'warning'),
+            ]
+        except Exception as e:
+            print(f"⚠️  Error loading patterns file: {e}")
+            print("Using default patterns instead.")
+            patterns = [
+                (r'\b(?:Proto|proto)\b', 'project name', 'warning'),
+                (r'\b(?:nazh|naz-hage)\b', 'organization/user name', 'warning'),
+            ]
+        
+        return patterns
 
     def check_all_files(self) -> bool:
         """Check all template files for hardcoded values."""
@@ -63,29 +100,8 @@ class HardcodedValuesChecker:
         if any(placeholder in line for placeholder in ['[PROJECT_NAME]', '[ORG_NAME]', '[TOOL_COMMAND]']):
             return
 
-        # Check for hardcoded project names (common patterns)
-        hardcoded_patterns = [
-            # Project names
-            (r'\b(?:Proto|proto)\b', 'project name', 'warning'),
-            (r'\b(?:nazh|naz-hage)\b', 'organization/user name', 'warning'),
-
-            # URLs with hardcoded values
-            (r'https?://[^\s"]*nazh[^\s"]*', 'hardcoded URL', 'warning'),
-            (r'https?://[^\s"]*proto[^\s"]*', 'hardcoded URL', 'warning'),
-
-            # File paths with hardcoded project names
-            (r'/proto[^/]*', 'hardcoded path', 'warning'),
-            (r'/nazh[^/]*', 'hardcoded path', 'warning'),
-
-            # Azure DevOps specific
-            (r'@nazh', 'hardcoded Azure DevOps mention', 'warning'),
-            (r'#\d+', 'hardcoded work item ID', 'info'),  # Just informational
-
-            # Generic patterns that might indicate hardcoded values
-            (r'\b[A-Z][a-z]+[A-Z][a-z]+\b', 'potential hardcoded proper name', 'info'),
-        ]
-
-        for pattern, description, severity in hardcoded_patterns:
+        # Use patterns loaded from file
+        for pattern, description, severity in self.hardcoded_patterns:
             matches = re.finditer(pattern, line, re.IGNORECASE)
             for match in matches:
                 # Skip if it's in a code block or comment that explains it's an example
@@ -176,6 +192,8 @@ def main():
     parser = argparse.ArgumentParser(description="Check for hardcoded values in template files")
     parser.add_argument("template_dir", nargs="?", default=".temp",
                        help="Template directory to check (default: .temp)")
+    parser.add_argument("--patterns-file", 
+                       help="Path to patterns file (default: validation/hardcoded_patterns.txt)")
     parser.add_argument("--fix", action="store_true",
                        help="Attempt to fix some issues automatically")
     parser.add_argument("--exclude-patterns", nargs="*",
@@ -183,7 +201,7 @@ def main():
 
     args = parser.parse_args()
 
-    checker = HardcodedValuesChecker(args.template_dir)
+    checker = HardcodedValuesChecker(args.template_dir, args.patterns_file)
 
     if checker.check_all_files():
         print("✅ All checks passed!")
