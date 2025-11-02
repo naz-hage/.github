@@ -1,0 +1,33 @@
+# Test Configuration: Python FastAPI Project
+# This is a working example configuration for testing the validation scripts
+
+project:
+  name: "InventoryAPI"
+  organization: "acme-corp"
+  description: "REST API for inventory management using FastAPI"
+
+platforms:
+  azure_devops: true
+  github: false
+  jira: false
+
+language: "python"
+framework: "fastapi"
+
+python:
+  version: "3.9"
+  package_manager: "poetry"
+  test_framework: "pytest"
+  linter: "flake8"
+  formatter: "black"
+
+tools:
+  cli: "saz"
+  test_runner: "pytest"
+  linter: "flake8"
+
+azure_devops:
+  organization: "acme-corp"
+  project: "InventoryAPI"
+  area_path: "InventoryAPI\\Development"
+  iteration_path: "InventoryAPI\\Sprint 1"

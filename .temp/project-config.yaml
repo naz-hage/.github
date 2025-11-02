@@ -1,0 +1,250 @@
+# Generic Project Configuration Template
+# This file contains all project-specific metadata used by Copilot workflows
+# Copy this file to your project and customize the values below
+# Keep prompts generic - they should reference this config file
+
+# ============================================================================
+# PROJECT INFORMATION
+# ============================================================================
+project:
+  name: "[PROJECT_NAME]"                    # e.g., "my-app", "api-service"
+  description: "[PROJECT_DESCRIPTION]"      # Brief project description
+  language: "[LANGUAGE]"                    # python, javascript, java, csharp, etc.
+  version: "[VERSION]"                      # Current version (e.g., "1.0.0")
+
+# ============================================================================
+# PROJECT MANAGEMENT TOOLS
+# ============================================================================
+project_management:
+  primary_tool: "[TOOL]"                    # saz, az, gh, jira (recommended: saz)
+  platforms:                                # Supported platforms
+    azure_devops: "[ENABLED|DISABLED]"      # true/false
+    github: "[ENABLED|DISABLED]"           # true/false
+    jira: "[ENABLED|DISABLED]"             # true/false
+
+# Azure DevOps Configuration (only if azure_devops: true)
+azure_devops:
+  organization: "[ORG_NAME]"               # e.g., "mycompany"
+  organization_url: "https://dev.azure.com/[ORG_NAME]"
+  project: "[PROJECT_NAME]"                # e.g., "MyProject"
+  project_id: "[PROJECT_ID]"               # Azure DevOps project GUID
+  area_path: "[ORG_NAME]\\[TEAM_NAME]"     # e.g., "MyOrg\\Development"
+  default_iteration: "[ORG_NAME]\\[ITERATION]" # e.g., "MyOrg\\Sprint 1"
+  process_template: "[TEMPLATE]"           # Agile, Scrum, Basic, CMMI
+  default_team: "[TEAM_NAME]"              # Default team name
+  team_project: "[TEAM_PROJECT]"           # Team project name (if different from project)
+
+# GitHub Configuration (only if github: true)
+github:
+  organization: "[ORG_NAME]"               # GitHub org or username
+  repository: "[REPO_NAME]"                # Repository name
+  project_number: "[PROJECT_NUMBER]"       # GitHub project number (optional)
+
+# Jira Configuration (only if jira: true)
+jira:
+  server_url: "[JIRA_URL]"                 # Jira server URL
+  project_key: "[PROJECT_KEY]"             # Jira project key (e.g., "PROJ")
+
+# ============================================================================
+# REPOSITORY INFORMATION
+# ============================================================================
+repository:
+  name: "[REPO_NAME]"                      # Repository name
+  owner: "[OWNER_NAME]"                    # Owner/organization name
+  default_branch: "[BRANCH]"               # main, master, develop
+  remotes:
+    primary: "[PRIMARY_REMOTE]"            # azure, origin
+    backup: "[BACKUP_REMOTE]"              # origin, upstream
+
+# ============================================================================
+# WORK ITEM CONFIGURATION
+# ============================================================================
+work_items:
+  types:
+    - PBI
+    - Bug
+    - Task
+    - Spike
+  default_assignee: ""                     # Leave empty for unassigned
+  labels:
+    - backlog
+    - development
+    - testing
+    - documentation
+
+# ============================================================================
+# TOOLS CONFIGURATION
+# ============================================================================
+tools:
+  # SAZ CLI Configuration (recommended primary tool)
+  saz_cli:
+    command: "[SAZ_COMMAND]"               # saz, python -m saz_package.cli
+    module_path: "[MODULE_PATH]"           # saz_package (for Python projects)
+    config_file: "[CONFIG_PATH]"           # Path to SAZ config if needed
+
+  # Alternative tools
+  azure_cli: "[AZ_CLI_ENABLED]"            # true/false
+  github_cli: "[GH_CLI_ENABLED]"           # true/false
+
+  # Project-specific directories
+  temp_directory: "[TEMP_DIR]"             # .temp, temp, .work
+
+# ============================================================================
+# DEVELOPMENT ENVIRONMENT
+# ============================================================================
+development:
+  # Language-specific settings
+  language_config:
+    python:
+      version: "[PYTHON_VERSION]"           # "3.8+", "3.9+", etc.
+      formatter: "[FORMATTER]"             # black, autopep8
+      line_length: "[LINE_LENGTH]"          # 88, 100, 120
+      import_sorter: "[SORTER]"            # isort, none
+      linters:                             # List of linters
+        - "[LINTER1]"                      # flake8, pylint, mypy
+        - "[LINTER2]"
+      testing:
+        framework: "[FRAMEWORK]"           # pytest, unittest
+        min_versions:                      # Minimum Python versions
+          - "[VERSION1]"                   # "3.8"
+          - "[VERSION2]"
+
+    javascript:
+      runtime: "[RUNTIME]"                 # node, bun
+      version: "[VERSION]"                 # "18+", "20+"
+      package_manager: "[PM]"              # npm, yarn, pnpm
+      formatter: "[FORMATTER]"             # prettier
+      linter: "[LINTER]"                   # eslint
+      testing:
+        framework: "[FRAMEWORK]"           # jest, vitest
+        config_file: "[CONFIG]"            # jest.config.js
+
+    dotnet:
+      version: "[VERSION]"                 # "6.0", "8.0"
+      framework: "[FRAMEWORK]"             # net6.0, net8.0
+      formatter: "[FORMATTER]"             # dotnet-format
+      linter: "[LINTER]"                   # roslynator, stylecop
+      testing:
+        framework: "[FRAMEWORK]"           # xunit, nunit
+
+    java:
+      version: "[VERSION]"                 # "11", "17", "21"
+      build_tool: "[TOOL]"                 # maven, gradle
+      formatter: "[FORMATTER]"             # google-java-format
+      linter: "[LINTER]"                   # spotbugs, checkstyle
+      testing:
+        framework: "[FRAMEWORK]"           # junit, testng
+
+  # Quality tools (commands to run)
+  quality_tools:
+    - "[QUALITY_COMMAND1]"                 # make lint, npm run lint
+    - "[QUALITY_COMMAND2]"                 # make format, npm run format
+
+# ============================================================================
+# AUTHENTICATION
+# ============================================================================
+authentication:
+  # Azure DevOps (only if azure_devops: true)
+  azure_devops:
+    method: "[METHOD]"                    # PAT, managed-identity
+    env_var: "[ENV_VAR]"                  # AZURE_DEVOPS_PAT
+    required_permissions:
+      - "Work Items: Read & Write"
+      - "Build: Read & Execute"
+      - "Code: Read"
+      - "Project and Team: Read"
+      - "Pull Request Threads: Read & Write"
+
+  # GitHub (only if github: true)
+  github:
+    method: "[METHOD]"                    # pat, app, token
+    env_var: "[ENV_VAR]"                  # GITHUB_TOKEN
+    required_scopes:
+      - "[SCOPE1]"                        # repo, workflow
+      - "[SCOPE2]"
+
+  # Jira (only if jira: true)
+  jira:
+    method: "[METHOD]"                    # basic, pat
+    env_var: "[ENV_VAR]"                  # JIRA_TOKEN
+    username_env_var: "[USER_ENV]"        # JIRA_USERNAME (for basic auth)
+
+# ============================================================================
+# WORKFLOW CONFIGURATION
+# ============================================================================
+workflows:
+  # Story point scales (customize for your team)
+  story_points:
+    scale:
+      1: "[SCALE_1]"                      # "<1 day"
+      2: "[SCALE_2]"                      # "1-2 days"
+      3: "[SCALE_3]"                      # "2-3 days"
+      5: "[SCALE_5]"                      # "3-5 days"
+      8: "[SCALE_8]"                      # "1-2 weeks"
+      13: "[SCALE_13]"                    # "needs breakdown"
+
+  # Work item states (platform-specific)
+  states:
+    pbi:
+      - "[STATE1]"                        # New, To Do, Backlog
+      - "[STATE2]"                        # Approved, In Progress
+      - "[STATE3]"                        # Committed, In Review
+      - "[STATE4]"                        # Done, Closed
+    task:
+      - "[STATE1]"                        # To Do
+      - "[STATE2]"                        # In Progress
+      - "[STATE3]"                        # Done
+    bug:
+      - "[STATE1]"                        # New
+      - "[STATE2]"                        # Approved
+      - "[STATE3]"                        # Committed
+      - "[STATE4]"                        # Done
+
+# ============================================================================
+# DOCUMENTATION
+# ============================================================================
+documentation:
+  key_files:
+    - "[DOC_FILE1]"                       # .github/copilot-instructions.md
+    - "[DOC_FILE2]"                       # .github/project-config.yaml
+    - "[DOC_FILE3]"                       # README.md
+  workflow_location: "[WORKFLOW_PATH]"    # .github/prompts/workflows
+
+# ============================================================================
+# PULL REQUEST SETTINGS
+# ============================================================================
+pr_settings:
+  template_path: "[PR_TEMPLATE_PATH]"      # .github/PULL_REQUEST_TEMPLATE/pull_request_template.md
+  temp_file: "[TEMP_PR_FILE]"              # .temp/pr.md
+  default_strategy: "[STRATEGY]"           # squash, merge, rebase
+  require_work_item: "[REQUIRED]"          # true, false
+  auto_delete_branch: "[AUTO_DELETE]"      # true, false
+
+# ============================================================================
+# PROJECT TYPE SPECIFIC SETTINGS
+# ============================================================================
+project_type:
+  # Choose your project type - this affects available templates and examples
+  type: "[PROJECT_TYPE]"                  # web-app, api, cli-tool, library, mobile
+
+  # Web Application settings
+  web_app:
+    framework: "[FRAMEWORK]"              # react, vue, angular, svelte
+    runtime: "[RUNTIME]"                  # node, python, dotnet
+    deployment: "[DEPLOYMENT]"            # static, server, serverless
+
+  # API settings
+  api:
+    type: "[API_TYPE]"                    # rest, graphql, grpc
+    framework: "[FRAMEWORK]"              # express, fastapi, spring, aspnet
+    authentication: "[AUTH]"              # jwt, oauth, api-key
+
+  # CLI Tool settings
+  cli_tool:
+    language: "[LANGUAGE]"                # python, go, rust, dotnet
+    distribution: "[DIST]"                # pip, npm, binary, container
+
+  # Library settings
+  library:
+    language: "[LANGUAGE]"                # python, javascript, java, csharp
+    package_registry: "[REGISTRY]"        # pypi, npm, maven, nuget
