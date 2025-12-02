@@ -54,7 +54,7 @@ sdo config set azure_devops.pat "$AZURE_DEVOPS_PAT"
 ```
 
 ### Alternative Tools
-If SAZ is not available, workflows include alternative commands for:
+If SDO is not available, workflows include alternative commands for:
 - **Azure DevOps**: `az boards`, `az repos`, `az pipelines`
 - **GitHub**: `gh issue`, `gh pr`, `gh workflow`
 - **Jira**: `jira issue`, `jira sprint`

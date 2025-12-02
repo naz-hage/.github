@@ -10,7 +10,7 @@ This repository contains **generic, reusable templates** that projects can copy 
 
 ### Key Features
 
-- **🔧 SAZ CLI Integration**: Uses [SAZ](https://github.com/naz-hage/saz) as the primary CLI tool for unified project management across platforms
+- **🔧 SDO CLI Integration**: Uses [SDO](https://github.com/naz-hage/sdo) as the primary CLI tool for unified project management across platforms
 - **🌍 Multi-Language Support**: Examples and patterns for Python, JavaScript/TypeScript, Java, and C#
 - **⚙️ Configurable**: All project-specific values are managed through configuration files
 - **📋 Generic Workflows**: Tool-agnostic workflows that work with any project management platform
@@ -19,21 +19,26 @@ This repository contains **generic, reusable templates** that projects can copy 
 ## 📁 Repository Structure
 
 ```
-.github/                           # This repository (template source)
-├── .temp/                         # Generic templates (copy to project .github/)
-│   ├── project-config.yaml         # Base configuration template
-│   ├── project-config.*.yaml       # Language-specific config examples
-│   ├── copilot-instructions.md     # GitHub Copilot instructions template
-│   ├── prompts/                    # Workflow and development guides
-│   │   ├── README.md              # Generic workflow overview
-│   │   ├── CONFIG_USAGE.md        # Configuration guide
-│   │   ├── workflows/             # Tool-agnostic workflow templates
-│   │   └── examples/              # Multi-language code examples
-│   │       ├── {language}/        # Language-specific implementations
-│   └── PULL_REQUEST_TEMPLATE/     # Generic PR template
-├── setup-guides/                  # Project setup and migration guides
-├── validation/                    # Configuration validation tools
-└── test-configs/                  # Test configurations for different scenarios
+.github/                           # GitHub templates and workflows
+├── ISSUE_TEMPLATE/                # Issue templates
+├── PULL_REQUEST_TEMPLATE/         # Pull request template
+├── workflows/                     # GitHub Actions workflows
+└── .temp/                         # Generic templates (copy to project .github/)
+    ├── project-config.yaml         # Base configuration template
+    ├── project-config.*.yaml       # Language-specific config examples
+    ├── copilot-instructions.md     # GitHub Copilot instructions template
+    ├── prompts/                    # Workflow and development guides
+    │   ├── README.md              # Generic workflow overview
+    │   ├── CONFIG_USAGE.md        # Configuration guide
+    │   ├── workflows/             # Tool-agnostic workflow templates
+    │   ├── actions/               # Action-specific workflow templates
+    │   └── examples/              # Multi-language code examples
+    │       ├── {language}/        # Language-specific implementations
+    └── PULL_REQUEST_TEMPLATE/     # Generic PR template
+setup-guides/                      # Project setup and migration guides
+validation/                        # Configuration validation tools
+test-configs/                      # Test configurations for different scenarios
+README.md                          # This file
 ```
 
 ## 🚀 Quick Start
@@ -55,15 +60,15 @@ This repository contains **generic, reusable templates** that projects can copy 
    # Edit project-config.yaml with your specific values
    ```
 
-3. **Setup SAZ CLI**
+3. **Setup SDO CLI**
    ```bash
-   # Install SAZ CLI (if not already installed)
-   pip install saz-cli
+   # Install SDO CLI (if not already installed)
+   pip install sdo-cli
 
-   # Configure SAZ for your platform
-   saz config set platform azure-devops  # or github, jira
-   saz config set organization your-org
-   saz config set project your-project
+   # Configure SDO for your platform
+   sdo config set platform azure-devops  # or github, jira
+   sdo config set organization your-org
+   sdo config set project your-project
    ```
 
 4. **Customize as Needed**
@@ -100,7 +105,7 @@ framework: "fastapi"
 
 # Tool Configuration
 tools:
-  cli: "saz"  # Primary CLI tool
+  cli: "sdo"  # Primary CLI tool
   test_runner: "pytest"
   linter: "flake8"
 ```
@@ -116,7 +121,7 @@ Choose the appropriate configuration template for your project:
 ## 🛠️ Supported Platforms & Languages
 
 ### Project Management Platforms
-- **Azure DevOps** (primary, via SAZ CLI)
+- **Azure DevOps** (primary, via SDO CLI)
 - **GitHub Issues**
 - **Jira**
 
@@ -151,28 +156,28 @@ Choose the appropriate configuration template for your project:
 - **Copilot Best Practices** - AI-assisted development guidelines
 - **Branching Strategy** - Git workflow recommendations
 
-## 🔧 SAZ CLI Integration
+## 🔧 SDO CLI Integration
 
-[SAZ](https://github.com/naz-hage/saz) is the recommended CLI tool for project management operations. It provides a unified interface for:
+[SDO](https://github.com/naz-hage/sdo) is the recommended CLI tool for project management operations. It provides a unified interface for:
 
 - **Work Item Management**: Create, update, query work items
 - **Sprint Planning**: Manage sprints and capacity
 - **Branch Management**: Create feature branches
 - **Pull Request Management**: Create and manage PRs
 
-### SAZ Configuration
+### SDO Configuration
 
 ```bash
 # Configure for Azure DevOps
-saz config set platform azure-devops
-saz config set organization your-org
-saz config set project your-project
-saz auth login
+sdo config set platform azure-devops
+sdo config set organization your-org
+sdo config set project your-project
+sdo auth login
 
 # Configure for GitHub
-saz config set platform github
-saz config set organization your-org
-saz config set repository your-repo
+sdo config set platform github
+sdo config set organization your-org
+sdo config set repository your-repo
 ```
 
 ## 📖 Documentation
@@ -205,7 +210,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [SAZ CLI](https://github.com/naz-hage/saz) - Unified project management CLI
+- [SDO CLI](https://github.com/naz-hage/sdo) - Unified project management CLI
 - Community contributors for language-specific examples
 - Open source projects that inspired these patterns
 

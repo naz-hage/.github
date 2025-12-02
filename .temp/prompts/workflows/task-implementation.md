@@ -4,7 +4,7 @@ This workflow guides the implementation phase of an individual Azure DevOps Task
 
 ## Overview
 
-The Task implementation workflow transforms individual task requirements into working code following the SAZ project's standards and practices. **This workflow focuses on implementing one Task at a time** - each Task represents a specific, implementable unit that can be completed independently and contributes to meeting the parent PBI's acceptance criteria.
+The Task implementation workflow transforms individual task requirements into working code following the SDO project's standards and practices. **This workflow focuses on implementing one Task at a time** - each Task represents a specific, implementable unit that can be completed independently and contributes to meeting the parent PBI's acceptance criteria.
 
 **Key Principle**: One task, one focus. Complete each task fully (coded, tested, documented) before moving to the next task in the PBI breakdown.
 
@@ -45,7 +45,7 @@ git checkout -b azdo-[TASK_ID]
 ```bash
 pip install -r requirements.txt
 pip install -e .
-python -c "import saz_package; print('Package ready')"
+python -c "import sdo_package; print('Package ready')"
 ```
 
 ### Phase 2: Analysis and Design
@@ -55,19 +55,19 @@ Analyze task requirements, identify integration points, and consider edge cases.
 
 #### 2.2 Review Existing Code
 ```bash
-find . -name "*.py" -path "*/saz_package/*"
-grep -r "class.*Client" saz_package/
+find . -name "*.py" -path "*/sdo_package/*"
+grep -r "class.*Client" sdo_package/
 ```
 
 #### 2.3 Plan Implementation
-Design the approach following established patterns in `saz_package/`.
+Design the approach following established patterns in `sdo_package/`.
 
 ### Phase 3: Implementation
 
 #### 3.1 Follow Code Patterns
 Reference established patterns:
-- CLI handlers: `saz_package/cli.py`
-- API methods: `saz_package/client.py`
+- CLI handlers: `sdo_package/cli.py`
+- API methods: `sdo_package/client.py`
 - Error handling: Use type hints, docstrings, proper exceptions
 
 #### 3.2 Implement Core Functionality
@@ -77,7 +77,7 @@ Develop features with type hints, docstrings, error handling, and logging.
 ```python
 import unittest
 from unittest.mock import patch
-from saz_package.client import AzureDevOpsClient
+from sdo_package.client import AzureDevOpsClient
 
 class TestNewFeature(unittest.TestCase):
     def test_success_case(self):
@@ -94,13 +94,13 @@ Update docstrings, README, and architecture docs as needed.
 ```bash
 python -m pytest                                    # Run all tests
 python -m pytest tests/test_new_feature.py -v      # Specific test
-python -m pytest --cov=saz_package --cov-report=html  # With coverage
+python -m pytest --cov=sdo_package --cov-report=html  # With coverage
 ```
 
 #### 4.2 Integration Testing
 ```bash
-python -m saz_package.cli [new-command] --help
-python -m saz_package.cli [new-command] [test-parameters]
+python -m sdo_package.cli [new-command] --help
+python -m sdo_package.cli [new-command] [test-parameters]
 ```
 
 #### 4.3 Code Quality

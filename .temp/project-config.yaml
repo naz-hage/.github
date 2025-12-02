@@ -16,7 +16,7 @@ project:
 # PROJECT MANAGEMENT TOOLS
 # ============================================================================
 project_management:
-  primary_tool: "[TOOL]"                    # saz, az, gh, jira (recommended: saz)
+  primary_tool: "[TOOL]"                    # sdo, az, gh, jira (recommended: sdo)
   platforms:                                # Supported platforms
     azure_devops: "[ENABLED|DISABLED]"      # true/false
     github: "[ENABLED|DISABLED]"           # true/false
@@ -76,11 +76,11 @@ work_items:
 # TOOLS CONFIGURATION
 # ============================================================================
 tools:
-  # SAZ CLI Configuration (recommended primary tool)
-  saz_cli:
-    command: "[SAZ_COMMAND]"               # saz, python -m saz_package.cli
-    module_path: "[MODULE_PATH]"           # saz_package (for Python projects)
-    config_file: "[CONFIG_PATH]"           # Path to SAZ config if needed
+  # SDO CLI Configuration (recommended primary tool)
+  sdo_cli:
+    command: "[SDO_COMMAND]"               # sdo, python -m sdo_package.cli
+    module_path: "[MODULE_PATH]"           # sdo_package (for Python projects)
+    config_file: "[CONFIG_PATH]"           # Path to SDO config if needed
 
   # Alternative tools
   azure_cli: "[AZ_CLI_ENABLED]"            # true/false

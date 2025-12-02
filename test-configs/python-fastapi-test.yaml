@@ -22,7 +22,7 @@ python:
   formatter: "black"
 
 tools:
-  cli: "saz"
+  cli: "sdo"
   test_runner: "pytest"
   linter: "flake8"
 

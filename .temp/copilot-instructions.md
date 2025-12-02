@@ -1,25 +1,25 @@
-# SAZ CLI Tool - Copilot Development Guidelines
+# SDO CLI Tool - Copilot Development Guidelines
 
 ## Overview
 
-Welcome to the SAZ (Simple Azure DevOps) CLI tool development! This document provides comprehensive guidelines for AI-assisted development using GitHub Copilot. SAZ is a zero-configuration CLI tool that automatically extracts Azure DevOps information from Git remotes and provides commands for managing pipelines and repositories.
+Welcome to the SDO (Simple DevOps) CLI tool development! This document provides comprehensive guidelines for AI-assisted development using GitHub Copilot. SDO is an open-source CLI tool that provides a unified interface for managing development operations across multiple platforms. It is part of the ntools suite available at https://github.com/naz-hage/ntools/tree/main/atools.
 
 ## Project Context
 
 **Technology Stack:**
 - **Language**: Python 3.8+ (tested with 3.8, 3.9, 3.10, 3.11, 3.12)
 - **Architecture**: Modular CLI with separate command modules
-- **APIs**: Azure DevOps REST APIs
+- **APIs**: DevOps platform REST APIs (Azure DevOps, GitHub, etc.)
 - **Authentication**: Personal Access Tokens (PAT)
 - **Packaging**: Standard Python packaging with setup.py/pyproject.toml
 
 **Key Components:**
-- `saz_package/cli.py`: Command-line interface and argument parsing
-- `saz_package/client.py`: Azure DevOps REST API client
-- `saz_package/repositories.py`: Repository operations
-- `saz_package/pipelines.py`: Pipeline operations
-- `saz_package/pull_requests.py`: Pull request operations
-- `saz_package/users.py`: User management operations
+- `sdo_package/cli.py`: Command-line interface and argument parsing
+- `sdo_package/client.py`: DevOps platform REST API client
+- `sdo_package/repositories.py`: Repository operations
+- `sdo_package/pipelines.py`: Pipeline operations
+- `sdo_package/pull_requests.py`: Pull request operations
+- `sdo_package/users.py`: User management operations
 
 ## Development Guidelines
 
@@ -136,7 +136,7 @@ def test_repo_show_success(client_mock):
     client_mock.get_repository.return_value = mock_repo_data
 
     # Act
-    with patch('sys.argv', ['saz', 'repo', 'show', 'test-repo']):
+    with patch('sys.argv', ['sdo', 'repo', 'show', 'test-repo']):
         main()
 
     # Assert
@@ -345,13 +345,13 @@ Closes #160
 - **Exit Codes**: Use appropriate exit codes (0 for success, 1 for errors)
 - **Output Formatting**: Ensure readable output on different terminal widths
 
-Remember: Copilot is a powerful assistant, but understanding the SAZ project's architecture, Azure DevOps APIs, and Python best practices is essential for producing high-quality code. Always review and test Copilot-generated code thoroughly before committing.
+Remember: Copilot is a powerful assistant, but understanding the SDO project's architecture, DevOps APIs, and Python best practices is essential for producing high-quality code. Always review and test Copilot-generated code thoroughly before committing.
 
 ---
 
-# SAZ - Azure DevOps CLI Tool
+# SDO - DevOps CLI Tool
 
-SAZ (Simple Azure DevOps) is a comprehensive command-line interface tool for managing Azure DevOps resources including repositories, pipelines, pull requests, and user operations. Built with Python and designed for zero-configuration usage.
+SDO (Simple DevOps) is a comprehensive command-line interface tool for managing DevOps resources across multiple platforms including repositories, pipelines, pull requests, and user operations. Built with Python and designed for unified platform support.
 
 Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
@@ -378,14 +378,14 @@ git remote -v
 ```
 
 ### Project Structure Overview
-SAZ uses a modular Python package architecture:
-- `saz_package/`: Main package directory
-- `saz_package/cli.py`: Command-line interface entry point
-- `saz_package/client.py`: Azure DevOps REST API client
-- `saz_package/repositories.py`: Repository operations
-- `saz_package/pipelines.py`: Pipeline operations
-- `saz_package/pull_requests.py`: Pull request operations
-- `saz_package/users.py`: User management operations
+SDO uses a modular Python package architecture:
+- `sdo_package/`: Main package directory
+- `sdo_package/cli.py`: Command-line interface entry point
+- `sdo_package/client.py`: DevOps platform REST API client
+- `sdo_package/repositories.py`: Repository operations
+- `sdo_package/pipelines.py`: Pipeline operations
+- `sdo_package/pull_requests.py`: Pull request operations
+- `sdo_package/users.py`: User management operations
 
 ### Core Commands
 

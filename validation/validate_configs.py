@@ -183,10 +183,10 @@ class ConfigValidator:
         """Validate tool configuration."""
         tools = self.config.get('tools', {})
 
-        # SAZ should be the primary CLI tool
+        # SDO should be the primary CLI tool
         cli_tool = tools.get('cli', '').lower()
-        if cli_tool != 'saz':
-            self.warnings.append("Consider using 'saz' as the primary CLI tool for consistency")
+        if cli_tool != 'sdo':
+            self.warnings.append("Consider using 'sdo' as the primary CLI tool for consistency")
 
         # Validate test runners based on language
         language = self.config.get('language', '').lower()
@@ -211,7 +211,7 @@ class ConfigValidator:
         enabled_count = sum(1 for v in platforms.values() if v is True)
 
         if enabled_count > 1:
-            self.warnings.append(f"Multiple platforms enabled ({enabled_count}). Ensure SAZ is configured correctly for all platforms.")
+            self.warnings.append(f"Multiple platforms enabled ({enabled_count}). Ensure SDO is configured correctly for all platforms.")
 
     def _get_nested_value(self, field_path: str) -> Any:
         """Get a nested value from the configuration using dot notation."""

@@ -23,7 +23,7 @@ javascript:
   typescript: true
 
 tools:
-  cli: "saz"
+  cli: "sdo"
   test_runner: "jest"
   linter: "eslint"
 

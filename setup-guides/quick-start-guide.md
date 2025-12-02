@@ -53,26 +53,26 @@ language: "python"    # python, javascript, java, dotnet
 framework: "fastapi"  # your specific framework
 ```
 
-### Step 4: Setup SAZ CLI
+### Step 4: Setup SDO CLI
 
 ```bash
-# Install SAZ CLI
-pip install saz-cli
+# Install SDO CLI
+pip install sdo-cli
 
 # Configure for your platform
-saz config set platform azure-devops  # or github, jira
-saz config set organization my-company
-saz config set project MyAwesomeProject
+sdo config set platform azure-devops  # or github, jira
+sdo config set organization my-company
+sdo config set project MyAwesomeProject
 
 # Authenticate
-saz auth login
+sdo auth login
 ```
 
 ### Step 5: Test Setup
 
 ```bash
-# Test SAZ connection
-saz work-items list --top 3
+# Test SDO connection
+sdo work-items list --top 3
 
 # Validate configuration
 python .github/validation/validate_configs.py
@@ -85,7 +85,7 @@ python .github/validation/validate_configs.py
 ### Prerequisites
 
 - **Git** - Version control system
-- **Python 3.8+** - For SAZ CLI and validation scripts
+- **Python 3.8+** - For SDO CLI and validation scripts
 - **Access to project management platform** - Azure DevOps, GitHub, or Jira
 
 ### Project Structure After Setup
@@ -219,17 +219,17 @@ java:
   test_framework: "junit5"
 ```
 
-## 🛠️ SAZ CLI Setup
+## 🛠️ SDO CLI Setup
 
 ### Installation
 
 ```bash
 # Install from PyPI
-pip install saz-cli
+pip install sdo-cli
 
 # Or install from source
-git clone https://github.com/naz-hage/saz.git
-cd saz
+git clone https://github.com/naz-hage/sdo.git
+cd sdo
 pip install -e .
 ```
 
@@ -239,55 +239,55 @@ pip install -e .
 
 ```bash
 # Set platform
-saz config set platform azure-devops
+sdo config set platform azure-devops
 
 # Set organization and project
-saz config set organization your-org
-saz config set project your-project
+sdo config set organization your-org
+sdo config set project your-project
 
 # Authenticate (opens browser)
-saz auth login
+sdo auth login
 ```
 
 #### GitHub
 
 ```bash
 # Set platform
-saz config set platform github
+sdo config set platform github
 
 # Set organization and repository
-saz config set organization your-org
-saz config set repository your-repo
+sdo config set organization your-org
+sdo config set repository your-repo
 
 # Authenticate with personal access token
-saz auth login --token your-github-token
+sdo auth login --token your-github-token
 ```
 
 #### Jira
 
 ```bash
 # Set platform
-saz config set platform jira
+sdo config set platform jira
 
 # Set server and project
-saz config set server https://your-company.atlassian.net
-saz config set project PROJ
+sdo config set server https://your-company.atlassian.net
+sdo config set project PROJ
 
 # Authenticate
-saz auth login
+sdo auth login
 ```
 
-### Testing SAZ Setup
+### Testing SDO Setup
 
 ```bash
 # Check configuration
-saz config list
+sdo config list
 
 # Test work item access
-saz work-items list --top 5
+sdo work-items list --top 5
 
 # Test project info
-saz projects show
+sdo projects show
 ```
 
 ## 📋 Using the Templates
@@ -361,11 +361,11 @@ python .github/validation/check_hardcoded_values.py
 ### Testing Workflows
 
 ```bash
-# Test SAZ integration
-saz work-items create --title "Test work item" --type "Task"
+# Test SDO integration
+sdo work-items create --title "Test work item" --type "Task"
 
 # Verify the work item was created
-saz work-items list --filter "Title contains 'Test'"
+sdo work-items list --filter "Title contains 'Test'"
 ```
 
 ### Example Testing
@@ -390,16 +390,16 @@ from .github.prompts.examples.python.api_client_patterns import APIClient
 
 ### Common Issues
 
-**SAZ Connection Issues**
+**SDO Connection Issues**
 ```bash
 # Check configuration
-saz config list
+sdo config list
 
 # Re-authenticate
-saz auth login
+sdo auth login
 
 # Test basic connectivity
-saz projects list
+sdo projects list
 ```
 
 **Configuration Validation Errors**
@@ -437,10 +437,10 @@ python -c "import yaml; yaml.safe_load(open('.github/project-config.yaml'))"
 ### Essential Commands
 
 ```bash
-# SAZ CLI
-saz work-items list                    # List work items
-saz work-items create --title "Title"  # Create work item
-saz branches create feature/123       # Create feature branch
+# SDO CLI
+sdo work-items list                    # List work items
+sdo work-items create --title "Title"  # Create work item
+sdo branches create feature/123       # Create feature branch
 
 # Validation
 python .github/validation/validate_configs.py    # Validate config

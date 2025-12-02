@@ -15,7 +15,7 @@ project:
 # PROJECT MANAGEMENT TOOLS
 # ============================================================================
 project_management:
-  primary_tool: "saz"                      # Recommended: saz
+  primary_tool: "sdo"                      # Recommended: sdo
   platforms:
     azure_devops: true                     # Set to false if not using
     github: true                          # Set to false if not using
@@ -75,10 +75,10 @@ work_items:
 # TOOLS CONFIGURATION
 # ============================================================================
 tools:
-  # SAZ CLI Configuration (recommended)
-  saz_cli:
-    command: "saz"
-    config_file: "~/.saz/config.yaml"
+  # SDO CLI Configuration (recommended)
+  sdo_cli:
+    command: "sdo"
+    config_file: "~/.sdo/config.yaml"
 
   # Alternative tools
   azure_cli: false

@@ -21,7 +21,7 @@ dotnet:
   orm: "efcore"
 
 tools:
-  cli: "saz"
+  cli: "sdo"
   test_runner: "xunit"
   linter: "stylecop"
 

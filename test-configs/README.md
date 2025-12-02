@@ -40,7 +40,7 @@ python ../validation/check_hardcoded_values.py
 ### Platform Integration
 - **Single Platform**: Most projects use one primary platform (Azure DevOps, GitHub, or Jira)
 - **Multi-Platform**: Some projects may integrate with multiple platforms
-- **SAZ CLI**: All configurations use SAZ as the primary CLI tool
+- **SDO CLI**: All configurations use SDO as the primary CLI tool
 
 ### Language-Specific Settings
 - **Python**: Poetry/pip, pytest/unittest, flake8/black
@@ -49,7 +49,7 @@ python ../validation/check_hardcoded_values.py
 - **.NET**: NuGet, xUnit/NUnit, StyleCop
 
 ### Tool Configuration
-- **CLI**: Always set to 'saz' for consistency
+- **CLI**: Always set to 'sdo' for consistency
 - **Test Runners**: Language-appropriate testing frameworks
 - **Linters**: Popular linting tools for each language
 
@@ -88,7 +88,7 @@ python:
   package_manager: "poetry"
 
 tools:
-  cli: "saz"  # Always use 'saz'
+  cli: "sdo"  # Always use 'sdo'
   test_runner: "pytest"
   linter: "flake8"
 
@@ -121,7 +121,7 @@ These configurations can be used for integration testing:
 1. **Copy to Test Project**: Copy a config to a test project
 2. **Run Validation**: Ensure it passes all checks
 3. **Test Workflows**: Use the config with actual workflows
-4. **Verify SAZ Integration**: Test SAZ commands with the configuration
+4. **Verify SDO Integration**: Test SDO commands with the configuration
 
 ## Contributing
 

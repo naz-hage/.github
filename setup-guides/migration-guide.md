@@ -142,32 +142,32 @@ framework: "fastapi"    # Your specific framework
 
 # Tool configuration
 tools:
-  cli: "saz"           # Primary CLI tool (keep as 'saz')
+  cli: "sdo"           # Primary CLI tool (keep as 'sdo')
   test_runner: "pytest" # Your test runner
   linter: "flake8"     # Your linter
 ```
 
-### Configure SAZ CLI
+### Configure SDO CLI
 
-Set up SAZ for your platform:
+Set up SDO for your platform:
 
 ```bash
-# Install SAZ if not already installed
-pip install saz-cli
+# Install SDO if not already installed
+pip install sdo-cli
 
 # Configure for your platform
 # For Azure DevOps:
-saz config set platform azure-devops
-saz config set organization your-org-name
-saz config set project your-project-name
+sdo config set platform azure-devops
+sdo config set organization your-org-name
+sdo config set project your-project-name
 
 # For GitHub:
-saz config set platform github
-saz config set organization your-org-name
-saz config set repository your-repo-name
+sdo config set platform github
+sdo config set organization your-org-name
+sdo config set repository your-repo-name
 
 # Authenticate
-saz auth login
+sdo auth login
 ```
 
 ## 🎨 Step 5: Customize Templates
@@ -223,8 +223,8 @@ python .github/validation/check_hardcoded_values.py
 Test key workflows with your new setup:
 
 ```bash
-# Test SAZ connection
-saz work-items list --top 5
+# Test SDO connection
+sdo work-items list --top 5
 
 # Test a workflow (if applicable)
 # Follow the prompts in your customized workflow files
@@ -265,16 +265,16 @@ Consider rolling out changes gradually:
 
 ### Common Issues
 
-**SAZ Configuration Issues**
+**SDO Configuration Issues**
 ```bash
-# Check SAZ configuration
-saz config list
+# Check SDO configuration
+sdo config list
 
 # Re-authenticate if needed
-saz auth login
+sdo auth login
 
 # Test connection
-saz work-items list --top 1
+sdo work-items list --top 1
 ```
 
 **Template Conflicts**
@@ -306,7 +306,7 @@ python .github/validation/validate_configs.py --verbose
 - [ ] Created backup of existing files
 - [ ] Copied generic templates
 - [ ] Configured project settings
-- [ ] Set up SAZ CLI
+- [ ] Set up SDO CLI
 - [ ] Customized templates for project needs
 - [ ] Tested configuration and workflows
 - [ ] Validated with team
@@ -315,7 +315,7 @@ python .github/validation/validate_configs.py --verbose
 ## 🎯 Success Criteria
 
 - [ ] All team members can use the new workflows
-- [ ] SAZ CLI is properly configured and working
+- [ ] SDO CLI is properly configured and working
 - [ ] Configuration validation passes
 - [ ] No disruption to existing development processes
 - [ ] Team is comfortable with new templates
