@@ -50,3 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Validation patterns (project-specific)
+validation/hardcoded_patterns.txt

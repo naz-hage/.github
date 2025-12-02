@@ -1,6 +1,6 @@
 # Generic Workflow Documentation
 
-Complete guide to Product Backlog Item (PBI) and Task management workflows using the SAZ CLI tool. These workflows are designed to work across different project management platforms while leveraging SAZ as the primary interface.
+Complete guide to Product Backlog Item (PBI) and Task management workflows using the SDO CLI tool. These workflows are designed to work across different project management platforms while leveraging SDO as the primary interface.
 
 ## Overview
 
@@ -10,8 +10,7 @@ This documentation provides a comprehensive workflow system for managing develop
 - **Task Workflows**: Individual work item execution
 - **Quality Workflows**: Cross-cutting validation processes
 
-**Primary Tool**: SAZ CLI - Unified interface for Azure DevOps, GitHub, and Jira
-**Configuration**: See `project-config.yaml` for platform-specific settings
+**Primary Tool**: SDO CLI - Unified interface for Azure DevOps, GitHub, and Jira
 **Configuration**: See `project-config.yaml` for platform-specific settings
 
 ## Quick Start Decision Tree
@@ -42,16 +41,16 @@ This documentation provides a comprehensive workflow system for managing develop
 
 ## Prerequisites
 
-### SAZ CLI Tool Setup
+### SDO CLI Tool Setup
 ```bash
-# Install SAZ (recommended)
-pip install saz
+# Install SDO (recommended)
+pip install sdo
 # or
-pip install -e .  # if developing SAZ
+pip install -e .  # if developing SDO
 
 # Configure for your platform (see project-config.yaml for actual values)
-saz config set azure_devops.organization "[AZURE_DEVOPS_ORG]"
-saz config set azure_devops.pat "$AZURE_DEVOPS_PAT"
+sdo config set azure_devops.organization "[AZURE_DEVOPS_ORG]"
+sdo config set azure_devops.pat "$AZURE_DEVOPS_PAT"
 ```
 
 ### Alternative Tools
@@ -102,11 +101,11 @@ Cross-cutting validation processes:
 
 8. **[Code Review](code-review.md)** - PR creation and review
    - Create PR from `.temp/pr.md` (standardized temp location)
-   - Use `saz pr create --file .temp/pr.md --work-item <id>`
+   - Use `sdo pr create --file .temp/pr.md --work-item <id>`
    - Work item linking
-   - References [PR Squash Merge](pr-squash-merge.md) workflow
+   - References [PR Squash Merge](actions/pr-squash-merge.md) workflow
 
-9. **[PR Squash Merge](pr-squash-merge.md)** - Squash merge guidance
+9. **[PR Squash Merge](actions/pr-squash-merge.md)** - Squash merge guidance
    - Consolidate multiple commits into meaningful messages
    - Generate squash commit messages
    - Execute merge with GitHub CLI
@@ -245,8 +244,8 @@ QUALITY GATES (Apply at each stage):
 
 - [Code Review Workflow](code-review.md)
 - [Copilot Development Guidelines](../../copilot-instructions.md)
-- [SAZ Architecture](../../../ARCHITECTURE.md)
-- [SAZ README](../../../README.md)
+- [SDO Architecture](../../../ARCHITECTURE.md)
+- [SDO README](../../../README.md)
 
 ---
 

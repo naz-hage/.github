@@ -196,20 +196,10 @@ git push azure feature/task-$taskId-description
 
 
 #### 5.4 Create Pull Request
-```bash
-# Create PR markdown file in temp location
-# Copy template and fill in details
-cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/pr.md
 
-# Edit .temp/pr.md with your PR details, then create PR
-saz pr create --file .temp/pr.md --work-item [TASK_ID]
+**Reference:** `actions/create-pr.md`
 
-# Temp file is automatically cleaned up after PR creation
-```
-
-**PR Template Reference:** `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
-
-See `workflows/code-review.md` for complete PR preparation details.
+Follow the PR creation workflow in `actions/create-pr.md` to prepare and submit your changes for review. Use the task ID for linking the PR to the work item.
 
 ## Next Steps
 

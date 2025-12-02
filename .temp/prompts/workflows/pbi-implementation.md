@@ -36,7 +36,7 @@ Ensure PBI is properly prepared for implementation:
 
 ```bash
 # Query PBI details and validate structure
-saz workitem show --id [PBI_ID]
+sdo workitem show --id [PBI_ID]
 ```
 
 **PBI Readiness Checklist:**

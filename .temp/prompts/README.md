@@ -28,6 +28,10 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 │   ├── code-review.md          # Code review and PR processes
 │   ├── pr-squash-merge.md      # PR squash merge process guidance
 │   └── testing.md              # Testing workflow and validation
+├── actions/                     # Action-specific prompts (tool commands)
+│   ├── README.md               # Action prompts overview
+│   ├── create-issue.md         # Create issues in Azure DevOps/GitHub/Jira
+│   └── create-pr.md            # Create pull requests for code changes
 ├── examples/                    # Examples and best practices
 │   ├── code-patterns.md        # Preferred code patterns and structures
 │   ├── error-handling.md       # Error handling examples and patterns
@@ -52,6 +56,11 @@ High-level guidance for development processes covering the complete issue lifecy
 - **Code Review**: Preparing pull requests and conducting thorough reviews
 - **Testing**: Unit testing, integration testing, and CI/CD validation
 
+### Actions Directory
+Specific, actionable prompts for executing individual development actions using CLI tools:
+- **Issue Creation**: Step-by-step instructions for creating issues in Azure DevOps, GitHub, or Jira
+- **PR Creation**: Detailed commands and file formats for creating pull requests with proper linking
+
 ### Examples Directory
 Concrete examples and reference materials including:
 - **Code Patterns**: Preferred implementation patterns for the SAZ codebase
@@ -59,8 +68,8 @@ Concrete examples and reference materials including:
 - **Copilot Best Practices**: How to effectively use Copilot in this project
 - **Testing Scenarios**: Sample scenarios for validating prompt effectiveness
 
-### Reference Directory
-Specific implementation prompts with detailed step-by-step instructions for particular tools and workflows. These contain:
+### Templates Directory
+Reusable prompt templates with detailed step-by-step instructions for particular tools and workflows. These contain:
 - **Tool-specific guides**: Instructions for `saz` CLI commands, PowerShell scripts, etc.
 - **Detailed workflows**: Step-by-step processes for specific scenarios
 - **Project-specific context**: References to Proto Azure DevOps project and local tooling
@@ -74,6 +83,9 @@ PBI Creation → PBI Breakdown → PBI Implementation → Task Implementation �
      ↓              ↓                ↓                 ↓            ↓         ↓            ↓
 workflows/     workflows/       workflows/       workflows/        workflows/ workflows/  workflows/
 pbi-creation   pbi-breakdown    pbi-implementation task-implementation code-review testing    pbi-closure
+     ↓              ↓                ↓                 ↓            ↓         ↓            ↓
+ actions/       actions/        actions/         actions/       actions/   actions/     actions/
+create-issue    create-issue    create-issue     create-pr      create-pr  create-pr    create-pr
 ```
 
 Each phase includes:

@@ -81,7 +81,7 @@ Create `.temp/task.md` (temporary file for Azure DevOps creation):
 
 #### 3.1 Create Task in Azure DevOps
 ```bash
-saz workitem create --file-path .temp/task.md
+sdo workitem create --file-path .temp/task.md
 ```
 
 The saz command automatically links the task to its parent PBI when the Parent ID is specified in the markdown file.
@@ -196,6 +196,20 @@ Document new search functionality in README and help
 
 ## Effort Estimate: 4 hours
 ```
+
+## For GitHub Projects
+
+If your project uses GitHub instead of Azure DevOps for issue tracking, use the issue creation workflow for tasks:
+
+**Reference:** `actions/create-issue.md`
+
+**Quick Steps:**
+1. Create an issue message file following the format in `actions/create-issue.md`
+2. Use the `sdo` tool to create the issue:
+   ```powershell
+   sdo issue create --file .temp/issue-message.md --type task
+   ```
+3. Create a branch using the issue number: `git checkout -b issue/[issue-number]-[description]`
 
 ## Next Steps
 

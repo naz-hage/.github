@@ -10,7 +10,7 @@ The code review workflow ensures that code changes are properly prepared, docume
 - Git repository with changes committed
 - Current branch with implemented changes
 - Related work item(s) identified
-- `saz` CLI tool available
+- `sdo` CLI tool available
 
 ## Workflow Steps
 
@@ -37,28 +37,36 @@ git log --grep="#" --oneline
 # Example: Task #166, PBI #157
 ```
 
-### Step 3: Prepare Pull Request
-Use the `saz pr create` command to prepare and create the PR:
+### Step 3: Create Issue (if needed)
+If no related work items were identified in Step 2, create a new issue to track the changes:
 
-```bash
-# Copy PR template to temp location
-cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/pr.md
+**Reference:** `actions/create-issue.md`
 
-# Edit .temp/pr.md with your PR details
+**Quick Steps:**
+1. Create an issue message file in `.temp/issue-message.md` following the format in `actions/create-issue.md`
+2. Use the `sdo` tool to create the issue:
+   ```powershell
+   sdo issue create --file .temp/issue-message.md
+   ```
+3. Note the issue number for use in PR creation
 
-# Create the pull request
-saz pr create --file .temp/pr.md --work-item 166
+### Step 4: Create Pull Request
+Use the dedicated PR creation action to prepare and submit your changes for review:
 
-# Temp file is cleaned up automatically
+**Reference:** `actions/create-pr.md`
+
+**Quick Steps:**
+1. Follow the PR creation workflow in `actions/create-pr.md`
+2. Use issue/task number as filename prefix (e.g., `123-pr-message.md`)
+3. Link to related work items when available
+
+**Command:**
+```powershell
+# Follow the detailed steps in actions/create-pr.md
+sdo pr create --file .temp/<issue-number>-pr-message.md --work-item <id>
 ```
 
-**Command Options:**
-- `--file`: Path to markdown file with PR details (use `.temp/pr.md`)
-- `--work-item`: Related Azure DevOps work item number
-- `--draft`: Create as draft PR (optional)
-- `--update-pr`: Update existing PR by ID (optional)
-
-### Step 4: PR Content Validation
+### Step 5: PR Content Validation
 Ensure the PR includes:
 
 - [ ] Clear, descriptive title
@@ -67,14 +75,6 @@ Ensure the PR includes:
 - [ ] Testing instructions
 - [ ] Screenshots/screenshots for UI changes
 - [ ] Breaking changes documentation
-
-### Step 5: Link Work Items
-Ensure PR is properly linked to Azure DevOps work items:
-
-```bash
-# Check work item links
-az repos pr work-items list --id [pr_number]
-```
 
 ### Step 6: Request Review
 - Assign appropriate reviewers
@@ -115,7 +115,7 @@ git push azure --delete azdo-[TASK_ID]
 ### Step 9: Squash Merge Process
 For approved PRs, follow the squash merge workflow to consolidate commits:
 
-**Reference**: `workflows/pr-squash-merge.md`
+**Reference**: `actions/pr-squash-merge.md`
 
 **Key Steps:**
 1. **Generate Squash Commit Message**: Create a concise, meaningful commit message from all PR commits
@@ -145,36 +145,16 @@ gh pr merge [PR_ID] --squash --delete-branch -t "Your consolidated commit messag
 
 ## PR Description Format
 
-Use the standard PR template at `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`:
+PR descriptions follow the repository's standard template. See `actions/create-pr.md` for detailed formatting guidelines and the complete PR creation process.
 
-```markdown
-## Description
-<!-- What changed and why -->
+**Standard Template Location:** `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
 
-## Changes Made
-<!-- Bullet list of key changes -->
-- 
-- 
-
-## Why These Changes
-<!-- Business value or problem solved -->
-
-## Testing
-<!-- How you validated the changes -->
-- [ ] Tests pass (`make test` or `pytest`)
-- [ ] Code quality checks pass (`make lint`)
-
-## Screenshots/Demos
-<!-- If applicable, add screenshots or demos -->
-
-## Breaking Changes
-<!-- Only if applicable -->
-
-## Notes
-<!-- Anything else reviewers should know -->
-```
-
-**Note:** When creating a PR on GitHub/Azure DevOps, this template will be automatically loaded.
+**Key Elements:**
+- Clear, descriptive title following repo conventions (e.g., `[TASK-123] Brief description`)
+- Detailed description of changes and business value
+- List of key changes made
+- Testing information and validation steps
+- Links to related work items/issues
 
 ## Review Checklist
 
@@ -197,7 +177,7 @@ Use the standard PR template at `.github/PULL_REQUEST_TEMPLATE/pull_request_temp
 ## Error Handling
 
 **Common Issues:**
-- **Work item not linked:** Use `az repos pr work-item add` to link work items
+- **Work item not linked:** Ensure `--work-item` flag is used with `sdo pr create`
 - **Branch conflicts:** Rebase on latest main before creating PR
 - **Tests failing:** Ensure all tests pass before requesting review
 - **Missing documentation:** Update README and other docs as needed
@@ -236,3 +216,4 @@ Once the current task's PR is merged:
 - **Task Implementation**: `workflows/task-implementation.md` (for implementing individual tasks)
 - **PBI Implementation**: `workflows/pbi-implementation.md` (for coordinating multiple tasks)
 - **Testing**: `workflows/testing.md` (for comprehensive testing strategies)
+- **PR Creation**: `actions/create-pr.md` (for detailed PR creation steps)

@@ -38,32 +38,29 @@ You are tasked with creating a pull request for the current repository changes u
 - Verify commits exist: `git log origin/main..HEAD --oneline`
 
 ### Step 4: Generate PR Message
-Create a file named `pr-message.md` in the `.temp` directory ('c://source/ntools/.temp/pr-message.md`) with:
+Copy the repository's standard PR template and create a file named `<issue-number>-pr-message.md` in the `.temp` directory (`.temp/<issue-number>-pr-message.md` from repo root):
 
-**Format:**
-```markdown
-# <PR Title - concise summary of changes>
+**Standard Template Location:**
+- **GitHub**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
+- **Azure DevOps**: Repository's configured PR template
 
-## Description
-<Detailed description of what changed and why>
+**Command:**
+```powershell
+# Copy the standard PR template to temp location
+cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/<issue-number>-pr-message.md
 
-## Changes
-- <List key changes>
-- <One bullet per major change>
-
-## Testing
-<How the changes were tested>
-
-## Related Issues
-<Link to any related work items or issues>
+# Edit .temp/<issue-number>-pr-message.md with your PR details
 ```
 
-**Guidelines for PR message:**
-- Title: 50-72 characters, imperative mood (Add, Fix, Update, etc.)
-- Description: Explain the motivation and context
-- Changes: List specific modifications made
-- Be clear and concise
-- Focus on user impact or technical improvements
+**Fill out the template with:**
+- Clear, descriptive title following repo conventions (e.g., `[TASK-123] Brief description`)
+- Detailed description of changes and business value
+- List of key changes made
+- Testing information and validation steps
+- Links to related work items/issues
+- Any breaking changes or special notes
+
+**Note:** The filename must be prefixed with the issue/task number (e.g., `123-pr-message.md` for issue #123).
 
 ### Step 5: Push Branch
 Push the branch to remote:
@@ -74,12 +71,12 @@ git push -u origin <branch-name>
 ### Step 6: Create Pull Request with SDO
 Use the `sdo` tool to create the PR:
 ```powershell
-sdo pr create --file .temp/pr-message.md
+sdo pr create --file .temp/<issue-number>-pr-message.md
 ```
 
 **If work item ID is available:**
 ```powershell
-sdo pr create --file .temp/pr-message.md --work-item <id>
+sdo pr create --file .temp/<issue-number>-pr-message.md --work-item <id>
 ```
 
 ### Step 7: Verify PR Creation
@@ -103,15 +100,15 @@ git checkout -b feature/enhance-test-batch
 git add .
 git commit -m "Enhance TEST_BATCH target with validation phases"
 
-# 4. Create PR message file (.temp/pr-message.md)
-# Title: Enhance TEST_BATCH target with comprehensive validation phases
-# Content: detailed description...
+# 4. Copy and edit PR template (.temp/123-pr-message.md)
+cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/123-pr-message.md
+# Edit .temp/123-pr-message.md with your PR details following the standard template format
 
 # 5. Push branch
 git push -u origin feature/enhance-test-batch
 
 # 6. Create PR
-sdo pr create --file .temp/pr-message.md
+sdo pr create --file .temp/123-pr-message.md
 
 # Output:
 # ✓ Pull request created successfully
@@ -134,15 +131,15 @@ git branch --show-current
 git add .
 git commit -m "Complete TEST_BATCH enhancement for issue #456"
 
-# 4. Create PR message file (.temp/pr-message.md)
-# Title: Enhance TEST_BATCH target with comprehensive validation phases
-# Content: detailed description with link to issue #456...
+# 4. Copy and edit PR template (.temp/456-pr-message.md)
+cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/456-pr-message.md
+# Edit .temp/456-pr-message.md with your PR details following the standard template format
 
 # 5. Push branch
 git push -u origin issue/456-enhance-test-batch
 
 # 6. Create PR linked to the issue
-sdo pr create --file .temp/pr-message.md --work-item 456
+sdo pr create --file .temp/456-pr-message.md --work-item 456
 
 # Output:
 # ✓ Pull request created successfully

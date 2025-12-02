@@ -11,7 +11,7 @@ All workflow prompts in this directory are **project-agnostic** and reference `p
 This YAML file contains all project-specific metadata:
 - Project management platforms (Azure DevOps, GitHub, Jira)
 - Repository details (owner, name, remotes)
-- Tool configurations (SAZ CLI, language-specific tools)
+- Tool configurations (SDO CLI, language-specific tools)
 - Work item types, states, and story point scales
 - Code style settings (formatters, linters)
 - Authentication requirements
@@ -28,7 +28,7 @@ This YAML file contains all project-specific metadata:
 
 2. **Customize values**: Replace placeholder values with your project specifics
 
-3. **Configure SAZ**: Set up SAZ tool for your platforms (Azure DevOps, GitHub, etc.)
+3. **Configure SDO**: Set up SDO tool for your platforms (Azure DevOps, GitHub, etc.)
 
 ### For Existing Projects
 
@@ -43,7 +43,7 @@ This YAML file contains all project-specific metadata:
 - **`project`** - Basic project information (name, language, version)
 - **`project_management`** - Which platforms/tools to use
 - **`repository`** - Git repository settings
-- **`tools`** - Tool configurations (SAZ, CLI tools)
+- **`tools`** - Tool configurations (SDO, CLI tools)
 - **`development`** - Language-specific development settings
 - **`authentication`** - Platform authentication settings
 - **`workflows`** - Work item states and story points
@@ -76,7 +76,7 @@ This YAML file contains all project-specific metadata:
 **Setup Steps:**
 1. Navigate to Azure DevOps → User Settings → Personal Access Tokens
 2. Click "New Token"
-3. Set name (e.g., "SAZ CLI Tool")
+4. Set name (e.g., "SDO CLI Tool")
 4. Set organization and expiration
 5. Select the required permissions listed above
 6. Copy token and set as environment variable: `AZURE_DEVOPS_PAT`
@@ -123,7 +123,7 @@ Workflows indicate where to find values:
 Use bracketed placeholders that should be replaced with config values:
 
 ```bash
-saz workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
 ```
 
 ### Pattern 3: Header Reference
@@ -153,12 +153,12 @@ Workflows include a reference at the top:
 ### Example 2: Tool Commands
 **In workflow prompt (project-agnostic):**
 ```bash
-saz workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
 ```
 
 **Resolved for a project:**
 ```bash
-saz workitem create --file-path .temp/pbi.md
+sdo workitem create --file-path .temp/pbi.md
 ```
 
 ### Example 3: Language-Specific Commands
@@ -239,7 +239,7 @@ If you have an existing `project-config.yaml` from the old structure:
 |----------|----------|-------|
 | `project.name` | `project.name` | Same |
 | `azure_devops.*` | `azure_devops.*` | Same |
-| `tools.saz_cli.*` | `tools.saz_cli.*` | Same |
+| `tools.saz_cli.*` | `tools.sdo_cli.*` | Same |
 | `development.code_style.*` | `development.language_config.python.*` | Language-specific |
 | `quality_tools` | `development.quality_tools` | Moved |
 
@@ -250,44 +250,44 @@ If you have an existing `project-config.yaml` from the old structure:
 - **New required sections**: `project_management`, `project_type`
 - **Platform flags**: Must explicitly enable/disable platforms
 
-## SAZ Tool Configuration
+## SDO Tool Configuration
 
-### Setting up SAZ for Multiple Platforms
+### Setting up SDO for Multiple Platforms
 
-1. **Install SAZ**:
+1. **Install SDO**:
 ```bash
-pip install saz
+pip install sdo
 # or
-pip install -e .  # if developing SAZ
+pip install -e .  # if developing SDO
 ```
 
 2. **Configure for Azure DevOps**:
 ```bash
-saz config set azure_devops.organization "myorg"
-saz config set azure_devops.project "MyProject"
-saz config set azure_devops.pat "$AZURE_DEVOPS_PAT"
+sdo config set azure_devops.organization "myorg"
+sdo config set azure_devops.project "MyProject"
+sdo config set azure_devops.pat "$AZURE_DEVOPS_PAT"
 ```
 
 3. **Configure for GitHub**:
 ```bash
-saz config set github.owner "myorg"
-saz config set github.token "$GITHUB_TOKEN"
+sdo config set github.owner "myorg"
+sdo config set github.token "$GITHUB_TOKEN"
 ```
 
 4. **Test configuration**:
 ```bash
-saz repo list  # Test Azure DevOps
-saz issue list  # Test GitHub
+sdo repo list  # Test Azure DevOps
+sdo issue list  # Test GitHub
 ```
 
-### SAZ Command Mapping
+### SDO Command Mapping
 
-| Generic Action | SAZ Command | Alternative |
+| Generic Action | SDO Command | Alternative |
 |----------------|-------------|-------------|
-| Create work item | `saz workitem create` | `az boards work-item create` |
-| List repositories | `saz repo list` | `gh repo list` |
-| Create PR | `saz pr create` | `gh pr create` |
-| Run pipeline | `saz pipeline run` | `az pipelines run` |
+| Create work item | `sdo workitem create` | `az boards work-item create` |
+| List repositories | `sdo repo list` | `gh repo list` |
+| Create PR | `sdo pr create` | `gh pr create` |
+| Run pipeline | `sdo pipeline run` | `az pipelines run` |
 
 ## Advanced Configuration
 
@@ -343,15 +343,15 @@ authentication:
 - Verify YAML syntax
 - Ensure platform flags are set correctly
 
-**"SAZ command not found"**
-- Verify SAZ is installed: `saz --version`
-- Check PATH includes SAZ executable
-- Try `python -m saz_package.cli` if using module
+**"SDO command not found"**
+- Verify SDO is installed: `sdo --version`
+- Check PATH includes SDO executable
+- Try `python -m sdo_package.cli` if using module
 
 **"Authentication failed"**
 - Verify environment variables are set
 - Check token permissions
-- Test with SAZ directly: `saz auth test`
+- Test with SDO directly: `sdo auth test`
 
 **"Platform not configured"**
 - Set platform flag to `true` in `project_management.platforms`
@@ -366,8 +366,8 @@ Run these commands to validate your configuration:
 # Check YAML syntax
 python -c "import yaml; yaml.safe_load(open('project-config.yaml'))"
 
-# Test SAZ configuration
-saz config list
+# Test SDO configuration
+sdo config list
 
 # Validate required sections exist
 python -c "
@@ -412,7 +412,7 @@ else:
 - **`copilot-instructions.md`** - Development guidelines
 - **Workflow files** - How configs are used in practice
 
-**Resolved for SAZ project:**
+**Resolved for SDO project:**
 ```markdown
 ## Project: Proto
 ## Area: Proto\Warriors
@@ -422,12 +422,12 @@ else:
 ### Example 2: Tool Paths
 **In workflow prompt (project-agnostic):**
 ```bash
-saz workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
 ```
 
-**Resolved for SAZ project:**
+**Resolved for SDO project:**
 ```bash
-saz workitem create --file-path .temp/pbi.md
+sdo workitem create --file-path .temp/pbi.md
 ```
 
 ### Example 3: Story Points Scale
@@ -462,7 +462,7 @@ python \source\ntools\atools\add-issue.py .temp/pbi.md
 ```markdown
 ## Project: [FROM project-config.yaml: azure_devops.project]
 ## Area: [FROM project-config.yaml: azure_devops.area_path]
-saz workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
 ```
 
 ## Transferring Workflows to Other Projects

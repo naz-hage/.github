@@ -12,7 +12,7 @@ PBIs are the primary planning artifacts that capture business requirements and u
 
 - Access to Azure DevOps project (see `project-config.yaml` for organization/project details)
 - Understanding of business requirements
-- `saz` CLI tool installed and available in PATH (see `project-config.yaml`)
+- `sdo` CLI tool installed and available in PATH (see `project-config.yaml`)
 - Azure DevOps authentication configured (see `project-config.yaml` for auth details)
 
 ## PBI Creation Workflow
@@ -86,13 +86,13 @@ Create temporary file at location specified in `project-config.yaml` (default: `
 #### 3.1 Create PBI in Azure DevOps
 Use the saz CLI tool to create the PBI (saz must be available in PATH):
 ```bash
-# Create PBI using saz workitem create command
-saz workitem create --file-path .temp/pbi.md
+# Create PBI using sdo workitem create command
+sdo workitem create --file-path .temp/pbi.md
 ```
 
 **Example:**
 ```bash
-saz workitem create --file-path .temp/pbi.md
+sdo workitem create --file-path .temp/pbi.md
 ```
 
 **After successful creation:**
@@ -198,6 +198,20 @@ Reduces user frustration and support requests
 
 ## Story Points: 3
 ```
+
+## For GitHub Projects
+
+If your project uses GitHub instead of Azure DevOps for issue tracking, use the issue creation workflow for features that would be PBIs:
+
+**Reference:** `actions/create-issue.md`
+
+**Quick Steps:**
+1. Create an issue message file following the format in `actions/create-issue.md`
+2. Use the `sdo` tool to create the issue:
+   ```powershell
+   sdo issue create --file .temp/issue-message.md --type feature
+   ```
+3. Note the issue number for branch naming and PR linking
 
 ## Next Steps
 

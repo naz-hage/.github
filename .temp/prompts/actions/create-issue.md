@@ -10,7 +10,7 @@ You are tasked with creating an issue for the current repository changes using a
 3. Get list of changed files: `git diff --name-only`
 
 ### Step 2: Generate Issue Message
-Create a file named `issue-message.md` in the `.temp` directory (`c:/source/ntools/.temp/issue-message.md`) with:
+Create a file named `issue-message.md` in the `.temp` directory (`.temp/issue-message.md` from repo root) with:
 
 **Format:**
 ```markdown
