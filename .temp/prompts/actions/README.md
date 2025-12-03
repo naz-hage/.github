@@ -97,6 +97,6 @@ sdo pr create --file .temp/pr-message.md --work-item <id>
 ## Related Documentation
 
 - [Workflow Guides](../workflows/README.md) - High-level process documentation
-- [Configuration](../CONFIG_USAGE.md) - Tool and platform configuration
+- [Quick Start Guide](../../../setup-guides/quick-start-guide.md) - Complete setup and configuration guide
 - [Copilot Instructions](../../copilot-instructions.md) - AI-assisted development guidelines</content>
 <parameter name="filePath">c:\source\.github\.temp\prompts\actions\README.md

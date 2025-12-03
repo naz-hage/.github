@@ -8,7 +8,6 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 
 **Key Files:**
 - **`../project-config.yaml`** - Project-specific configuration (organization, project, tools, paths)
-- **`CONFIG_USAGE.md`** - How to use project-config.yaml in workflows
 - **`platform-mapping.md`** - Standardized term mappings between SDO, Azure DevOps, and GitHub
 - **`../copilot-instructions.md`** - Project-specific development guidelines
 
@@ -17,7 +16,6 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 ```
 .github/prompts/
 ├── README.md                    # This file - overview and usage guide
-├── CONFIG_USAGE.md              # How to use project-config.yaml in workflows
 ├── platform-mapping.md          # Standardized term mappings (SDO/AzDO/GitHub)
 ├── workflows/                   # Workflow-specific prompts (project-agnostic)
 │   ├── workitem-creation-workflow.md # Creating PBIs and Tasks (portfolio and sprint level)

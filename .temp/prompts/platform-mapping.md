@@ -76,7 +76,7 @@ When writing workflow documentation:
 # Create a new work item (SDO term)
 # Maps to: PBI in Azure DevOps, Issue in GitHub
 
-sdo work-items create --title "New Feature" --type pbi
+sdo workitem create --file-path pbi.md --title "New Feature"
 ```
 
 This mapping ensures that all documentation and tooling can work across multiple platforms while maintaining clarity and consistency.</content>

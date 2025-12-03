@@ -6,7 +6,7 @@ A comprehensive template system for project management workflows, development gu
 
 ## 🎯 Overview
 
-This repository contains **generic, reusable templates** that projects can copy to their `.github/` directory to establish consistent development workflows, coding standards, and project management processes. The templates are designed to work with multiple platforms (Azure DevOps, GitHub, Jira) and programming languages (Python, JavaScript/TypeScript, Java, C#).
+This repository contains **generic, reusable templates** that projects can copy to their `.github/` directory to establish consistent development workflows, coding standards, and project management processes. The templates are designed to work with multiple platforms (Azure DevOps, GitHub) and programming languages (Python, JavaScript/TypeScript, Java, C#).
 
 ### Key Features
 
@@ -24,12 +24,10 @@ This repository contains **generic, reusable templates** that projects can copy 
 ├── PULL_REQUEST_TEMPLATE/         # Pull request template
 ├── workflows/                     # GitHub Actions workflows
 └── .temp/                         # Generic templates (copy to project .github/)
-    ├── project-config.yaml         # Base configuration template
-    ├── project-config.*.yaml       # Language-specific config examples
+    ├── project-config.yaml         # Generic configuration template
     ├── copilot-instructions.md     # GitHub Copilot instructions template
     ├── prompts/                    # Workflow and development guides
     │   ├── README.md              # Generic workflow overview
-    │   ├── CONFIG_USAGE.md        # Configuration guide
     │   ├── workflows/             # Tool-agnostic workflow templates
     │   ├── actions/               # Action-specific workflow templates
     │   └── examples/              # Multi-language code examples
@@ -37,7 +35,6 @@ This repository contains **generic, reusable templates** that projects can copy 
     └── PULL_REQUEST_TEMPLATE/     # Generic PR template
 setup-guides/                      # Project setup and migration guides
 validation/                        # Configuration validation tools
-test-configs/                      # Test configurations for different scenarios
 README.md                          # This file
 ```
 
@@ -55,8 +52,7 @@ README.md                          # This file
    ```bash
    # Edit project-config.yaml with your project details
    cd your-project/.github
-   # Choose appropriate config template (python, nodejs, dotnet, etc.)
-   cp project-config.python.yaml project-config.yaml  # or other template
+   # The config is generic and works for all languages
    # Edit project-config.yaml with your specific values
    ```
 
@@ -78,7 +74,7 @@ README.md                          # This file
 
 ### For Existing Projects
 
-See our [Migration Guide](setup-guides/migration-guide.md) for step-by-step instructions on adopting these templates in existing projects.
+Follow the [Quick Start Guide](setup-guides/quick-start-guide.md) to adopt these templates in existing projects.
 
 ## ⚙️ Configuration
 
@@ -91,39 +87,37 @@ The `project-config.yaml` file contains all project-specific settings:
 project:
   name: "MyProject"
   organization: "my-org"
-  description: "Project description"
 
 # Platform Configuration
-platforms:
-  azure_devops: true
-  github: false
-  jira: false
+project_management:
+  platforms:
+    azure_devops: true
+    github: false
 
-# Language & Framework
-language: "python"
-framework: "fastapi"
+# Azure DevOps settings (if enabled)
+azure_devops:
+  organization: "my-org"
+  project: "MyProject"
+  area_path: "my-org\\MyProject\\Development"
+  default_iteration: "my-org\\MyProject\\Backlog"
 
 # Tool Configuration
 tools:
-  cli: "sdo"  # Primary CLI tool
-  test_runner: "pytest"
-  linter: "flake8"
+  sdo_cli:
+    temp_directory: ".temp"
 ```
 
-### Language-Specific Templates
+### Configuration Template
 
-Choose the appropriate configuration template for your project:
+The configuration is now **generic** and works for all project types:
 
-- `project-config.python.yaml` - Python projects (Django, FastAPI, Flask)
-- `project-config.nodejs.yaml` - Node.js projects (Express, NestJS, Next.js)
-- `project-config.dotnet.yaml` - .NET projects (ASP.NET Core, Console apps)
+- `project-config.yaml` - Generic project configuration (works for all languages)
 
 ## 🛠️ Supported Platforms & Languages
 
 ### Project Management Platforms
 - **Azure DevOps** (primary, via SDO CLI)
 - **GitHub Issues**
-- **Jira**
 
 ### Programming Languages
 - **Python** - Web APIs, data processing, CLI tools
@@ -182,7 +176,7 @@ sdo config set repository your-repo
 
 ## 📖 Documentation
 
-- **[Configuration Guide](.temp/prompts/CONFIG_USAGE.md)** - Detailed configuration options
+- **[Quick Start Guide](setup-guides/quick-start-guide.md)** - Complete setup and configuration guide
 - **[Workflow Guide](.temp/prompts/workflows/README.md)** - Available workflow templates
 - **[Setup Guides](setup-guides/)** - Project setup and migration guides
 - **[Validation Tools](validation/)** - Configuration validation scripts
@@ -201,7 +195,7 @@ sdo config set repository your-repo
 1. Create language directory: `.temp/prompts/examples/{language}/`
 2. Add 3 core files: patterns, testing, error-handling
 3. Create config template: `project-config.{language}.yaml`
-4. Update CONFIG_USAGE.md
+4. Update Quick Start Guide with new language examples
 5. Test with sample project
 
 ## 📄 License
