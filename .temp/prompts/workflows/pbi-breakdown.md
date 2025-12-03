@@ -37,11 +37,11 @@ Create tasks following **INVEST** principles:
 - **I**ndependent, **N**egotiable, **V**aluable, **E**stimable, **S**mall (1-3 days), **T**estable
 
 #### 2.2 Create Implementation Tasks
-Follow `workflows/task-creation.md` to create task markdown files in `.temp/` (temporary location).
+Follow `workflows/workitem-creation-workflow.md` to create task markdown files in `.temp/` (temporary location).
 
 **Create each task:**
 ```bash
-# Create .temp/task.md following task-creation.md template
+# Create .temp/task.md following workitem-creation-workflow.md template
 saz workitem create --file-path .temp/task.md
 ```
 
@@ -261,8 +261,8 @@ After PBI breakdown, proceed to:
 
 ## Related Workflows
 
-- [PBI Creation](pbi-creation.md) - Creating PBIs
-- [Task Creation](task-creation.md) - Detailed task creation
+- [Work Item Creation](workitem-creation-workflow.md) - Creating PBIs
+- [Work Item Creation](workitem-creation-workflow.md) - Detailed task creation
 - [Task Implementation](task-implementation.md) - Individual task execution
 - [PBI Implementation](pbi-implementation.md) - Multi-task coordination
 - [PBI Closure](pbi-closure.md) - PBI completion validation

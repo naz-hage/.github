@@ -239,12 +239,12 @@ Daily standups are brief, focused meetings where team members share:
 
 ```markdown
 **Yesterday:**
-- Completed user story: "As a user, I can filter search results"
+- Completed feature: "As a user, I can filter search results"
 - Fixed 3 bugs from previous sprint
 - Updated component documentation
 
 **Today:**
-- Start work on user story: "As a user, I can export search results"
+- Start work on feature: "As a user, I can export search results"
 - Review pull requests from yesterday
 - Attend architecture planning meeting
 

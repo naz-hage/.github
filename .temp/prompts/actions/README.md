@@ -8,11 +8,11 @@ While the `workflows/` directory contains comprehensive process guides (when, wh
 
 ## Action Prompts
 
-### Issue Management
-- **[create-issue.md](create-issue.md)** - Create issues in Azure DevOps, GitHub, or Jira
-  - File format for issue creation
-  - SDO CLI commands for issue creation
-  - Branch naming conventions
+### Work Item Management
+- **[create-workitem.md](create-workitem.md)** - Create work items (Issues, PBIs, Tasks) in Azure DevOps or GitHub
+  - File formats for different work item types
+  - SDO CLI commands for work item creation
+  - Platform-specific handling
   - Post-creation workflow integration
 
 ### PR Creation
@@ -78,7 +78,7 @@ All actions use the **SDO CLI tool** as the primary interface:
 
 ```bash
 # Issue creation
-sdo issue create --file .temp/issue-message.md
+sdo workitem create --file-path .temp/issue-message.md
 
 # PR creation
 sdo pr create --file .temp/pr-message.md --work-item <id>

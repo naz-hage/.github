@@ -4,7 +4,7 @@ This workflow guides the final phase of Product Backlog Item (PBI) completion, e
 
 ## Overview
 
-PBI closure validates that an entire feature or user story has been fully implemented, tested, and is ready for production use. This involves verifying all child tasks are complete, conducting end-to-end testing, obtaining stakeholder approval, and ensuring proper documentation and knowledge transfer.
+PBI closure validates that an entire feature has been fully implemented, tested, and is ready for production use. This involves verifying all child tasks are complete, conducting end-to-end testing, obtaining stakeholder approval, and ensuring proper documentation and knowledge transfer.
 
 ## Prerequisites
 
@@ -459,9 +459,9 @@ az boards work-item create --type Task --title "Fix issues discovered in PBI #[P
 
 ## Related Workflows
 
-- **PBI Creation**: `workflows/pbi-creation.md`
+- **Work Item Creation**: `workflows/workitem-creation-workflow.md`
 - **PBI Implementation**: `workflows/pbi-implementation.md`
-- **Task Creation**: `workflows/task-creation.md`
+- **Work Item Creation**: `workflows/workitem-creation-workflow.md`
 - **Task Implementation**: `workflows/task-implementation.md`
 - **Task Closure**: `workflows/task-closure.md`
 - **Code Review**: `workflows/code-review.md`

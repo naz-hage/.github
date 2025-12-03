@@ -65,35 +65,11 @@ If SDO is not available, workflows include alternative commands for:
 
 Feature-level lifecycle management:
 
-1. **[PBI Creation](pbi-creation.md)** - Define new features
-   - Business value analysis
+1. **[Work Item Creation](workitem-creation-workflow.md)** - Define PBIs and Tasks
+   - Business value analysis for PBIs
    - Acceptance criteria definition
-   - Story point estimation
-
-2. **[PBI Breakdown](pbi-breakdown.md)** - Sprint planning
-   - Decompose into tasks
-   - Capacity planning
-   - Task sequencing
-
-3. **[PBI Implementation](pbi-implementation.md)** - Execution coordination
-   - Multi-task delivery
-   - Integration testing
-   - Progress tracking
-
-4. **[PBI Closure](pbi-closure.md)** - Validation and completion
-   - Acceptance verification
-   - End-to-end testing
-   - Product Owner approval
-
-### Task Workflows
-
-Individual work item execution:
-
-5. **[Task Creation](task-creation.md)** - Define implementation tasks
-
-6. **[Task Implementation](task-implementation.md)** - Execute development work
-
-7. **[Task Closure](task-closure.md)** - Validate and complete tasks
+   - Story point estimation for PBIs
+   - Task breakdown and effort estimation
 
 ### Quality & Collaboration Workflows
 
@@ -181,9 +157,9 @@ QUALITY GATES (Apply at each stage):
 
 | Situation | Workflow | Purpose |
 |-----------|----------|---------|
-| 💡 New feature idea | [PBI Creation](pbi-creation.md) | Define business value and requirements |
+| 💡 New feature idea | [Work Item Creation](workitem-creation-workflow.md) | Define business value and requirements |
 | 📅 Sprint planning | [PBI Breakdown](pbi-breakdown.md) | Break PBI into tasks |
-| ✏️ Need new task | [Task Creation](task-creation.md) | Define specific work item |
+| ✏️ Need new task | [Work Item Creation](workitem-creation-workflow.md) | Define specific work item |
 | 💻 Ready to code | [Task Implementation](task-implementation.md) | Execute development |
 | ✅ Code complete | [Testing](testing.md) → [Code Review](code-review.md) | Validate and review |
 | 🎯 Task done | [Task Closure](task-closure.md) | Mark task complete |
@@ -193,7 +169,7 @@ QUALITY GATES (Apply at each stage):
 ## Role-Based Quick Reference
 
 ### Product Owner
-- Create PBIs: [PBI Creation](pbi-creation.md)
+- Create PBIs: [Work Item Creation](workitem-creation-workflow.md)
 - Review completed work: [PBI Closure](pbi-closure.md)
 - Approve features: [PBI Closure](pbi-closure.md) Phase 3
 
@@ -212,21 +188,21 @@ QUALITY GATES (Apply at each stage):
 ## Common Patterns
 
 ### New Feature Development
-1. [PBI Creation](pbi-creation.md) - Product Owner defines feature
+1. [Work Item Creation](workitem-creation-workflow.md) - Product Owner defines feature
 2. [PBI Breakdown](pbi-breakdown.md) - Team plans implementation
 3. [Task Implementation](task-implementation.md) - Developers build (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
 5. [PBI Closure](pbi-closure.md) - Validate and release
 
 ### Bug Fix
-1. [PBI Creation](pbi-creation.md) - Define bug and impact
-2. [Task Creation](task-creation.md) - Create fix task
+1. [Work Item Creation](workitem-creation-workflow.md) - Define bug and impact
+2. [Work Item Creation](workitem-creation-workflow.md) - Create fix task
 3. [Task Implementation](task-implementation.md) - Implement fix (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
 5. [PBI Closure](pbi-closure.md) - Verify fix
 
 ### Technical Debt
-1. [PBI Creation](pbi-creation.md) - Document debt and impact
+1. [Work Item Creation](workitem-creation-workflow.md) - Document debt and impact
 2. [PBI Breakdown](pbi-breakdown.md) - Plan refactoring
 3. [Task Implementation](task-implementation.md) - Execute improvements (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review

@@ -2052,7 +2052,7 @@ diff help_output.txt docs/cli-help-expected.txt
 **Scenario**: Complete feature development using all workflow prompts
 
 **Test Workflow**:
-1. **PBI Creation**: Use pbi-creation.md to plan feature
+1. **Work Item Creation**: Use workitem-creation-workflow.md to plan feature
 2. **Implementation**: Use code-patterns.md for implementation guidance
 3. **Testing**: Use testing.md to create comprehensive tests
 4. **Code Review**: Use code-review.md for PR preparation

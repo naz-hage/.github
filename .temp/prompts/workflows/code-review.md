@@ -43,10 +43,10 @@ If no related work items were identified in Step 2, create a new issue to track 
 **Reference:** `actions/create-issue.md`
 
 **Quick Steps:**
-1. Create an issue message file in `.temp/issue-message.md` following the format in `actions/create-issue.md`
+1. Create an issue message file in `.temp/issue-message.md` following the Issue format in `actions/create-workitem.md`
 2. Use the `sdo` tool to create the issue:
    ```powershell
-   sdo issue create --file .temp/issue-message.md
+   sdo workitem create --file-path .temp/issue-message.md
    ```
 3. Note the issue number for use in PR creation
 

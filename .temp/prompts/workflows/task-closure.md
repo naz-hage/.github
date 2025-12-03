@@ -186,7 +186,7 @@ Prepare for the next task in the PBI:
 
 ## Related Workflows
 
-- **Task Creation**: `workflows/task-creation.md`
+- **Work Item Creation**: `workflows/workitem-creation-workflow.md`
 - **Task Implementation**: `workflows/task-implementation.md`
 - **Code Review**: `workflows/code-review.md`
 - **PBI Implementation**: `workflows/pbi-implementation.md`

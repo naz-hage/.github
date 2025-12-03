@@ -8,7 +8,8 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 
 **Key Files:**
 - **`../project-config.yaml`** - Project-specific configuration (organization, project, tools, paths)
-- **`CONFIG_USAGE.md`** - How workflows reference configuration
+- **`CONFIG_USAGE.md`** - How to use project-config.yaml in workflows
+- **`platform-mapping.md`** - Standardized term mappings between SDO, Azure DevOps, and GitHub
 - **`../copilot-instructions.md`** - Project-specific development guidelines
 
 ## Directory Structure
@@ -17,12 +18,12 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 .github/prompts/
 ├── README.md                    # This file - overview and usage guide
 ├── CONFIG_USAGE.md              # How to use project-config.yaml in workflows
+├── platform-mapping.md          # Standardized term mappings (SDO/AzDO/GitHub)
 ├── workflows/                   # Workflow-specific prompts (project-agnostic)
-│   ├── pbi-creation.md         # Creating Product Backlog Items (portfolio level)
+│   ├── workitem-creation-workflow.md # Creating PBIs and Tasks (portfolio and sprint level)
 │   ├── pbi-breakdown.md        # Breaking PBIs into implementable tasks
 │   ├── pbi-implementation.md   # PBI implementation coordination workflow
 │   ├── pbi-closure.md          # PBI completion and validation
-│   ├── task-creation.md        # Creating Tasks during sprint planning
 │   ├── task-implementation.md  # Task implementation workflow (one task at a time)
 │   ├── task-closure.md         # Task completion validation
 │   ├── code-review.md          # Code review and PR processes
@@ -39,17 +40,15 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 │   ├── prompt-testing-scenarios.md # Testing scenarios for prompts
 │   └── daily-standup-reference.md # Daily standup summary generator
 └── templates/                   # Reusable prompt templates
-    └── pull_request_template.md # GitHub PR template for SAZ development
+    └── pull_request_template.md # GitHub PR template for SDO development
 ```
 
 ## Directory Purposes
 
 ### Workflows Directory
 High-level guidance for development processes covering the complete issue lifecycle:
-- **PBI Creation**: Creating Product Backlog Items with business value and acceptance criteria
+- **Work Item Creation**: Creating PBIs and Tasks with business value and acceptance criteria
 - **PBI Breakdown**: Breaking committed PBIs into implementable Tasks for sprint planning
-- **PBI Implementation**: Coordinating implementation of multiple tasks for a PBI
-- **Task Creation**: Creating focused, actionable Tasks during sprint planning
 - **Task Implementation**: Step-by-step coding, testing, and validation workflow (one task at a time)
 - **Task Closure**: Task completion validation and cleanup
 - **PBI Closure**: PBI completion validation, testing, and stakeholder approval
@@ -63,14 +62,14 @@ Specific, actionable prompts for executing individual development actions using 
 
 ### Examples Directory
 Concrete examples and reference materials including:
-- **Code Patterns**: Preferred implementation patterns for the SAZ codebase
+- **Code Patterns**: Preferred implementation patterns for the SDO codebase
 - **Error Handling**: Comprehensive error handling strategies and examples
 - **Copilot Best Practices**: How to effectively use Copilot in this project
 - **Testing Scenarios**: Sample scenarios for validating prompt effectiveness
 
 ### Templates Directory
 Reusable prompt templates with detailed step-by-step instructions for particular tools and workflows. These contain:
-- **Tool-specific guides**: Instructions for `saz` CLI commands, PowerShell scripts, etc.
+- **Tool-specific guides**: Instructions for `sdo` CLI commands, PowerShell scripts, etc.
 - **Detailed workflows**: Step-by-step processes for specific scenarios
 - **Project-specific context**: References to Proto Azure DevOps project and local tooling
 
@@ -79,13 +78,13 @@ Reusable prompt templates with detailed step-by-step instructions for particular
 This prompt system provides comprehensive guidance for the **entire software development lifecycle**:
 
 ```
-PBI Creation → PBI Breakdown → PBI Implementation → Task Implementation → Code Review → Testing → PBI Closure
-     ↓              ↓                ↓                 ↓            ↓         ↓            ↓
-workflows/     workflows/       workflows/       workflows/        workflows/ workflows/  workflows/
-pbi-creation   pbi-breakdown    pbi-implementation task-implementation code-review testing    pbi-closure
-     ↓              ↓                ↓                 ↓            ↓         ↓            ↓
- actions/       actions/        actions/         actions/       actions/   actions/     actions/
-create-issue    create-issue    create-issue     create-pr      create-pr  create-pr    create-pr
+Work Item Creation → PBI Breakdown → PBI Implementation → Task Implementation → Code Review → Testing → PBI Closure
+     ↓                     ↓                ↓                 ↓            ↓         ↓            ↓
+workflows/            workflows/       workflows/       workflows/        workflows/ workflows/  workflows/
+workitem-creation     pbi-breakdown    pbi-implementation task-implementation code-review testing    pbi-closure
+     ↓                     ↓                ↓                 ↓            ↓         ↓            ↓
+ actions/              actions/        actions/         actions/       actions/   actions/     actions/
+create-workitem       create-workitem create-workitem  create-pr      create-pr  create-pr    create-pr
 ```
 
 Each phase includes:
