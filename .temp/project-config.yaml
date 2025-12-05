@@ -1,9 +1,12 @@
-# Generic Project Configuration Template
-# This file contains project-specific metadata used by Copilot workflows
-# Copy this file to your project and customize the values below
-# IMPORTANT: This file MUST be stored in the .temp folder from the root of the repo
-# Keep prompts generic - they should reference this config file
-
+# PROMPT: Update project-config.yaml
+# 1. Switch to project directory: cd /path/to/your/project
+# 2. Detect platform from git remote: git remote -v
+#    - If remote contains "dev.azure.com" → use azure_devops section
+#    - If remote contains "github.com" → use github section
+#    - Note: There can only be azdo OR gh, not both
+# 3. Fill placeholders with actual values from your project
+#    - Replace [PROJECT_NAME], [ORG_NAME], etc. with real values
+#    - Remove unused platform section (azure_devops or github)
 # ============================================================================
 # PROJECT INFORMATION
 # ============================================================================
