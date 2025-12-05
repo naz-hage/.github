@@ -3,7 +3,7 @@
 You are tasked with creating a pull request for the current repository changes using an automated workflow.
 
 ## Input
-- **Repository name**: The name of the repository (e.g., `home`, `saz`, `ntools`)
+- **Repository name**: The name of the repository (e.g., `home`, `sdo`, `ntools`)
 - **Issue created**: Whether an issue has already been created for these changes
 
 ## Workflow Steps

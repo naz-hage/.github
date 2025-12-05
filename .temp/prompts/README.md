@@ -31,12 +31,6 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 │   ├── README.md               # Action prompts overview
 │   ├── create-issue.md         # Create issues in Azure DevOps/GitHub/Jira
 │   └── create-pr.md            # Create pull requests for code changes
-├── examples/                    # Examples and best practices
-│   ├── code-patterns.md        # Preferred code patterns and structures
-│   ├── error-handling.md       # Error handling examples and patterns
-│   ├── copilot-best-practices.md # How to effectively use Copilot
-│   ├── prompt-testing-scenarios.md # Testing scenarios for prompts
-│   └── daily-standup-reference.md # Daily standup summary generator
 └── templates/                   # Reusable prompt templates
     └── pull_request_template.md # GitHub PR template for SDO development
 ```
@@ -57,13 +51,6 @@ High-level guidance for development processes covering the complete issue lifecy
 Specific, actionable prompts for executing individual development actions using CLI tools:
 - **Issue Creation**: Step-by-step instructions for creating issues in Azure DevOps, GitHub, or Jira
 - **PR Creation**: Detailed commands and file formats for creating pull requests with proper linking
-
-### Examples Directory
-Concrete examples and reference materials including:
-- **Code Patterns**: Preferred implementation patterns for the SDO codebase
-- **Error Handling**: Comprehensive error handling strategies and examples
-- **Copilot Best Practices**: How to effectively use Copilot in this project
-- **Testing Scenarios**: Sample scenarios for validating prompt effectiveness
 
 ### Templates Directory
 Reusable prompt templates with detailed step-by-step instructions for particular tools and workflows. These contain:
@@ -96,13 +83,11 @@ Each phase includes:
 
 ### For Developers
 1. **Before starting work**: Review the relevant workflow prompt in the `workflows/` directory
-2. **During implementation**: Reference examples in the `examples/` directory for best practices
-3. **When stuck**: Use templates from the `templates/` directory as starting points
+2. **When stuck**: Use templates from the `templates/` directory as starting points
 
 ### For Copilot
 These prompts are designed to be referenced in your Copilot chat or used as context. For example:
-- "Follow the guidelines in `.github/prompts/workflows/implementation.md`"
-- "Use the patterns from `.github/prompts/examples/code-patterns.md`"
+- "Follow the guidelines in `.github/prompts/workflows/implementation.md"`
 
 ## Workflow Integration
 

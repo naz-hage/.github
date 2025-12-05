@@ -16,7 +16,6 @@ Welcome to the generic project template system! This document provides comprehen
 - `project-config.yaml`: Generic project configuration
 - `prompts/workflows/`: Standardized development workflow templates
 - `prompts/actions/`: Action-specific workflow templates
-- `prompts/examples/`: Multi-language code examples
 - `validation/`: Configuration validation tools
 
 ## Development Guidelines
@@ -117,7 +116,6 @@ sdo workitem list --type "Task"
 
 **Documentation:**
 - Use workflow templates for consistent documentation
-- Include code examples from `prompts/examples/`
 - Document configuration changes
 - Keep README files updated
 
@@ -127,7 +125,6 @@ sdo workitem list --type "Task"
 - Copy templates to your `.github/` directory
 - Modify workflow templates for your processes
 - Update configuration with project-specific values
-- Add language-specific examples as needed
 
 **Maintaining Consistency:**
 - Use the same workflow structure across projects
@@ -142,7 +139,6 @@ sdo workitem list --type "Task"
 **Template Customization:**
 - Adapting workflow templates for specific projects
 - Creating project-specific configuration examples
-- Writing language-specific code examples
 - Customizing validation scripts
 
 **Workflow Creation:**
@@ -348,7 +344,6 @@ def validate_config(config_path: str) -> bool:
 
 ### Updating Templates
 - Review templates periodically for improvements
-- Update examples with current best practices
 - Add new language/framework support
 - Remove outdated patterns
 

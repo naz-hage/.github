@@ -45,8 +45,19 @@ tools:
 ### Step 3: Setup SDO CLI
 
 ```bash
-# Install SDO CLI
-pip install sdo-cli
+# Install NTools (which contains SDO CLI)
+git clone https://github.com/naz-hage/ntools.git
+cd ntools
+
+# Install NTools (choose appropriate option based on your needs)
+# Option 1: Full development environment (recommended for contributors)
+.\dev-setup\install.ps1
+
+# Option 2: NTools only (cross-platform)
+python atools/install-ntools.py --version 1.32.0
+
+# Then install SDO specifically
+python install-sdo.py
 
 # Set environment variables for authentication
 # Azure DevOps
@@ -63,7 +74,7 @@ sdo workitem list --type "Product Backlog Item"
 
 ```bash
 # Test SDO connection
-sdo workitem list --top 3
+sdo workitem list --assigned-to-me --top 3
 
 # Validate configuration
 python .github/validation/validate_configs.py
@@ -93,11 +104,6 @@ your-project/
 │   │   │   ├── testing.md
 │   │   │   ├── code-review.md
 │   │   │   └── pbi-implementation.md
-│   │   └── examples/               # Code examples by language
-│   │       ├── python/
-│   │       ├── javascript/
-│   │       ├── java/
-│   │       └── dotnet/
 │   └── PULL_REQUEST_TEMPLATE/
 │       └── pull_request_template.md
 ├── src/                            # Your source code
@@ -244,29 +250,24 @@ If you have an existing `project-config.yaml` from the old structure:
 3. **Migrate only the required values** - most language-specific and quality tool settings have been removed as they're not referenced by prompts
 4. **Test workflows** to ensure they work with the simplified config
 
-#### Value Mapping
-
-| Old Path | New Path | Notes |
-|----------|----------|-------|
-| `project.name` | `project.name` | Same |
-| `azure_devops.*` | `azure_devops.*` | Same |
-| `tools.saz_cli.*` | `tools.sdo_cli.*` | Same |
-| `development.code_style.*` | Removed | No longer needed |
-| `quality_tools` | Removed | No longer needed |
-
-#### Breaking Changes
-
-- **Simplified structure**: Removed language-specific settings, quality tools, and unused metadata
-- **Essential only**: Config now contains only settings referenced by workflow prompts
-- **Generic template**: Single config works for all project types
-
-### Installation
+#### Installation
 
 ```bash
-# Install from PyPI
-pip install sdo-cli
+# Install NTools (which contains SDO CLI)
+git clone https://github.com/naz-hage/ntools.git
+cd ntools
 
-# Or install from source
+# Install NTools (choose appropriate option based on your needs)
+# Option 1: Full development environment (recommended for contributors)
+.\dev-setup\install.ps1
+
+# Option 2: NTools only (cross-platform)
+python atools/install-ntools.py --version 1.32.0
+
+# Then install SDO specifically
+python install-sdo.py
+
+# Or install from source (alternative)
 git clone https://github.com/naz-hage/sdo.git
 cd sdo
 pip install -e .
@@ -315,15 +316,6 @@ The templates provide guidance for common development activities:
 3. **Testing** - Test-driven development
 4. **PBI Implementation** - Product backlog item workflows
 
-### Code Examples
-
-Language-specific examples are available in `.github/prompts/examples/{language}/`:
-
-- **API Client Patterns** - HTTP clients with retry logic
-- **Testing Best Practices** - Comprehensive testing approaches
-- **Error Handling** - Framework-neutral exception handling
-- **Architecture Patterns** - Clean architecture, DDD, CQRS
-
 ### Copilot Integration
 
 The `copilot-instructions.md` file provides AI-assisted development guidance specific to your project configuration.
@@ -338,16 +330,6 @@ edit .github/prompts/workflows/task-implementation.md
 
 # Add project-specific sections
 # Follow the existing format and placeholders
-```
-
-### Adding Code Examples
-
-```bash
-# Create new example
-edit .github/prompts/examples/python/custom-pattern.md
-
-# Follow the established format
-# Use configuration placeholders where appropriate
 ```
 
 ### Updating Configuration
@@ -380,18 +362,6 @@ sdo workitem create --file-path .temp/test-pbi.md
 
 # Verify the work item was created
 sdo workitem list --filter "Title contains 'Test'"
-```
-
-### Example Testing
-
-```bash
-# Test Python examples
-cd your-project
-python -c "
-# Test API client example
-from .github.prompts.examples.python.api_client_patterns import APIClient
-# Basic functionality test
-"
 ```
 
 ## 📞 Getting Help
@@ -482,9 +452,8 @@ python -c "import yaml; yaml.safe_load(open('.github/project-config.yaml'))"
 ## 🎯 Next Steps
 
 1. **Explore Workflows** - Try the different workflow templates
-2. **Customize Examples** - Adapt code examples for your specific frameworks
-3. **Team Training** - Share the new workflows with your team
-4. **Iterate** - Gather feedback and improve the setup
+2. **Team Training** - Share the new workflows with your team
+3. **Iterate** - Gather feedback and improve the setup
 
 ## 📋 Quick Reference
 
@@ -506,7 +475,6 @@ python .github/validation/check_hardcoded_values.py  # Check for hardcoded value
 - `.github/project-config.yaml` - Main configuration
 - `.github/copilot-instructions.md` - AI development guide
 - `.github/prompts/workflows/` - Development workflow templates
-- `.github/prompts/examples/` - Code examples by language
 
 ---
 

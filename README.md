@@ -30,8 +30,6 @@ This repository contains **generic, reusable templates** that projects can copy 
     │   ├── README.md              # Generic workflow overview
     │   ├── workflows/             # Tool-agnostic workflow templates
     │   ├── actions/               # Action-specific workflow templates
-    │   └── examples/              # Multi-language code examples
-    │       ├── {language}/        # Language-specific implementations
     └── PULL_REQUEST_TEMPLATE/     # Generic PR template
 setup-guides/                      # Project setup and migration guides
 validation/                        # Configuration validation tools
@@ -69,7 +67,6 @@ README.md                          # This file
 
 4. **Customize as Needed**
    - Modify workflow templates in `prompts/workflows/`
-   - Update examples in `prompts/examples/`
    - Adjust Copilot instructions in `copilot-instructions.md`
 
 ### For Existing Projects
@@ -139,12 +136,6 @@ The configuration is now **generic** and works for all project types:
 - **Testing** - Test-driven development guidelines
 - **PBI Implementation** - Product backlog item workflows
 
-### Code Examples
-- **API Client Patterns** - HTTP clients with retry logic
-- **Error Handling** - Framework-neutral exception handling
-- **Testing Best Practices** - Comprehensive testing patterns
-- **Component Architecture** - Reusable component patterns
-
 ### Development Guides
 - **Daily Standup Reference** - Effective standup meeting formats
 - **Copilot Best Practices** - AI-assisted development guidelines
@@ -192,11 +183,9 @@ sdo config set repository your-repo
 
 ### Adding New Language Support
 
-1. Create language directory: `.temp/prompts/examples/{language}/`
-2. Add 3 core files: patterns, testing, error-handling
-3. Create config template: `project-config.{language}.yaml`
-4. Update Quick Start Guide with new language examples
-5. Test with sample project
+1. Update `project-config.yaml` with language-specific settings if needed
+2. Modify workflow templates to support the new language
+3. Test with sample project
 
 ## 📄 License
 
@@ -205,7 +194,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - [SDO CLI](https://github.com/naz-hage/sdo) - Unified project management CLI
-- Community contributors for language-specific examples
 - Open source projects that inspired these patterns
 
 ---
