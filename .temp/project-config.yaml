@@ -46,14 +46,14 @@ authentication:
     env_var: "GITHUB_TOKEN"                # Environment variable for GitHub token
 
 # ============================================================================
-# WORKFLOW CONFIGURATION
+# Scrum Estimation
 # ============================================================================
-workflows:
+Estimation:
   story_points:
     scale:
-      1: "<1 day"
-      2: "1-2 days"
-      3: "2-3 days"
-      5: "3-5 days"
-      8: "1-2 weeks"
-      13: "needs breakdown"
+      (Extra Small) 1: "<1 day"
+      (Very Small) 2: "1-2 days"
+      (Small) 3: "2-3 days"
+      (Medium) 5: "3-5 days"
+      (Large) 8: "1-2 weeks"
+      (Extra Large) 13: "needs breakdown"
