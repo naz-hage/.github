@@ -8,7 +8,7 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 
 **Key Files:**
 - **`../project-config.yaml`** - Project-specific configuration (organization, project, tools, paths)
-- **`CONFIG_USAGE.md`** - How workflows reference configuration
+- **`platform-mapping.md`** - Standardized term mappings between SDO, Azure DevOps, and GitHub
 - **`../copilot-instructions.md`** - Project-specific development guidelines
 
 ## Directory Structure
@@ -16,52 +16,43 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 ```
 .github/prompts/
 ├── README.md                    # This file - overview and usage guide
-├── CONFIG_USAGE.md              # How to use project-config.yaml in workflows
+├── platform-mapping.md          # Standardized term mappings (SDO/AzDO/GitHub)
 ├── workflows/                   # Workflow-specific prompts (project-agnostic)
-│   ├── pbi-creation.md         # Creating Product Backlog Items (portfolio level)
+│   ├── workitem-creation-workflow.md # Creating PBIs and Tasks (portfolio and sprint level)
+│   ├── workitem-closure.md      # Work item completion and validation (Tasks, PBIs, Issues)
+│   ├── workitem-start.md        # Complete work item start workflow (Tasks and PBIs)
 │   ├── pbi-breakdown.md        # Breaking PBIs into implementable tasks
-│   ├── pbi-implementation.md   # PBI implementation coordination workflow
-│   ├── pbi-closure.md          # PBI completion and validation
-│   ├── task-creation.md        # Creating Tasks during sprint planning
-│   ├── task-implementation.md  # Task implementation workflow (one task at a time)
-│   ├── task-closure.md         # Task completion validation
 │   ├── code-review.md          # Code review and PR processes
 │   ├── pr-squash-merge.md      # PR squash merge process guidance
 │   └── testing.md              # Testing workflow and validation
-├── examples/                    # Examples and best practices
-│   ├── code-patterns.md        # Preferred code patterns and structures
-│   ├── error-handling.md       # Error handling examples and patterns
-│   ├── copilot-best-practices.md # How to effectively use Copilot
-│   ├── prompt-testing-scenarios.md # Testing scenarios for prompts
-│   └── daily-standup-reference.md # Daily standup summary generator
+├── actions/                     # Action-specific prompts (tool commands)
+│   ├── README.md               # Action prompts overview
+│   ├── create-issue.md         # Create issues in Azure DevOps/GitHub/Jira
+│   └── create-pr.md            # Create pull requests for code changes
 └── templates/                   # Reusable prompt templates
-    └── pull_request_template.md # GitHub PR template for SAZ development
+    └── pull_request_template.md # GitHub PR template for SDO development
 ```
 
 ## Directory Purposes
 
 ### Workflows Directory
 High-level guidance for development processes covering the complete issue lifecycle:
-- **PBI Creation**: Creating Product Backlog Items with business value and acceptance criteria
+- **Work Item Creation**: Creating PBIs and Tasks with business value and acceptance criteria
 - **PBI Breakdown**: Breaking committed PBIs into implementable Tasks for sprint planning
-- **PBI Implementation**: Coordinating implementation of multiple tasks for a PBI
-- **Task Creation**: Creating focused, actionable Tasks during sprint planning
 - **Task Implementation**: Step-by-step coding, testing, and validation workflow (one task at a time)
 - **Task Closure**: Task completion validation and cleanup
 - **PBI Closure**: PBI completion validation, testing, and stakeholder approval
 - **Code Review**: Preparing pull requests and conducting thorough reviews
 - **Testing**: Unit testing, integration testing, and CI/CD validation
 
-### Examples Directory
-Concrete examples and reference materials including:
-- **Code Patterns**: Preferred implementation patterns for the SAZ codebase
-- **Error Handling**: Comprehensive error handling strategies and examples
-- **Copilot Best Practices**: How to effectively use Copilot in this project
-- **Testing Scenarios**: Sample scenarios for validating prompt effectiveness
+### Actions Directory
+Specific, actionable prompts for executing individual development actions using CLI tools:
+- **Issue Creation**: Step-by-step instructions for creating issues in Azure DevOps, GitHub, or Jira
+- **PR Creation**: Detailed commands and file formats for creating pull requests with proper linking
 
-### Reference Directory
-Specific implementation prompts with detailed step-by-step instructions for particular tools and workflows. These contain:
-- **Tool-specific guides**: Instructions for `saz` CLI commands, PowerShell scripts, etc.
+### Templates Directory
+Reusable prompt templates with detailed step-by-step instructions for particular tools and workflows. These contain:
+- **Tool-specific guides**: Instructions for `sdo` CLI commands, PowerShell scripts, etc.
 - **Detailed workflows**: Step-by-step processes for specific scenarios
 - **Project-specific context**: References to Proto Azure DevOps project and local tooling
 
@@ -70,10 +61,13 @@ Specific implementation prompts with detailed step-by-step instructions for part
 This prompt system provides comprehensive guidance for the **entire software development lifecycle**:
 
 ```
-PBI Creation → PBI Breakdown → PBI Implementation → Task Implementation → Code Review → Testing → PBI Closure
-     ↓              ↓                ↓                 ↓            ↓         ↓            ↓
-workflows/     workflows/       workflows/       workflows/        workflows/ workflows/  workflows/
-pbi-creation   pbi-breakdown    pbi-implementation task-implementation code-review testing    pbi-closure
+Work Item Creation → PBI Breakdown → PBI Implementation → Task Implementation → Code Review → Testing → PBI Closure
+     ↓                     ↓                ↓                 ↓            ↓         ↓            ↓
+workflows/            workflows/       workflows/       workflows/        workflows/ workflows/  workflows/
+workitem-creation     pbi-breakdown    pbi-implementation task-implementation code-review testing    pbi-closure
+     ↓                     ↓                ↓                 ↓            ↓         ↓            ↓
+ actions/              actions/        actions/         actions/       actions/   actions/     actions/
+create-workitem       create-workitem create-workitem  create-pr      create-pr  create-pr    create-pr
 ```
 
 Each phase includes:
@@ -87,13 +81,11 @@ Each phase includes:
 
 ### For Developers
 1. **Before starting work**: Review the relevant workflow prompt in the `workflows/` directory
-2. **During implementation**: Reference examples in the `examples/` directory for best practices
-3. **When stuck**: Use templates from the `templates/` directory as starting points
+2. **When stuck**: Use templates from the `templates/` directory as starting points
 
 ### For Copilot
 These prompts are designed to be referenced in your Copilot chat or used as context. For example:
-- "Follow the guidelines in `.github/prompts/workflows/implementation.md`"
-- "Use the patterns from `.github/prompts/examples/code-patterns.md`"
+- "Follow the guidelines in `.github/prompts/workflows/implementation.md"`
 
 ## Workflow Integration
 

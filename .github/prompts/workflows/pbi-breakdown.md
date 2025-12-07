@@ -37,11 +37,11 @@ Create tasks following **INVEST** principles:
 - **I**ndependent, **N**egotiable, **V**aluable, **E**stimable, **S**mall (1-3 days), **T**estable
 
 #### 2.2 Create Implementation Tasks
-Follow `workflows/task-creation.md` to create task markdown files in `.temp/` (temporary location).
+Follow `workflows/workitem-creation-workflow.md` to create task markdown files in `.temp/` (temporary location).
 
 **Create each task:**
 ```bash
-# Create .temp/task.md following task-creation.md template
+# Create .temp/task.md following workitem-creation-workflow.md template
 saz workitem create --file-path .temp/task.md
 ```
 
@@ -255,14 +255,13 @@ Plan the sprint execution:
 ## Next Steps
 
 After PBI breakdown, proceed to:
-1. **Task Implementation** - Follow `workflows/task-implementation.md` for each task
-2. **PBI Implementation** - Track multi-task coordination with `workflows/pbi-implementation.md`
-3. **PBI Closure** - Validate completed PBI with `workflows/pbi-closure.md`
+1. **Task Implementation** - Follow `workflows/workitem-start.md` for each task
+2. **PBI Implementation** - Track multi-task coordination with `workflows/workitem-start.md`
+3. **Work Item Closure** - Validate completed PBI with `workflows/workitem-closure.md`
 
 ## Related Workflows
 
-- [PBI Creation](pbi-creation.md) - Creating PBIs
-- [Task Creation](task-creation.md) - Detailed task creation
-- [Task Implementation](task-implementation.md) - Individual task execution
-- [PBI Implementation](pbi-implementation.md) - Multi-task coordination
-- [PBI Closure](pbi-closure.md) - PBI completion validation
+- [Work Item Creation](workitem-creation-workflow.md) - Creating PBIs
+- [Work Item Creation](workitem-creation-workflow.md) - Detailed task creation
+- [Work Item Start](workitem-start.md) - Individual task execution and multi-task coordination
+- [Work Item Closure](workitem-closure.md) - PBI completion validation

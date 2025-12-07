@@ -18,61 +18,63 @@ cp -r temp-templates/.temp/* your-new-project/.github/
 rm -rf temp-templates
 ```
 
-### Step 2: Choose Your Language
+### Step 2: Configure Project
 
-```bash
-cd your-new-project/.github
-
-# For Python projects
-cp project-config.python.yaml project-config.yaml
-
-# For Node.js projects
-cp project-config.nodejs.yaml project-config.yaml
-
-# For .NET projects
-cp project-config.dotnet.yaml project-config.yaml
-
-# For Java projects
-cp project-config.java.yaml project-config.yaml
-```
-
-### Step 3: Configure Project
-
-Edit `project-config.yaml`:
+Edit `project-config.yaml` with your project details:
 
 ```yaml
 project:
   name: "MyAwesomeProject"
   organization: "my-company"
-  description: "A brief description of what this project does"
 
-platforms:
-  azure_devops: true  # or github: true, jira: true
+project_management:
+  platforms:
+    azure_devops: true  # or github: true
 
-language: "python"    # python, javascript, java, dotnet
-framework: "fastapi"  # your specific framework
+azure_devops:
+  organization: "my-company"
+  project: "MyAwesomeProject"
+  area_path: "my-company\\MyAwesomeProject\\Development"
+  default_iteration: "my-company\\MyAwesomeProject\\Backlog"
+
+tools:
+  sdo_cli:
+    temp_directory: ".temp"
 ```
 
-### Step 4: Setup SAZ CLI
+### Step 3: Setup SDO CLI
 
 ```bash
-# Install SAZ CLI
-pip install saz-cli
+# Install NTools (which contains SDO CLI)
+git clone https://github.com/naz-hage/ntools.git
+cd ntools
 
-# Configure for your platform
-saz config set platform azure-devops  # or github, jira
-saz config set organization my-company
-saz config set project MyAwesomeProject
+# Install NTools (choose appropriate option based on your needs)
+# Option 1: Full development environment (recommended for contributors)
+.\dev-setup\install.ps1
 
-# Authenticate
-saz auth login
+# Option 2: NTools only (cross-platform)
+python atools/install-ntools.py --version 1.32.0
+
+# Then install SDO specifically
+python install-sdo.py
+
+# Set environment variables for authentication
+# Azure DevOps
+$env:AZURE_DEVOPS_PAT = "your-personal-access-token"
+
+# GitHub (uses GitHub CLI authentication)
+gh auth login
+
+# Test SDO connection
+sdo workitem list --type "Product Backlog Item"
 ```
 
-### Step 5: Test Setup
+### Step 4: Test Setup
 
 ```bash
-# Test SAZ connection
-saz work-items list --top 3
+# Test SDO connection
+sdo workitem list --assigned-to-me --top 3
 
 # Validate configuration
 python .github/validation/validate_configs.py
@@ -85,8 +87,8 @@ python .github/validation/validate_configs.py
 ### Prerequisites
 
 - **Git** - Version control system
-- **Python 3.8+** - For SAZ CLI and validation scripts
-- **Access to project management platform** - Azure DevOps, GitHub, or Jira
+- **Python 3.8+** - For SDO CLI and validation scripts
+- **Access to project management platform** - Azure DevOps or GitHub
 
 ### Project Structure After Setup
 
@@ -97,17 +99,10 @@ your-project/
 │   ├── copilot-instructions.md      # AI-assisted development guide
 │   ├── prompts/
 │   │   ├── README.md               # Workflow overview
-│   │   ├── CONFIG_USAGE.md         # Configuration guide
 │   │   ├── workflows/              # Development workflow templates
-│   │   │   ├── task-implementation.md
+│   │   │   ├── workitem-start.md   # Complete work item start workflow
 │   │   │   ├── testing.md
-│   │   │   ├── code-review.md
-│   │   │   └── pbi-implementation.md
-│   │   └── examples/               # Code examples by language
-│   │       ├── python/
-│   │       ├── javascript/
-│   │       ├── java/
-│   │       └── dotnet/
+│   │   │   └── code-review.md
 │   └── PULL_REQUEST_TEMPLATE/
 │       └── pull_request_template.md
 ├── src/                            # Your source code
@@ -122,114 +117,158 @@ your-project/
 #### Azure DevOps Configuration
 
 ```yaml
-platforms:
-  azure_devops: true
-  github: false
-  jira: false
+project_management:
+  platforms:
+    azure_devops: true
+    github: false
 
 azure_devops:
   organization: "your-org"
   project: "your-project"
   area_path: "your-project\\Team"
-  iteration_path: "your-project\\Sprint 1"
+  default_iteration: "your-project\\Sprint 1"
 ```
 
 #### GitHub Configuration
 
 ```yaml
-platforms:
-  azure_devops: false
-  github: true
-  jira: false
+project_management:
+  platforms:
+    azure_devops: false
+    github: true
 
 github:
-  organization: "your-org"
+  owner: "your-org"
   repository: "your-repo"
-  default_labels: ["enhancement", "bug"]
 ```
 
-#### Jira Configuration
+### Authentication Setup
 
-```yaml
-platforms:
-  azure_devops: false
-  github: false
-  jira: true
+#### Azure DevOps Personal Access Token (PAT)
 
-jira:
-  server_url: "https://your-company.atlassian.net"
-  project_key: "PROJ"
-  default_issue_type: "Story"
-```
+**Required Permissions:**
+- **Work Items: Read & Write** - Create, update, and query work items (PBIs, Tasks, Bugs)
+- **Build: Read & Execute** - View build definitions and trigger builds
+- **Code: Read** - Access to Git repositories and code
+- **Project and Team: Read** - Access to project metadata and team information
+- **Pull Request Threads: Read & Write** - Create and manage pull request discussions
 
-### Language-Specific Settings
+**Setup Steps:**
+1. Navigate to Azure DevOps → User Settings → Personal Access Tokens
+2. Click "New Token"
+3. Set name (e.g., "SDO CLI Tool")
+4. Set organization and expiration
+5. Select the required permissions listed above
+6. Copy token and set as environment variable: `AZURE_DEVOPS_PAT`
 
-#### Python Project
+#### GitHub Personal Access Token
 
-```yaml
-language: "python"
-framework: "fastapi"
+**Required Scopes:**
+- **repo** - Full access to repositories
+- **workflow** - Update GitHub Action workflows
 
-python:
-  version: "3.9"
-  package_manager: "poetry"  # or pip, pipenv
-  test_framework: "pytest"
-  linter: "flake8"
-  formatter: "black"
-```
+**Setup Steps:**
+1. Go to GitHub → Settings → Developer settings → Personal access tokens
+2. Click "Generate new token (classic)"
+3. Select required scopes
+4. Set expiration and description
+5. Copy token and set as environment variable: `GITHUB_TOKEN`
 
-#### Node.js Project
+#### Environment Variables
 
-```yaml
-language: "javascript"
-framework: "express"
-
-javascript:
-  runtime: "node"
-  version: "18"
-  package_manager: "npm"  # or yarn, pnpm
-  test_framework: "jest"
-  linter: "eslint"
-  typescript: true
-```
-
-#### .NET Project
-
-```yaml
-language: "dotnet"
-framework: "aspnetcore"
-
-dotnet:
-  version: "7.0"
-  project_type: "webapi"  # webapi, webapp, console
-  test_framework: "xunit"
-  orm: "efcore"
-```
-
-#### Java Project
-
-```yaml
-language: "java"
-framework: "springboot"
-
-java:
-  version: "17"
-  build_tool: "maven"  # or gradle
-  spring_boot_version: "3.0"
-  test_framework: "junit5"
-```
-
-## 🛠️ SAZ CLI Setup
-
-### Installation
+Set these in your shell profile or CI/CD environment:
 
 ```bash
-# Install from PyPI
-pip install saz-cli
+# Azure DevOps
+export AZURE_DEVOPS_PAT="your-pat-token-here"
 
-# Or install from source
-git clone https://github.com/naz-hage/saz.git
-cd saz
+# GitHub
+export GITHUB_TOKEN="your-github-token-here"
+```
+
+### How Workflows Reference Config
+
+All workflow prompts are **project-agnostic** and reference `project-config.yaml` for project-specific metadata. This makes workflows easily transferable between projects.
+
+#### Pattern 1: Direct Reference
+Workflows indicate where to find values:
+
+```markdown
+## Project: [FROM project-config.yaml: azure_devops.project]
+## Area: [FROM project-config.yaml: azure_devops.area_path]
+```
+
+#### Pattern 2: Variable Placeholders
+Use bracketed placeholders that should be replaced with config values:
+
+```bash
+sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+```
+
+#### Pattern 3: Header Reference
+Workflows include a reference at the top:
+
+```markdown
+> **Project Configuration**: See `.github/project-config.yaml` for project-specific settings
+```
+
+### Configuration Examples
+
+**PBI Template (project-agnostic):**
+```markdown
+## Project: [FROM project-config.yaml: azure_devops.project]
+## Area: [FROM project-config.yaml: azure_devops.area_path]
+## Iteration: [FROM project-config.yaml: azure_devops.default_iteration]
+```
+
+**Resolved for a specific project:**
+```markdown
+## Project: MyProject
+## Area: MyOrg\Development
+## Iteration: MyOrg\Sprint 1
+```
+
+**Tool Commands (project-agnostic):**
+```bash
+sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+```
+
+**Resolved for a specific project:**
+```bash
+sdo workitem create --file-path .temp/pbi.md
+```
+
+### Migration Guide
+
+#### From Old Config Structure
+
+If you have an existing `project-config.yaml` from the old structure:
+
+1. **Backup your current config**
+2. **Use the simplified generic template** - the new `project-config.yaml` contains only essential SDO and platform settings
+3. **Migrate only the required values** - most language-specific and quality tool settings have been removed as they're not referenced by prompts
+4. **Test workflows** to ensure they work with the simplified config
+
+#### Installation
+
+```bash
+# Install NTools (which contains SDO CLI)
+git clone https://github.com/naz-hage/ntools.git
+cd ntools
+
+# Install NTools (choose appropriate option based on your needs)
+# Option 1: Full development environment (recommended for contributors)
+.\dev-setup\install.ps1
+
+# Option 2: NTools only (cross-platform)
+python atools/install-ntools.py --version 1.32.0
+
+# Then install SDO specifically
+python install-sdo.py
+
+# Or install from source (alternative)
+git clone https://github.com/naz-hage/sdo.git
+cd sdo
 pip install -e .
 ```
 
@@ -238,56 +277,31 @@ pip install -e .
 #### Azure DevOps
 
 ```bash
-# Set platform
-saz config set platform azure-devops
+# Set environment variable for PAT
+$env:AZURE_DEVOPS_PAT = "your-personal-access-token"
 
-# Set organization and project
-saz config set organization your-org
-saz config set project your-project
-
-# Authenticate (opens browser)
-saz auth login
+# Test connection
+sdo workitem list --type "Product Backlog Item"
 ```
 
 #### GitHub
 
 ```bash
-# Set platform
-saz config set platform github
+# Authenticate with GitHub CLI
+gh auth login
 
-# Set organization and repository
-saz config set organization your-org
-saz config set repository your-repo
-
-# Authenticate with personal access token
-saz auth login --token your-github-token
+# Test connection
+sdo workitem list --type "Issue"
 ```
 
-#### Jira
+### Testing SDO Setup
 
 ```bash
-# Set platform
-saz config set platform jira
-
-# Set server and project
-saz config set server https://your-company.atlassian.net
-saz config set project PROJ
-
-# Authenticate
-saz auth login
-```
-
-### Testing SAZ Setup
-
-```bash
-# Check configuration
-saz config list
-
 # Test work item access
-saz work-items list --top 5
+sdo workitem list --top 5
 
-# Test project info
-saz projects show
+# Test repository access
+sdo repo ls
 ```
 
 ## 📋 Using the Templates
@@ -301,15 +315,6 @@ The templates provide guidance for common development activities:
 3. **Testing** - Test-driven development
 4. **PBI Implementation** - Product backlog item workflows
 
-### Code Examples
-
-Language-specific examples are available in `.github/prompts/examples/{language}/`:
-
-- **API Client Patterns** - HTTP clients with retry logic
-- **Testing Best Practices** - Comprehensive testing approaches
-- **Error Handling** - Framework-neutral exception handling
-- **Architecture Patterns** - Clean architecture, DDD, CQRS
-
 ### Copilot Integration
 
 The `copilot-instructions.md` file provides AI-assisted development guidance specific to your project configuration.
@@ -320,20 +325,10 @@ The `copilot-instructions.md` file provides AI-assisted development guidance spe
 
 ```bash
 # Edit workflow templates
-edit .github/prompts/workflows/task-implementation.md
+edit .github/prompts/workflows/workitem-start.md
 
 # Add project-specific sections
 # Follow the existing format and placeholders
-```
-
-### Adding Code Examples
-
-```bash
-# Create new example
-edit .github/prompts/examples/python/custom-pattern.md
-
-# Follow the established format
-# Use configuration placeholders where appropriate
 ```
 
 ### Updating Configuration
@@ -361,46 +356,51 @@ python .github/validation/check_hardcoded_values.py
 ### Testing Workflows
 
 ```bash
-# Test SAZ integration
-saz work-items create --title "Test work item" --type "Task"
+# Test SDO integration
+sdo workitem create --file-path .temp/test-pbi.md
 
 # Verify the work item was created
-saz work-items list --filter "Title contains 'Test'"
-```
-
-### Example Testing
-
-```bash
-# Test Python examples
-cd your-project
-python -c "
-# Test API client example
-from .github.prompts.examples.python.api_client_patterns import APIClient
-# Basic functionality test
-"
+sdo workitem list --filter "Title contains 'Test'"
 ```
 
 ## 📞 Getting Help
 
 ### Documentation Resources
 
-- **[Configuration Guide](.github/prompts/CONFIG_USAGE.md)** - Detailed configuration options
 - **[Workflow Guide](.github/prompts/workflows/README.md)** - Available workflow templates
-- **[Migration Guide](setup-guides/migration-guide.md)** - For existing projects
+- **[Configuration Deep Dive](#-configuration-deep-dive)** - Detailed configuration options in this guide
 
 ### Common Issues
 
-**SAZ Connection Issues**
+**SDO Connection Issues**
 ```bash
-# Check configuration
-saz config list
-
-# Re-authenticate
-saz auth login
+# Check environment variables are set
+echo $AZURE_DEVOPS_PAT  # Should show your PAT
+echo $GITHUB_TOKEN      # Should show your token
 
 # Test basic connectivity
-saz projects list
+sdo workitem list --type "Product Backlog Item"
 ```
+
+**"Config section not found"**
+- Check that required sections are present in `project-config.yaml`
+- Verify YAML syntax with: `python -c "import yaml; yaml.safe_load(open('project-config.yaml'))"`
+- Ensure platform flags are set correctly in `project_management.platforms`
+
+**"SDO command not found"**
+- Verify SDO is installed: `sdo --version`
+- Check PATH includes SDO executable
+- Try `python -m sdo_package.cli` if using module installation
+
+**"Authentication failed"**
+- Verify environment variables are set correctly
+- Check token permissions match the requirements listed above
+- Test with SDO directly: `sdo workitem list --type "Task"`
+
+**"Platform not configured"**
+- Set platform flag to `true` in `project_management.platforms`
+- Configure the platform-specific section (azure_devops or github)
+- Restart any running processes
 
 **Configuration Validation Errors**
 ```bash
@@ -425,22 +425,44 @@ python -c "import yaml; yaml.safe_load(open('.github/project-config.yaml'))"
 - **Discussions**: Use GitHub Discussions for questions
 - **Documentation**: Check the [full documentation](.github/prompts/README.md)
 
+## 🛡️ Best Practices
+
+### Configuration Management
+
+1. **Version control**: Keep `project-config.yaml` in version control (but exclude secrets)
+2. **Environment separation**: Use different configs for dev/staging/prod
+3. **Documentation**: Comment complex configurations
+4. **Validation**: Test configs before committing
+
+### Security
+
+1. **Never commit secrets**: Use environment variables for tokens/PATs
+2. **Minimal permissions**: Grant only required permissions
+3. **Token rotation**: Regularly rotate authentication tokens
+4. **Access control**: Limit who can modify configuration
+
+### Maintenance
+
+1. **Regular updates**: Update tool versions and configurations
+2. **Platform changes**: Update config when moving platforms
+3. **Team alignment**: Ensure team agrees on configuration standards
+4. **Documentation**: Keep configuration documentation current
+
 ## 🎯 Next Steps
 
 1. **Explore Workflows** - Try the different workflow templates
-2. **Customize Examples** - Adapt code examples for your specific frameworks
-3. **Team Training** - Share the new workflows with your team
-4. **Iterate** - Gather feedback and improve the setup
+2. **Team Training** - Share the new workflows with your team
+3. **Iterate** - Gather feedback and improve the setup
 
 ## 📋 Quick Reference
 
 ### Essential Commands
 
 ```bash
-# SAZ CLI
-saz work-items list                    # List work items
-saz work-items create --title "Title"  # Create work item
-saz branches create feature/123       # Create feature branch
+# SDO CLI
+sdo workitem list                    # List work items
+sdo workitem create --file-path pbi.md  # Create work item from markdown file
+sdo repo ls                         # List repositories
 
 # Validation
 python .github/validation/validate_configs.py    # Validate config
@@ -452,7 +474,6 @@ python .github/validation/check_hardcoded_values.py  # Check for hardcoded value
 - `.github/project-config.yaml` - Main configuration
 - `.github/copilot-instructions.md` - AI development guide
 - `.github/prompts/workflows/` - Development workflow templates
-- `.github/prompts/examples/` - Code examples by language
 
 ---
 

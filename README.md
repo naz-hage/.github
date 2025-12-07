@@ -6,11 +6,11 @@ A comprehensive template system for project management workflows, development gu
 
 ## 🎯 Overview
 
-This repository contains **generic, reusable templates** that projects can copy to their `.github/` directory to establish consistent development workflows, coding standards, and project management processes. The templates are designed to work with multiple platforms (Azure DevOps, GitHub, Jira) and programming languages (Python, JavaScript/TypeScript, Java, C#).
+This repository contains **generic, reusable templates** that projects can copy to their `.github/` directory to establish consistent development workflows, coding standards, and project management processes. The templates are designed to work with multiple platforms (Azure DevOps, GitHub) and programming languages (Python, JavaScript/TypeScript, Java, C#).
 
 ### Key Features
 
-- **🔧 SAZ CLI Integration**: Uses [SAZ](https://github.com/naz-hage/saz) as the primary CLI tool for unified project management across platforms
+- **🔧 SDO CLI Integration**: Uses [SDO](https://github.com/naz-hage/sdo) as the primary CLI tool for unified project management across platforms
 - **🌍 Multi-Language Support**: Examples and patterns for Python, JavaScript/TypeScript, Java, and C#
 - **⚙️ Configurable**: All project-specific values are managed through configuration files
 - **📋 Generic Workflows**: Tool-agnostic workflows that work with any project management platform
@@ -19,21 +19,21 @@ This repository contains **generic, reusable templates** that projects can copy 
 ## 📁 Repository Structure
 
 ```
-.github/                           # This repository (template source)
-├── .temp/                         # Generic templates (copy to project .github/)
-│   ├── project-config.yaml         # Base configuration template
-│   ├── project-config.*.yaml       # Language-specific config examples
-│   ├── copilot-instructions.md     # GitHub Copilot instructions template
-│   ├── prompts/                    # Workflow and development guides
-│   │   ├── README.md              # Generic workflow overview
-│   │   ├── CONFIG_USAGE.md        # Configuration guide
-│   │   ├── workflows/             # Tool-agnostic workflow templates
-│   │   └── examples/              # Multi-language code examples
-│   │       ├── {language}/        # Language-specific implementations
-│   └── PULL_REQUEST_TEMPLATE/     # Generic PR template
-├── setup-guides/                  # Project setup and migration guides
-├── validation/                    # Configuration validation tools
-└── test-configs/                  # Test configurations for different scenarios
+.github/                           # GitHub templates and workflows
+├── ISSUE_TEMPLATE/                # Issue templates
+├── PULL_REQUEST_TEMPLATE/         # Pull request template
+├── workflows/                     # GitHub Actions workflows
+└── .temp/                         # Generic templates (copy to project .github/)
+    ├── project-config.yaml         # Generic configuration template
+    ├── copilot-instructions.md     # GitHub Copilot instructions template
+    ├── prompts/                    # Workflow and development guides
+    │   ├── README.md              # Generic workflow overview
+    │   ├── workflows/             # Tool-agnostic workflow templates
+    │   ├── actions/               # Action-specific workflow templates
+    └── PULL_REQUEST_TEMPLATE/     # Generic PR template
+setup-guides/                      # Project setup and migration guides
+validation/                        # Configuration validation tools
+README.md                          # This file
 ```
 
 ## 🚀 Quick Start
@@ -50,30 +50,28 @@ This repository contains **generic, reusable templates** that projects can copy 
    ```bash
    # Edit project-config.yaml with your project details
    cd your-project/.github
-   # Choose appropriate config template (python, nodejs, dotnet, etc.)
-   cp project-config.python.yaml project-config.yaml  # or other template
+   # The config is generic and works for all languages
    # Edit project-config.yaml with your specific values
    ```
 
-3. **Setup SAZ CLI**
+3. **Setup SDO CLI**
    ```bash
-   # Install SAZ CLI (if not already installed)
-   pip install saz-cli
+   # Install SDO CLI (if not already installed)
+   pip install sdo-cli
 
-   # Configure SAZ for your platform
-   saz config set platform azure-devops  # or github, jira
-   saz config set organization your-org
-   saz config set project your-project
+   # Configure SDO for your platform
+   sdo config set platform azure-devops  # or github, jira
+   sdo config set organization your-org
+   sdo config set project your-project
    ```
 
 4. **Customize as Needed**
    - Modify workflow templates in `prompts/workflows/`
-   - Update examples in `prompts/examples/`
    - Adjust Copilot instructions in `copilot-instructions.md`
 
 ### For Existing Projects
 
-See our [Migration Guide](setup-guides/migration-guide.md) for step-by-step instructions on adopting these templates in existing projects.
+Follow the [Quick Start Guide](setup-guides/quick-start-guide.md) to adopt these templates in existing projects.
 
 ## ⚙️ Configuration
 
@@ -86,39 +84,37 @@ The `project-config.yaml` file contains all project-specific settings:
 project:
   name: "MyProject"
   organization: "my-org"
-  description: "Project description"
 
 # Platform Configuration
-platforms:
-  azure_devops: true
-  github: false
-  jira: false
+project_management:
+  platforms:
+    azure_devops: true
+    github: false
 
-# Language & Framework
-language: "python"
-framework: "fastapi"
+# Azure DevOps settings (if enabled)
+azure_devops:
+  organization: "my-org"
+  project: "MyProject"
+  area_path: "my-org\\MyProject\\Development"
+  default_iteration: "my-org\\MyProject\\Backlog"
 
 # Tool Configuration
 tools:
-  cli: "saz"  # Primary CLI tool
-  test_runner: "pytest"
-  linter: "flake8"
+  sdo_cli:
+    temp_directory: ".temp"
 ```
 
-### Language-Specific Templates
+### Configuration Template
 
-Choose the appropriate configuration template for your project:
+The configuration is now **generic** and works for all project types:
 
-- `project-config.python.yaml` - Python projects (Django, FastAPI, Flask)
-- `project-config.nodejs.yaml` - Node.js projects (Express, NestJS, Next.js)
-- `project-config.dotnet.yaml` - .NET projects (ASP.NET Core, Console apps)
+- `project-config.yaml` - Generic project configuration (works for all languages)
 
 ## 🛠️ Supported Platforms & Languages
 
 ### Project Management Platforms
-- **Azure DevOps** (primary, via SAZ CLI)
+- **Azure DevOps** (primary, via SDO CLI)
 - **GitHub Issues**
-- **Jira**
 
 ### Programming Languages
 - **Python** - Web APIs, data processing, CLI tools
@@ -140,44 +136,38 @@ Choose the appropriate configuration template for your project:
 - **Testing** - Test-driven development guidelines
 - **PBI Implementation** - Product backlog item workflows
 
-### Code Examples
-- **API Client Patterns** - HTTP clients with retry logic
-- **Error Handling** - Framework-neutral exception handling
-- **Testing Best Practices** - Comprehensive testing patterns
-- **Component Architecture** - Reusable component patterns
-
 ### Development Guides
 - **Daily Standup Reference** - Effective standup meeting formats
 - **Copilot Best Practices** - AI-assisted development guidelines
 - **Branching Strategy** - Git workflow recommendations
 
-## 🔧 SAZ CLI Integration
+## 🔧 SDO CLI Integration
 
-[SAZ](https://github.com/naz-hage/saz) is the recommended CLI tool for project management operations. It provides a unified interface for:
+[SDO](https://github.com/naz-hage/sdo) is the recommended CLI tool for project management operations. It provides a unified interface for:
 
 - **Work Item Management**: Create, update, query work items
 - **Sprint Planning**: Manage sprints and capacity
 - **Branch Management**: Create feature branches
 - **Pull Request Management**: Create and manage PRs
 
-### SAZ Configuration
+### SDO Configuration
 
 ```bash
 # Configure for Azure DevOps
-saz config set platform azure-devops
-saz config set organization your-org
-saz config set project your-project
-saz auth login
+sdo config set platform azure-devops
+sdo config set organization your-org
+sdo config set project your-project
+sdo auth login
 
 # Configure for GitHub
-saz config set platform github
-saz config set organization your-org
-saz config set repository your-repo
+sdo config set platform github
+sdo config set organization your-org
+sdo config set repository your-repo
 ```
 
 ## 📖 Documentation
 
-- **[Configuration Guide](.temp/prompts/CONFIG_USAGE.md)** - Detailed configuration options
+- **[Quick Start Guide](setup-guides/quick-start-guide.md)** - Complete setup and configuration guide
 - **[Workflow Guide](.temp/prompts/workflows/README.md)** - Available workflow templates
 - **[Setup Guides](setup-guides/)** - Project setup and migration guides
 - **[Validation Tools](validation/)** - Configuration validation scripts
@@ -193,11 +183,9 @@ saz config set repository your-repo
 
 ### Adding New Language Support
 
-1. Create language directory: `.temp/prompts/examples/{language}/`
-2. Add 3 core files: patterns, testing, error-handling
-3. Create config template: `project-config.{language}.yaml`
-4. Update CONFIG_USAGE.md
-5. Test with sample project
+1. Update `project-config.yaml` with language-specific settings if needed
+2. Modify workflow templates to support the new language
+3. Test with sample project
 
 ## 📄 License
 
@@ -205,8 +193,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [SAZ CLI](https://github.com/naz-hage/saz) - Unified project management CLI
-- Community contributors for language-specific examples
+- [SDO CLI](https://github.com/naz-hage/sdo) - Unified project management CLI
 - Open source projects that inspired these patterns
 
 ---

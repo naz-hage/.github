@@ -1,0 +1,59 @@
+# PROMPT: Update project-config.yaml
+# 1. Switch to project directory: cd /path/to/your/project
+# 2. Detect platform from git remote: git remote -v
+#    - If remote contains "dev.azure.com" → use azure_devops section
+#    - If remote contains "github.com" → use github section
+#    - Note: There can only be azdo OR gh, not both
+# 3. Fill placeholders with actual values from your project
+#    - Replace [PROJECT_NAME], [ORG_NAME], etc. with real values
+#    - Remove unused platform section (azure_devops or github)
+# ============================================================================
+# PROJECT INFORMATION
+# ============================================================================
+project:
+  name: "[PROJECT_NAME]"                    # e.g., "my-app", "api-service"
+  description: "[PROJECT_DESCRIPTION]"      # Brief project description
+
+# ============================================================================
+# AZURE DEVOPS CONFIGURATION
+# ============================================================================
+azure_devops:
+  organization: "[ORG_NAME]"               # e.g., "mycompany"
+  project: "[PROJECT_NAME]"                # e.g., "MyProject"
+  area_path: "[ORG_NAME]\\[TEAM_NAME]"     # e.g., "MyOrg\\Development"
+  default_iteration: "[ORG_NAME]\\[ITERATION]" # e.g., "MyOrg\\Sprint 1"
+
+# ============================================================================
+# GITHUB CONFIGURATION
+# ============================================================================
+github:
+  organization: "[ORG_NAME]"               # GitHub org or username
+  repository: "[REPO_NAME]"                # Repository name
+
+# ============================================================================
+# TOOLS CONFIGURATION
+# ============================================================================
+tools:
+  temp_directory: ".temp"                  # Temporary directory for work files
+
+# ============================================================================
+# AUTHENTICATION
+# ============================================================================
+authentication:
+  azure_devops:
+    env_var: "AZURE_DEVOPS_PAT"            # Environment variable for PAT
+  github:
+    env_var: "GITHUB_TOKEN"                # Environment variable for GitHub token
+
+# ============================================================================
+# Scrum Estimation
+# ============================================================================
+Estimation:
+  story_points:
+    scale:
+      (Extra Small) 1: "<1 day"
+      (Very Small) 2: "1-2 days"
+      (Small) 3: "2-3 days"
+      (Medium) 5: "3-5 days"
+      (Large) 8: "1-2 weeks"
+      (Extra Large) 13: "needs breakdown"
