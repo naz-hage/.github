@@ -93,64 +93,68 @@ Cross-cutting validation processes:
 
 ## Complete Workflow Diagram
 
-```
-┌──────────────────────────────────────────────────────────────────────────┐
-│                         PRODUCT BACKLOG ITEM (PBI)                        │
-├──────────────────────────────────────────────────────────────────────────┤
-│                                                                            │
-│  1️⃣  CREATE PBI          2️⃣  BREAKDOWN         3️⃣  IMPLEMENT           │
-│  ┌──────────┐           ┌──────────┐          ┌──────────┐              │
-│  │ Business │──────────→│  Sprint  │─────────→│ Execute  │              │
-│  │  Value   │           │ Planning │          │  Tasks   │              │
-│  └──────────┘           └──────────┘          └──────────┘              │
-│      ↓                       ↓                      ↓                     │
-│  [New PBI]              [Committed]            [Active]                  │
-│                              │                      │                     │
-│                              ↓                      ↓                     │
-│                     ┌────────────────┐    ┌────────────────┐            │
-│                     │ Create Tasks:  │    │ For each task: │            │
-│                     │  • Task 1      │    │  5️⃣  Create    │            │
-│                     │  • Task 2      │    │  6️⃣  Implement │            │
-│                     │  • Task 3      │    │  9️⃣  Test      │            │
-│                     │  • ...         │    │  8️⃣  Review    │            │
-│                     │  • Task N      │    │  7️⃣  Close     │            │
-│                     └────────────────┘    └────────────────┘            │
-│                                                   │                       │
-│                                                   ↓                       │
-│                                           All Tasks Done?                │
-│                                                   │                       │
-│  4️⃣  CLOSE PBI                                    ↓                       │
-│  ┌──────────┐                              Yes → Validate               │
-│  │ Validate │←───────────────────────────────────┘                       │
-│  │ & Deploy │                                                            │
-│  └──────────┘                                                            │
-│      ↓                                                                    │
-│  [Done]                                                                  │
-│                                                                            │
-└──────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    %% PBI Lifecycle
+    A[💡 New Feature Idea] --> B["1️⃣ CREATE PBI<br>Business Value"]
+    B --> C["2️⃣ BREAKDOWN<br>Sprint Planning"]
+    C --> D["3️⃣ IMPLEMENT<br>Execute Tasks"]
 
-QUALITY GATES (Apply at each stage):
-├─ 9️⃣  Testing: Unit → Integration → E2E
-└─ 8️⃣  Code Review: PR → Review → Merge
+    %% Task Creation Branch
+    C --> E["📋 Create Tasks<br>• Task 1<br>• Task 2<br>• Task N"]
+
+    %% Task Lifecycle Subgraph
+    subgraph TASKS ["🎯 Individual Task Lifecycle"]
+        F["5️⃣ CREATE<br>Define Task<br>[To Do]"]
+        G["6️⃣ IMPLEMENT<br>Code Change<br>[Active]"]
+        H["9️⃣ TEST<br>Unit → Integration → E2E<br>[Active]"]
+        I["8️⃣ REVIEW<br>PR → Review → Merge<br>[Review]"]
+        J["7️⃣ CLOSE<br>Mark Complete<br>[Done]"]
+
+        F --> G --> H --> I --> J
+    end
+
+    E --> F
+    D --> F
+
+    %% Completion Check
+    J --> K{All Tasks<br>Done?}
+    K -->|No| F
+    K -->|Yes| L["4️⃣ CLOSE PBI<br>Validate & Deploy<br>[Done]"]
+
+    %% Styling
+    classDef pbiPhase fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef taskPhase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef complete fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+
+    class B,C,D pbiPhase
+    class F,G,H,I,J taskPhase
+    class K decision
+    class L complete
 ```
 
-## Task Implementation Detail
+```mermaid
+flowchart LR
+    %% Task Implementation Detail
+    A["5️⃣ CREATE<br>Define Task"] --> B["6️⃣ IMPLEMENT<br>Code Change"]
+    B --> C["9️⃣ TEST<br>Unit → Integration → E2E"]
+    C --> D["8️⃣ REVIEW<br>PR → Review → Merge"]
+    D --> E["7️⃣ CLOSE<br>Mark Complete"]
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                    TASK LIFECYCLE                             │
-├──────────────────────────────────────────────────────────────┤
-│                                                                │
-│  5️⃣  CREATE → 6️⃣  IMPLEMENT → 9️⃣  TEST → 8️⃣  REVIEW → 7️⃣  CLOSE  │
-│                                                                │
-│  ┌────────┐   ┌────────┐   ┌────────┐   ┌────────┐   ┌─────┐│
-│  │ Define │──→│  Code  │──→│  Test  │──→│   PR   │──→│Done ││
-│  │  Task  │   │ Change │   │  Pass  │   │ Merge  │   │     ││
-│  └────────┘   └────────┘   └────────┘   └────────┘   └─────┘│
-│       ↓            ↓            ↓            ↓                 │
-│   [To Do]     [Active]     [Active]     [Review]      [Done] │
-│                                                                │
-└──────────────────────────────────────────────────────────────┘
+    %% Status indicators
+    A -.-> F(["To Do"])
+    B -.-> G(["Active"])
+    C -.-> G
+    D -.-> H(["Review"])
+    E -.-> I(["Done"])
+
+    %% Styling
+    classDef phase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef status fill:#e8f5e8,stroke:#2e7d32,stroke-width:1px
+
+    class A,B,C,D,E phase
+    class F,G,H,I status
 ```
 
 ## When to Use Each Workflow
@@ -162,16 +166,16 @@ QUALITY GATES (Apply at each stage):
 | ✏️ Need new task | [Work Item Creation](workitem-creation-workflow.md) | Define specific work item |
 | 💻 Ready to code | [Task Implementation](task-implementation.md) | Execute development |
 | ✅ Code complete | [Testing](testing.md) → [Code Review](code-review.md) | Validate and review |
-| 🎯 Task done | [Task Closure](task-closure.md) | Mark task complete |
-| 🚀 Feature complete | [PBI Closure](pbi-closure.md) | Validate entire feature |
+| 🎯 Task done | [Work Item Closure](workitem-closure.md) | Mark task complete |
+| 🚀 Feature complete | [Work Item Closure](workitem-closure.md) | Validate entire feature |
 | 🔄 Track progress | [PBI Implementation](pbi-implementation.md) | Monitor multi-task delivery |
 
 ## Role-Based Quick Reference
 
 ### Product Owner
 - Create PBIs: [Work Item Creation](workitem-creation-workflow.md)
-- Review completed work: [PBI Closure](pbi-closure.md)
-- Approve features: [PBI Closure](pbi-closure.md) Phase 3
+- Review completed work: [Work Item Closure](workitem-closure.md)
+- Approve features: [Work Item Closure](workitem-closure.md) Phase 3
 
 ### Development Team
 - Plan sprints: [PBI Breakdown](pbi-breakdown.md)
@@ -192,21 +196,21 @@ QUALITY GATES (Apply at each stage):
 2. [PBI Breakdown](pbi-breakdown.md) - Team plans implementation
 3. [Task Implementation](task-implementation.md) - Developers build (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
-5. [PBI Closure](pbi-closure.md) - Validate and release
+5. [Work Item Closure](workitem-closure.md) - Validate and release
 
 ### Bug Fix
 1. [Work Item Creation](workitem-creation-workflow.md) - Define bug and impact
 2. [Work Item Creation](workitem-creation-workflow.md) - Create fix task
 3. [Task Implementation](task-implementation.md) - Implement fix (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
-5. [PBI Closure](pbi-closure.md) - Verify fix
+5. [Work Item Closure](workitem-closure.md) - Verify fix
 
 ### Technical Debt
 1. [Work Item Creation](workitem-creation-workflow.md) - Document debt and impact
 2. [PBI Breakdown](pbi-breakdown.md) - Plan refactoring
 3. [Task Implementation](task-implementation.md) - Execute improvements (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
-5. [PBI Closure](pbi-closure.md) - Validate improvements
+5. [Work Item Closure](workitem-closure.md) - Validate improvements
 
 ## Best Practices
 

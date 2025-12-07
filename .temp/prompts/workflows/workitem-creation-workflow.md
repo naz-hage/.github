@@ -335,12 +335,11 @@ After **PBI** creation:
 After **Task** creation:
 1. **Implement Task** - Follow `workflows/task-implementation.md`
 2. **Track Progress** - Update task status regularly
-3. **Close Task** - Follow `workflows/task-closure.md` after completion
+3. **Close Task** - Follow `workflows/workitem-closure.md` after completion
 
 ## Related Workflows
 
 - [PBI Breakdown](pbi-breakdown.md) - When tasks are created from PBIs
 - [Task Implementation](task-implementation.md) - How to implement tasks
 - [PBI Implementation](pbi-implementation.md) - Track multi-task execution
-- [Task Closure](task-closure.md) - Task completion validation
-- [PBI Closure](pbi-closure.md) - PBI completion after all tasks done
+- [Work Item Closure](workitem-closure.md) - Task and PBI completion validation

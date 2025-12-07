@@ -227,6 +227,6 @@ Review PBI implementation effectiveness:
 - **PBI Breakdown**: `workflows/pbi-breakdown.md` (creating task breakdown)
 - **Code Review**: `workflows/code-review.md` (PR review process)
 - **Testing**: `workflows/testing.md` (comprehensive testing approaches)
-- **PBI Closure**: `workflows/pbi-closure.md` (PBI completion validation)
+- **Work Item Closure**: `workflows/workitem-closure.md` (PBI completion validation)
 
 This workflow ensures PBIs are delivered successfully through coordinated task execution while maintaining quality and meeting stakeholder expectations.

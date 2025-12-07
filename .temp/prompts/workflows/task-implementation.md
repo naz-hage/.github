@@ -206,7 +206,7 @@ Follow the PR creation workflow in `actions/create-pr.md` to prepare and submit 
 After completing this workflow:
 
 1. **Code Review** - Follow `workflows/code-review.md` to get PR reviewed and merged
-2. **Task Closure** - Follow `workflows/task-closure.md` after PR merge to close task and update parent PBI
+2. **Task Closure** - Follow `workflows/workitem-closure.md` after PR merge to close task and update parent PBI
 
 **Important:** Complete the current task's review/merge before starting new tasks.
 
@@ -215,4 +215,4 @@ After completing this workflow:
 - [PBI Implementation](pbi-implementation.md) - Coordinating multiple tasks
 - [Code Review](code-review.md) - PR review process
 - [Testing](testing.md) - Quality assurance
-- [Task Closure](task-closure.md) - Final task completion
+- [Work Item Closure](workitem-closure.md) - Final task completion

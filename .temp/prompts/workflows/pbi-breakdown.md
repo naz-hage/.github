@@ -257,7 +257,7 @@ Plan the sprint execution:
 After PBI breakdown, proceed to:
 1. **Task Implementation** - Follow `workflows/task-implementation.md` for each task
 2. **PBI Implementation** - Track multi-task coordination with `workflows/pbi-implementation.md`
-3. **PBI Closure** - Validate completed PBI with `workflows/pbi-closure.md`
+3. **Work Item Closure** - Validate completed PBI with `workflows/workitem-closure.md`
 
 ## Related Workflows
 
@@ -265,4 +265,4 @@ After PBI breakdown, proceed to:
 - [Work Item Creation](workitem-creation-workflow.md) - Detailed task creation
 - [Task Implementation](task-implementation.md) - Individual task execution
 - [PBI Implementation](pbi-implementation.md) - Multi-task coordination
-- [PBI Closure](pbi-closure.md) - PBI completion validation
+- [Work Item Closure](workitem-closure.md) - PBI completion validation

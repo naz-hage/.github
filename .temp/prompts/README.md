@@ -19,11 +19,10 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 ├── platform-mapping.md          # Standardized term mappings (SDO/AzDO/GitHub)
 ├── workflows/                   # Workflow-specific prompts (project-agnostic)
 │   ├── workitem-creation-workflow.md # Creating PBIs and Tasks (portfolio and sprint level)
+│   ├── workitem-closure.md      # Work item completion and validation (Tasks, PBIs, Issues)
 │   ├── pbi-breakdown.md        # Breaking PBIs into implementable tasks
 │   ├── pbi-implementation.md   # PBI implementation coordination workflow
-│   ├── pbi-closure.md          # PBI completion and validation
 │   ├── task-implementation.md  # Task implementation workflow (one task at a time)
-│   ├── task-closure.md         # Task completion validation
 │   ├── code-review.md          # Code review and PR processes
 │   ├── pr-squash-merge.md      # PR squash merge process guidance
 │   └── testing.md              # Testing workflow and validation
