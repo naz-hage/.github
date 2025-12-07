@@ -2,9 +2,48 @@
 
 You are tasked with closing a work item (Issue, PBI, or Task) after successful completion using an automated workflow.
 
-## Overview
+## Prerequisites
 
-This action provides a unified guide for closing work items across platforms (GitHub Issues, Azure DevOps PBIs/Tasks) using the SDO CLI tool. The work item type and platform are determined by the file content and metadata.
+Before closing a work item, ensure:
+
+### For All Work Items
+- [ ] Implementation completed and tested
+- [ ] Code reviewed and approved
+- [ ] All acceptance criteria verified
+- [ ] Documentation updated
+- [ ] No outstanding issues or blockers
+
+### For Issues (GitHub)
+- [ ] **PR merged/closed**: Verify the associated pull request has been successfully merged
+- [ ] **Linked PR exists**: Ensure PR is properly linked to the issue
+- [ ] **CI/CD passed**: All required checks have passed
+- [ ] **No merge conflicts**: PR was merged cleanly
+
+### For PBIs/Tasks (Azure DevOps)
+- [ ] All child tasks/PBIs completed (for PBIs)
+- [ ] Parent PBI updated (for Tasks)
+- [ ] Sprint/iteration status updated
+- [ ] Stakeholder approval obtained
+
+### Verification Commands
+
+**Check PR status (GitHub):**
+```bash
+# Check PR merge status
+sdo pr show [PR_NUMBER]
+
+# Check PR status details
+sdo pr status [PR_NUMBER]
+```
+
+**Check issue status:**
+```bash
+# For GitHub issues
+sdo workitem show --id [ISSUE_NUMBER]
+
+# For Azure DevOps work items
+sdo workitem show --id [WORK_ITEM_ID]
+```
 
 ## Work Item Types
 
@@ -154,41 +193,39 @@ Used for closing completed specific work units that implement PBI requirements.
 ## Command
 Use the `sdo` tool to close the work item:
 ```powershell
-sdo workitem close --file-path .temp/<filename>.md
+sdo workitem update --id [WORK_ITEM_ID] --state Done
 ```
 
-**Note:** The target platform (GitHub or Azure) and work item type are determined by the `## Target:` and `## Work Item Type:` fields in the file.
+**Note:** SDO automatically determines the platform (GitHub or Azure DevOps) based on the work item ID and your authentication setup.
+
+**Important:** Use the correct `.temp` directory path for your repository:
+- For home repo: `c:\source\home\.temp\<filename>.md`
+- For other repos: `<repo-root>\.temp\<filename>.md`
 
 ## Examples
 
 ### Close Resolved Issue
 ```powershell
-# Create issue closure message file (.temp/close-issue-message.md)
-# Content follows the Issue format above
+# Check PR status first
+sdo pr show 123
 
-# Close issue
-sdo workitem close --file-path .temp/close-issue-message.md
-# Output: ✓ Issue closed successfully - URL: https://github.com/owner/repo/issues/123
+# Close the issue
+sdo workitem update --id 123 --state Done
+# Output: ✓ Work item updated successfully - URL: https://github.com/owner/repo/issues/123
 ```
 
 ### Close Completed PBI
 ```powershell
-# Create PBI closure file (.temp/close-pbi.md)
-# Content follows the PBI format above
-
-# Close PBI
-sdo workitem close --file-path .temp/close-pbi.md
-# Output: ✓ PBI closed successfully - URL: https://dev.azure.com/org/project/_workitems/edit/789
+# Close the PBI
+sdo workitem update --id 789 --state Done
+# Output: ✓ Work item updated successfully - URL: https://dev.azure.com/org/project/_workitems/edit/789
 ```
 
 ### Close Completed Task
 ```powershell
-# Create task closure file (.temp/close-task.md)
-# Content follows the Task format above
-
-# Close task
-sdo workitem close --file-path .temp/close-task.md
-# Output: ✓ Task closed successfully - URL: https://dev.azure.com/org/project/_workitems/edit/101
+# Close the task
+sdo workitem update --id 101 --state Done
+# Output: ✓ Work item updated successfully - URL: https://dev.azure.com/org/project/_workitems/edit/101
 ```
 
 ## Post-Closure Workflow
@@ -200,16 +237,17 @@ After closure, follow platform-specific next steps:
 
 ### Common Issues:
 1. **SDO command fails**: Verify sdo is installed and configured
-2. **Authentication issues**: Check Azure DevOps/GitHub credentials
-3. **File format issues**: Ensure the file follows the specified format for the work item type
-4. **Work item not found**: Verify work item ID and permissions
-5. **Validation failures**: Ensure all required fields are properly formatted
+2. **Authentication issues**: Check Azure DevOps/GitHub credentials and PAT tokens
+3. **Work item not found**: Verify work item ID exists and you have access
+4. **PR not merged**: Ensure associated PR is merged before closing issue
+5. **Invalid state transition**: Some work item types may have workflow restrictions
 
 ### Recovery Steps:
-- If SDO fails: Verify tool installation and permissions
-- If authentication fails: Reconfigure credentials
-- If closure fails: Check file format and work item status
-- If validation fails: Review file content against format requirements
+- If SDO fails: Run `sdo --help` to verify installation
+- If authentication fails: Check `AZURE_DEVOPS_PAT` environment variable and GitHub CLI login
+- If work item not found: Use `sdo workitem show --id [ID]` to verify the work item exists
+- If PR not merged: Use `sdo pr show [PR_ID]` to check PR status
+- If state transition fails: Check work item type and current state with `sdo workitem show --id [ID]`
 
 ## Notes
 - Work items require appropriate closure documentation for tracking and auditing
