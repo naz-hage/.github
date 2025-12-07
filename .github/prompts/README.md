@@ -18,7 +18,7 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 ├── README.md                    # This file - overview and usage guide
 ├── platform-mapping.md          # Standardized term mappings (SDO/AzDO/GitHub)
 ├── workflows/                   # Workflow-specific prompts (project-agnostic)
-│   ├── workitem-creation-workflow.md # Creating PBIs and Tasks (portfolio and sprint level)
+│   ├── workitem-creation.md # Creating PBIs and Tasks (portfolio and sprint level)
 │   ├── workitem-closure.md      # Work item completion and validation (Tasks, PBIs, Issues)
 │   ├── workitem-start.md        # Complete work item start workflow (Tasks and PBIs)
 │   ├── pbi-breakdown.md        # Breaking PBIs into implementable tasks

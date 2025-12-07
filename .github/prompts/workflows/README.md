@@ -65,7 +65,7 @@ If SDO is not available, workflows include alternative commands for:
 
 Feature-level lifecycle management:
 
-1. **[Work Item Creation](workitem-creation-workflow.md)** - Define PBIs and Tasks
+1. **[Work Item Creation](workitem-creation.md)** - Define PBIs and Tasks
    - Business value analysis for PBIs
    - Acceptance criteria definition
    - Story point estimation for PBIs
@@ -161,9 +161,9 @@ flowchart LR
 
 | Situation | Workflow | Purpose |
 |-----------|----------|---------|
-| 💡 New feature idea | [Work Item Creation](workitem-creation-workflow.md) | Define business value and requirements |
+| 💡 New feature idea | [Work Item Creation](workitem-creation.md) | Define business value and requirements |
 | 📅 Sprint planning | [PBI Breakdown](pbi-breakdown.md) | Break PBI into tasks |
-| ✏️ Need new task | [Work Item Creation](workitem-creation-workflow.md) | Define specific work item |
+| ✏️ Need new task | [Work Item Creation](workitem-creation.md) | Define specific work item |
 | 💻 Ready to code | [Work Item Start](workitem-start.md) | Complete start workflow |
 | ✅ Code complete | [Testing](testing.md) → [Code Review](code-review.md) | Validate and review |
 | 🎯 Task done | [Work Item Closure](workitem-closure.md) | Mark task complete |
@@ -173,7 +173,7 @@ flowchart LR
 ## Role-Based Quick Reference
 
 ### Product Owner
-- Create PBIs: [Work Item Creation](workitem-creation-workflow.md)
+- Create PBIs: [Work Item Creation](workitem-creation.md)
 - Review completed work: [Work Item Closure](workitem-closure.md)
 - Approve features: [Work Item Closure](workitem-closure.md) Phase 3
 
@@ -192,21 +192,21 @@ flowchart LR
 ## Common Patterns
 
 ### New Feature Development
-1. [Work Item Creation](workitem-creation-workflow.md) - Product Owner defines feature
+1. [Work Item Creation](workitem-creation.md) - Product Owner defines feature
 2. [PBI Breakdown](pbi-breakdown.md) - Team plans implementation
 3. [Work Item Start](workitem-start.md) - Developers build (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
 5. [Work Item Closure](workitem-closure.md) - Validate and release
 
 ### Bug Fix
-1. [Work Item Creation](workitem-creation-workflow.md) - Define bug and impact
-2. [Work Item Creation](workitem-creation-workflow.md) - Create fix task
+1. [Work Item Creation](workitem-creation.md) - Define bug and impact
+2. [Work Item Creation](workitem-creation.md) - Create fix task
 3. [Work Item Start](workitem-start.md) - Implement fix (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
 5. [Work Item Closure](workitem-closure.md) - Verify fix
 
 ### Technical Debt
-1. [Work Item Creation](workitem-creation-workflow.md) - Document debt and impact
+1. [Work Item Creation](workitem-creation.md) - Document debt and impact
 2. [PBI Breakdown](pbi-breakdown.md) - Plan refactoring
 3. [Work Item Start](workitem-start.md) - Execute improvements (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
