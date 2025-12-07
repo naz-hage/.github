@@ -213,7 +213,6 @@ Once the current task's PR is merged:
 **Important**: Always complete one task fully (including PR merge) before starting the next task in a PBI.
 
 ### Related Workflows
-- **Task Implementation**: `workflows/task-implementation.md` (for implementing individual tasks)
-- **PBI Implementation**: `workflows/pbi-implementation.md` (for coordinating multiple tasks)
+- **Work Item Start**: `workflows/workitem-start.md` (for implementing individual tasks and coordinating multiple tasks)
 - **Testing**: `workflows/testing.md` (for comprehensive testing strategies)
 - **PR Creation**: `actions/create-pr.md` (for detailed PR creation steps)

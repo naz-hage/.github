@@ -164,11 +164,11 @@ flowchart LR
 | 💡 New feature idea | [Work Item Creation](workitem-creation-workflow.md) | Define business value and requirements |
 | 📅 Sprint planning | [PBI Breakdown](pbi-breakdown.md) | Break PBI into tasks |
 | ✏️ Need new task | [Work Item Creation](workitem-creation-workflow.md) | Define specific work item |
-| 💻 Ready to code | [Task Implementation](task-implementation.md) | Execute development |
+| 💻 Ready to code | [Work Item Start](workitem-start.md) | Complete start workflow |
 | ✅ Code complete | [Testing](testing.md) → [Code Review](code-review.md) | Validate and review |
 | 🎯 Task done | [Work Item Closure](workitem-closure.md) | Mark task complete |
 | 🚀 Feature complete | [Work Item Closure](workitem-closure.md) | Validate entire feature |
-| 🔄 Track progress | [PBI Implementation](pbi-implementation.md) | Monitor multi-task delivery |
+| 🔄 Track progress | [Work Item Start](workitem-start.md) | Complete implementation workflow |
 
 ## Role-Based Quick Reference
 
@@ -179,14 +179,14 @@ flowchart LR
 
 ### Development Team
 - Plan sprints: [PBI Breakdown](pbi-breakdown.md)
-- Implement tasks: [Task Implementation](task-implementation.md)
+- Implement tasks: [Work Item Start](workitem-start.md)
 - Validate code: [Testing](testing.md)
 - Submit changes: [Code Review](code-review.md)
-- Coordinate work: [PBI Implementation](pbi-implementation.md)
+- Coordinate work: [Work Item Start](workitem-start.md)
 
 ### Scrum Master
 - Facilitate breakdown: [PBI Breakdown](pbi-breakdown.md)
-- Track progress: [PBI Implementation](pbi-implementation.md)
+- Track progress: [Work Item Start](workitem-start.md)
 - Remove blockers: All workflows
 
 ## Common Patterns
@@ -194,21 +194,21 @@ flowchart LR
 ### New Feature Development
 1. [Work Item Creation](workitem-creation-workflow.md) - Product Owner defines feature
 2. [PBI Breakdown](pbi-breakdown.md) - Team plans implementation
-3. [Task Implementation](task-implementation.md) - Developers build (includes [Testing](testing.md))
+3. [Work Item Start](workitem-start.md) - Developers build (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
 5. [Work Item Closure](workitem-closure.md) - Validate and release
 
 ### Bug Fix
 1. [Work Item Creation](workitem-creation-workflow.md) - Define bug and impact
 2. [Work Item Creation](workitem-creation-workflow.md) - Create fix task
-3. [Task Implementation](task-implementation.md) - Implement fix (includes [Testing](testing.md))
+3. [Work Item Start](workitem-start.md) - Implement fix (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
 5. [Work Item Closure](workitem-closure.md) - Verify fix
 
 ### Technical Debt
 1. [Work Item Creation](workitem-creation-workflow.md) - Document debt and impact
 2. [PBI Breakdown](pbi-breakdown.md) - Plan refactoring
-3. [Task Implementation](task-implementation.md) - Execute improvements (includes [Testing](testing.md))
+3. [Work Item Start](workitem-start.md) - Execute improvements (includes [Testing](testing.md))
 4. [Code Review](code-review.md) - Submit PR for review
 5. [Work Item Closure](workitem-closure.md) - Validate improvements
 

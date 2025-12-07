@@ -20,9 +20,8 @@ All workflows in this directory are **project-agnostic** and reference **`projec
 ├── workflows/                   # Workflow-specific prompts (project-agnostic)
 │   ├── workitem-creation-workflow.md # Creating PBIs and Tasks (portfolio and sprint level)
 │   ├── workitem-closure.md      # Work item completion and validation (Tasks, PBIs, Issues)
+│   ├── workitem-start.md        # Complete work item start workflow (Tasks and PBIs)
 │   ├── pbi-breakdown.md        # Breaking PBIs into implementable tasks
-│   ├── pbi-implementation.md   # PBI implementation coordination workflow
-│   ├── task-implementation.md  # Task implementation workflow (one task at a time)
 │   ├── code-review.md          # Code review and PR processes
 │   ├── pr-squash-merge.md      # PR squash merge process guidance
 │   └── testing.md              # Testing workflow and validation

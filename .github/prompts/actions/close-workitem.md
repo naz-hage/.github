@@ -233,6 +233,24 @@ After closure, follow platform-specific next steps:
 - **Issues**: Verify closure and update any dependent work items
 - **PBIs/Tasks**: Check parent/child relationships and update sprint progress
 
+### Branch Cleanup (Git)
+After closing work items, perform branch cleanup:
+```bash
+# Switch to main branch
+git checkout main
+
+# Delete the feature branch locally
+git branch -d [branch-name]
+
+# Fetch latest changes from origin
+git fetch origin
+
+# Pull latest changes
+git pull origin main
+```
+
+**Note:** Replace `[branch-name]` with the actual feature branch name used for the work item.
+
 ## Error Handling
 
 ### Common Issues:
@@ -255,3 +273,24 @@ After closure, follow platform-specific next steps:
 - Follow repository's work item closure conventions
 - Ensure stakeholder approvals are documented for PBIs
 - Maintain traceability between related work items
+
+---
+
+## Summary
+This action provides a comprehensive workflow for closing work items across GitHub Issues and Azure DevOps work items using the unified SDO tool. The process ensures proper verification, documentation, and cleanup after successful completion of development work.
+
+**Key Benefits:**
+- **Unified Interface**: Single tool (SDO) for all platforms
+- **Complete Verification**: PR status, testing, and acceptance criteria validation
+- **Proper Documentation**: Structured closure files for audit trails
+- **Branch Management**: Automated cleanup of feature branches
+- **Error Handling**: Recovery steps for common issues
+
+**Workflow Steps:**
+1. Verify prerequisites and completion status
+2. Check PR status (for issues) or work item relationships (for PBIs/Tasks)
+3. Create appropriate closure documentation file
+4. Execute SDO workitem update command
+5. Perform branch cleanup and repository synchronization
+
+Use this action consistently across all work item closures to maintain quality standards and proper tracking.

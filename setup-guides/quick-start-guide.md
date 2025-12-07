@@ -100,10 +100,9 @@ your-project/
 │   ├── prompts/
 │   │   ├── README.md               # Workflow overview
 │   │   ├── workflows/              # Development workflow templates
-│   │   │   ├── task-implementation.md
+│   │   │   ├── workitem-start.md   # Complete work item start workflow
 │   │   │   ├── testing.md
-│   │   │   ├── code-review.md
-│   │   │   └── pbi-implementation.md
+│   │   │   └── code-review.md
 │   └── PULL_REQUEST_TEMPLATE/
 │       └── pull_request_template.md
 ├── src/                            # Your source code
@@ -326,7 +325,7 @@ The `copilot-instructions.md` file provides AI-assisted development guidance spe
 
 ```bash
 # Edit workflow templates
-edit .github/prompts/workflows/task-implementation.md
+edit .github/prompts/workflows/workitem-start.md
 
 # Add project-specific sections
 # Follow the existing format and placeholders

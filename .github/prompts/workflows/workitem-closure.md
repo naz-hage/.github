@@ -354,8 +354,7 @@ az boards work-item update --id [WORK_ITEM_ID] --fields "System.State=[Previous_
 ## Related Workflows
 
 - **Work Item Creation**: `workflows/workitem-creation-workflow.md`
-- **Task Implementation**: `workflows/task-implementation.md`
-- **PBI Implementation**: `workflows/pbi-implementation.md`
+- **Work Item Start**: `workflows/workitem-start.md` (comprehensive start workflow)
 - **Code Review**: `workflows/code-review.md`
 - **PR Management**: `workflows/pr-squash-merge.md`
 
