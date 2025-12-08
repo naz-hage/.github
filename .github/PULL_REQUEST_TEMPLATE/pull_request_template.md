@@ -1,4 +1,4 @@
-# [TASK/PBI-XXX] Brief description of changes
+# [WORKITEM-XXX] Brief description of changes
 
 ## Description
 Provide a clear and concise description of the changes made in this pull request.
@@ -25,8 +25,9 @@ Steps to validate the changes:
 3. Step 3
 
 ## Related Work Items
-- [TASK-XXX](link) - Description
+- [WORKITEM-XXX](link) - Description
 - [PBI-XXX](link) - Description
+- [TASK-XXX](link) - Description
 
 ## Breaking Changes
 List any breaking changes (if applicable):
@@ -36,5 +37,15 @@ List any breaking changes (if applicable):
 ## Screenshots/Visual Changes
 If applicable, add screenshots or describe visual changes.
 
+## Workflow Compliance
+This PR follows the standardized development workflows:
+- [ ] Work item properly created/updated using SDO CLI
+- [ ] Code follows project coding standards
+- [ ] Tests added/updated as needed
+- [ ] Documentation updated if required
+
 ## Additional Notes
 Any additional context or notes for reviewers.
+
+---
+*This PR template follows the standardized workflows defined in `.github/prompts/workflows/` and uses terminology from `.github/prompts/platform-mapping.md`*
