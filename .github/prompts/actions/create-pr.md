@@ -42,12 +42,22 @@ Copy the repository's standard PR template and create a file named `<issue-numbe
 
 **Standard Template Location:**
 - **GitHub**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
-- **Azure DevOps**: Repository's configured PR template
+- **Azure DevOps**: `.azuredevops/PULL_REQUEST_TEMPLATE.md`
 
 **Command:**
 ```powershell
+# Detect platform and set template path
+$remote = git remote -v | Select-Object -First 1
+if ($remote -match "github\.com") {
+    $templatePath = ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md"
+} elseif ($remote -match "dev\.azure\.com") {
+    $templatePath = ".azuredevops/PULL_REQUEST_TEMPLATE.md"
+} else {
+    Write-Host "Unable to detect platform from git remote"
+    exit 1
+}
 # Copy the standard PR template to temp location
-cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/<issue-number>-pr-message.md
+cp $templatePath .temp/<issue-number>-pr-message.md
 
 # Edit .temp/<issue-number>-pr-message.md with your PR details
 ```
@@ -101,7 +111,13 @@ git add .
 git commit -m "Enhance TEST_BATCH target with validation phases"
 
 # 4. Copy and edit PR template (.temp/123-pr-message.md)
-cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/123-pr-message.md
+# Detect platform and copy appropriate template
+$remote = git remote -v | Select-Object -First 1
+if ($remote -match "github\.com") {
+    cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/123-pr-message.md
+} elseif ($remote -match "dev\.azure\.com") {
+    cp .azuredevops/PULL_REQUEST_TEMPLATE.md .temp/123-pr-message.md
+}
 # Edit .temp/123-pr-message.md with your PR details following the standard template format
 
 # 5. Push branch
@@ -132,7 +148,13 @@ git add .
 git commit -m "Complete TEST_BATCH enhancement for issue #456"
 
 # 4. Copy and edit PR template (.temp/456-pr-message.md)
-cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/456-pr-message.md
+# Detect platform and copy appropriate template
+$remote = git remote -v | Select-Object -First 1
+if ($remote -match "github\.com") {
+    cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/456-pr-message.md
+} elseif ($remote -match "dev\.azure\.com") {
+    cp .azuredevops/PULL_REQUEST_TEMPLATE.md .temp/456-pr-message.md
+}
 # Edit .temp/456-pr-message.md with your PR details following the standard template format
 
 # 5. Push branch
