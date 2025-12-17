@@ -13,7 +13,7 @@ Used for bugs, features, or general tracking items.
 
 **File Format:** Create `.temp/issue-message.md` with:
 ```markdown
-# <[issue-number]: Issue Title>
+# <Issue Title>
 
 ## Target: <github|azure>
 ## Repository: <owner/repo>
@@ -31,7 +31,7 @@ Used for bugs, features, or general tracking items.
 ```
 
 **Guidelines:**
-- Title: Use [issue-number] format with clear, descriptive title
+- Title: descriptive title
 - Target: Specify 'github' or 'azure' platform
 - Repository: Use 'owner/repo' format
 - Labels: Use relevant labels like 'backlog', 'bug', 'enhancement'
