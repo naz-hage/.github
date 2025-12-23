@@ -6,12 +6,16 @@ You are tasked with creating a work item (Issue, PBI, or Task) for the current r
 
 This action provides a unified guide for creating work items across platforms (GitHub Issues, Azure DevOps PBIs/Tasks) using the SDO CLI tool. The work item type and platform are determined by the file content and metadata.
 
+**Important:** All work item files should be created in the `.temp/` directory at the root of the repository where the work item will be created. All `sdo` commands must be run from the repository root directory.
+
+**Prerequisites:** Replace `[REPO_NAME]` with your actual repository name (e.g., `my-repo`) throughout this guide.
+
 ## Work Item Types
 
 ### Issues (GitHub or Azure DevOps)
 Used for bugs, features, or general tracking items.
 
-**File Format:** Create `.temp/issue-message.md` with:
+**File Format:** Create `[REPO_NAME]/.temp/issue-message.md` with:
 ```markdown
 # <Issue Title>
 
@@ -41,7 +45,7 @@ Used for bugs, features, or general tracking items.
 ### PBIs (Azure DevOps)
 Used for high-level features, user stories, or epics representing business value.
 
-**File Format:** Create `.temp/pbi.md` with:
+**File Format:** Create `[REPO_NAME]/.temp/pbi.md` with:
 ```markdown
 # PBI-XXX: [Descriptive Title]
 
@@ -75,7 +79,7 @@ Used for high-level features, user stories, or epics representing business value
 ### Tasks (Azure DevOps)
 Used for specific, implementable work units that break down PBIs.
 
-**File Format:** Create `.temp/task.md` with:
+**File Format:** Create `[REPO_NAME]/.temp/task.md` with:
 ```markdown
 # Task-XXX: [Descriptive Title]
 
@@ -118,9 +122,9 @@ Used for specific, implementable work units that break down PBIs.
 **Note:** This is a temporary file. Azure DevOps is the source of truth after creation.
 
 ## Command
-Use the `sdo` tool to create the work item:
+Use the `sdo` tool to create the work item. **Important:** Run these commands from the root directory of the repository where the work item will be created.
 ```powershell
-sdo workitem create --file-path .temp/<filename>.md
+sdo workitem create --file-path ./.temp/<filename>.md
 ```
 
 **Note:** The target platform (GitHub or Azure) and work item type are determined by the `## Target:` and `## Work Item Type:` fields in the file.
@@ -129,41 +133,41 @@ sdo workitem create --file-path .temp/<filename>.md
 
 ### Bug Report Issue
 ```powershell
-# Create issue message file (.temp/issue-message.md)
+# Create issue message file ([REPO_NAME]/.temp/issue-message.md)
 # Content follows the Issue format above
 
-# Create issue and get issue number
-sdo workitem create --file-path .temp/issue-message.md
+# Create issue and get issue number (run from repository root)
+sdo workitem create --file-path ./.temp/issue-message.md
 # Output: ✓ Issue created successfully - URL: https://github.com/owner/repo/issues/123
 ```
 
 ### Feature Request Issue
 ```powershell
-# Create issue message file (.temp/issue-message.md)
+# Create issue message file ([REPO_NAME]/.temp/issue-message.md)
 # Content follows the Issue format above
 
-# Create issue
-sdo workitem create --file-path .temp/issue-message.md
+# Create issue (run from repository root)
+sdo workitem create --file-path ./.temp/issue-message.md
 # Output: ✓ Issue created successfully - URL: https://github.com/owner/repo/issues/456
 ```
 
 ### PBI Creation
 ```powershell
-# Create PBI file (.temp/pbi.md)
+# Create PBI file ([REPO_NAME]/.temp/pbi.md)
 # Content follows the PBI format above
 
-# Create PBI
-sdo workitem create --file-path .temp/pbi.md
+# Create PBI (run from repository root)
+sdo workitem create --file-path ./.temp/pbi.md
 # Output: ✓ PBI created successfully - URL: https://dev.azure.com/org/project/_workitems/edit/789
 ```
 
 ### Task Creation
 ```powershell
-# Create task file (.temp/task.md)
+# Create task file ([REPO_NAME]/.temp/task.md)
 # Content follows the Task format above
 
-# Create task
-sdo workitem create --file-path .temp/task.md
+# Create task (run from repository root)
+sdo workitem create --file-path ./.temp/task.md
 # Output: ✓ Task created successfully - URL: https://dev.azure.com/org/project/_workitems/edit/101
 ```
 
