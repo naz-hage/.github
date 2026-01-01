@@ -70,6 +70,8 @@ cp $templatePath .temp/<issue-number>-pr-message.md
 - Links to related work items/issues
 - Any breaking changes or special notes
 
+**Important:** Before filling out the template, carefully review the list of changed files and detailed changes obtained in Step 1 to ensure the PR description accurately reflects all modifications made in the branch. This is crucial for creating comprehensive and accurate PR descriptions, especially for complex changes involving multiple files or API updates.
+
 **Note:** The filename must be prefixed with the issue/task number (e.g., `123-pr-message.md` for issue #123).
 
 ### Step 5: Push Branch
