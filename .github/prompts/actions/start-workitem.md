@@ -72,9 +72,14 @@ Create feature branch and start implementation following project standards.
 
 ## Branch Creation
 
-**Create and switch to feature branch:**
+**Ensure you're working from the latest main branch:**
 ```bash
-# Create feature branch
+# Switch to main and pull latest changes
+git checkout main
+git pull origin main
+git pull
+
+# Create and switch to feature branch
 git checkout -b [branch-name]
 
 # Push to remote
