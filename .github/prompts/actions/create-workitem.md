@@ -175,7 +175,7 @@ sdo workitem create --file-path ./.temp/task.md
 After creation, follow platform-specific workflows:
 - **Issues**: 
     1. Rename the temporary file from `.temp/issue-message.md` to `.temp/<issue-number>-issue.md` (e.g., `.temp/123-issue.md`)
-    2. Create a branch using the issue number (e.g., `git checkout -b issue/123-fix-validation`)
+    2. Create a branch using the issue number (e.g., `git checkout -b 123-issue`)
 - **PBIs/Tasks**: 
     1. Rename the temporary file from `.temp/pbi.md` to `.temp/<workitem-number>-pbi.md` or from `.temp/task.md` to `.temp/<workitem-number>-task.md`
     2. Update in Azure DevOps for refinement and assignment

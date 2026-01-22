@@ -82,9 +82,8 @@ git push -u origin [branch-name]
 ```
 
 **Branch naming convention:**
-- Issues: `issue-[number]-[description]`
-- PBIs: `pbi-[number]-[description]`
-- Tasks: `task-[number]-[description]`
+- HitHub Issues: `[number]-issue`
+- Azdo Tasks: `[number]-[task]`
 
 ## Initial Setup
 
