@@ -201,3 +201,21 @@ sdo pr create --file .temp/456-pr-message.md --work-item 456
 - Follow repository's branching strategy
 - Link PRs to existing issues when possible using `--work-item` flag
 - Check for existing PRs to avoid duplicates
+
+## Agent Execution Instructions
+
+To enable an AI agent (like the Copilot coding agent) to perform this task autonomously:
+
+1. **Use Tools for Execution**: The agent should use the `run_in_terminal` tool to execute all git and sdo commands listed in the workflow steps. Set `isBackground=false` for sequential execution and monitor outputs for success.
+
+2. **Gather Context First**: Before starting, use tools like `read_file` to access repository templates (e.g., PR templates) and `list_dir` or `grep_search` to understand the repository structure and current state.
+
+3. **Handle Inputs Dynamically**: Infer inputs like repository name from the current workspace path, issue number from branch name or file naming conventions, and issue creation status from git history or branch patterns. Only prompt the user if information is ambiguous.
+
+4. **Error Handling and Recovery**: If a command fails, analyze the output, attempt recovery steps (e.g., retry push, check authentication), and use tools like `get_errors` if applicable. Escalate to user only for unresolvable issues.
+
+5. **Validation at Each Step**: After commits, pushes, or PR creation, validate using commands like `git log`, `git status`, or checking sdo output for URLs. Ensure no regressions.
+
+6. **Complete End-to-End**: Execute all workflow steps sequentially without user intervention, providing a final summary with PR URL, success confirmation, and suggested next steps (e.g., review, assign reviewers).
+
+This augmentation allows the agent to follow the workflow independently, using available tools to gather information and execute actions.
