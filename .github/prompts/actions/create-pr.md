@@ -63,7 +63,7 @@ cp $templatePath .temp/<issue-number>-pr-message.md
 ```
 
 **Fill out the template with:**
-- Clear, descriptive title following repo conventions (e.g., `Brief description`)
+- Replace "pull-request Template" placeholder with a descriptive title
 - Detailed description of changes and business value
 - List of key changes made
 - Testing information and validation steps
