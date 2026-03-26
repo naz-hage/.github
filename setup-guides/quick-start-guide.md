@@ -74,7 +74,7 @@ sdo workitem list --type "Product Backlog Item"
 
 ```bash
 # Test SDO connection
-sdo workitem list --assigned-to-me --top 3
+sdo wi list --assigned-to-me --top 3
 
 # Validate configuration
 python .github/validation/validate_configs.py
@@ -202,7 +202,7 @@ Workflows indicate where to find values:
 Use bracketed placeholders that should be replaced with config values:
 
 ```bash
-sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+sdo wi create --file-path [TEMP_DIRECTORY]/pbi.md
 ```
 
 #### Pattern 3: Header Reference
@@ -230,12 +230,12 @@ Workflows include a reference at the top:
 
 **Tool Commands (project-agnostic):**
 ```bash
-sdo workitem create --file-path [TEMP_DIRECTORY]/pbi.md
+sdo wi create --file-path [TEMP_DIRECTORY]/pbi.md
 ```
 
 **Resolved for a specific project:**
 ```bash
-sdo workitem create --file-path .temp/pbi.md
+sdo wi create --file-path .temp/pbi.md
 ```
 
 ### Migration Guide
@@ -281,7 +281,7 @@ pip install -e .
 $env:AZURE_DEVOPS_PAT = "your-personal-access-token"
 
 # Test connection
-sdo workitem list --type "Product Backlog Item"
+sdo wi list --type "Product Backlog Item"
 ```
 
 #### GitHub
@@ -291,14 +291,14 @@ sdo workitem list --type "Product Backlog Item"
 gh auth login
 
 # Test connection
-sdo workitem list --type "Issue"
+sdo wi list --type "Issue"
 ```
 
 ### Testing SDO Setup
 
 ```bash
 # Test work item access
-sdo workitem list --top 5
+sdo wi list --top 5
 
 # Test repository access
 sdo repo ls

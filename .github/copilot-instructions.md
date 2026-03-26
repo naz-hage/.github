@@ -20,6 +20,37 @@ Welcome to the generic project template system! This document provides comprehen
 
 ## Development Guidelines
 
+### Terminal and Build Environment
+
+**Always Use PowerShell:**
+- Use PowerShell terminal exclusively - never attempt WSL, Linux, or other shells
+- PowerShell is always available in the development environment
+- Avoid shell-specific commands like `tail`, `head`, `grep` - use PowerShell equivalents (`Select-Object`, `Where-Object`, etc.)
+
+**Build Output and Logging:**
+- When running `nb build`, the build system creates an `nbuild.log` file containing complete build output
+- Always examine `nbuild.log` to debug build failures and compilation errors
+- Do NOT rely on terminal stream capture for build diagnostics - use the log file
+- Example: After `nb build` fails, read the `nbuild.log` to see the actual error messages
+
+**Example Build Debugging Workflow:**
+```powershell
+# Run build
+nb build
+
+# If build fails, examine the log
+Get-Content nbuild.log | Select-Object -Last 100
+
+# Or search for errors in the log
+Select-String "error" nbuild.log | Select-Object -First 20
+```
+
+**Testing Executables:**
+- Always test with the actual built `.exe` file, never use `dotnet run`
+- The build creates executables like `Sdo\bin\Release\sdo.exe`
+- Test with the real executable to catch environment and deployment issues
+- Example: `.\Sdo\bin\Release\sdo.exe wi list`
+
 ### Configuration Management
 
 **Project Configuration:**
@@ -78,12 +109,12 @@ github:
 **Work Item Management:**
 ```bash
 # Create work items
-sdo workitem create --file-path .temp/pbi.md
-sdo workitem create --file-path .temp/task.md
+sdo wi create --file-path .temp/pbi.md
+sdo wi create --file-path .temp/task.md
 
 # List work items
-sdo workitem list --type "Product Backlog Item"
-sdo workitem list --type "Task"
+sdo wi list --type "Product Backlog Item"
+sdo wi list --type "Task"
 ```
 
 **Platform Commands:**
@@ -96,8 +127,8 @@ $env:AZURE_DEVOPS_PAT = "your-personal-access-token"
 gh auth login
 
 # Work item operations
-sdo workitem create --type "Product Backlog Item" --title "Feature Title"
-sdo workitem list --type "Task"
+sdo wi create --type "Product Backlog Item" --title "Feature Title"
+sdo wi list --type "Task"
 ```
 
 **Configuration Setup:**

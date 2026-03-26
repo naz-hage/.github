@@ -6,7 +6,7 @@ This document provides standardized term mappings between the SDO CLI tool, Azur
 
 | SDO Term | Azure DevOps | GitHub |
 |----------|-------------|--------|
-| workitem | Work Item | Issue |
+| wi | Work Item | Issue |
 | pbi | Product Backlog Item (PBI) | Issue (labeled as "enhancement" or "feature") |
 | task | Task | Issue (labeled as "task" or sub-issue) |
 | bug | Bug | Issue (labeled as "bug") |
@@ -76,7 +76,7 @@ When writing workflow documentation:
 # Create a new work item (SDO term)
 # Maps to: PBI in Azure DevOps, Issue in GitHub
 
-sdo workitem create --file-path pbi.md --title "New Feature"
+sdo wi create --file-path pbi.md --title "New Feature"
 ```
 
 This mapping ensures that all documentation and tooling can work across multiple platforms while maintaining clarity and consistency.</content>
