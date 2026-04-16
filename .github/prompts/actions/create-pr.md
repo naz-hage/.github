@@ -1,6 +1,6 @@
-# Create Pull Request Workflow
+# Create Pull Request Document Workflow
 
-You are tasked with creating a pull request for the current repository changes using an automated workflow.
+You are tasked with creating a pull request markdown document for the current repository changes.
 
 ## Input
 - **Repository name**: The name of the repository (e.g., `home`, `sdo`, `ntools`)
@@ -8,11 +8,8 @@ You are tasked with creating a pull request for the current repository changes u
 
 ## Workflow Steps
 
-### Step 1: Analyze Current Git State
-1. Check current branch: `git branch --show-current`
-2. Check for uncommitted changes: `git status --porcelain`
-3. Get list of changed files: `git diff --name-only`
-4. Get detailed changes: `git diff`
+### Step 1: Analyze Current Git State (Optional)
+Use git commands to understand your changes before documenting them:
 
 ### Step 2: Branch Management
 **If an issue was already created:**
@@ -37,161 +34,115 @@ You are tasked with creating a pull request for the current repository changes u
 **If already committed:**
 - Verify commits exist: `git log origin/main..HEAD --oneline`
 
-### Step 4: Generate PR Message
-Copy the repository's standard PR template and create a file named `<issue-number>-pr-message.md` in the `.temp` directory (`.temp/<issue-number>-pr-message.md` from repo root):
+### Step 4: Create PR Document
 
-**Standard Template Location:**
+**IMPORTANT - Template Validation:**
+Before creating the PR document, verify the repository's standard template exists:
 - **GitHub**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
 - **Azure DevOps**: `.azuredevops/PULL_REQUEST_TEMPLATE.md`
 
-**Command:**
-```powershell
-# Detect platform and set template path
-$remote = git remote -v | Select-Object -First 1
-if ($remote -match "github\.com") {
-    $templatePath = ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md"
-} elseif ($remote -match "dev\.azure\.com") {
-    $templatePath = ".azuredevops/PULL_REQUEST_TEMPLATE.md"
-} else {
-    Write-Host "Unable to detect platform from git remote"
-    exit 1
-}
-# Copy the standard PR template to temp location
-cp $templatePath .temp/<issue-number>-pr-message.md
+**If the template file does NOT exist**, STOP and ask the user to provide the PR template format. Do not proceed with document creation.
 
-# Edit .temp/<issue-number>-pr-message.md with your PR details
-```
+**If the template file EXISTS**, create a markdown file named `<issue-number>-pr-message.md` in the `.temp` directory (`.temp/<issue-number>-pr-message.md` from repo root). **Your PR document format MUST EXACTLY MATCH the structure of the repository's standard template** - do not deviate from the template format.
 
-**Fill out the template with:**
-- Replace "pull-request Template" placeholder with a descriptive title
-- Detailed description of changes and business value
-- List of key changes made
-- Testing information and validation steps
-- Links to related work items/issues
-- Any breaking changes or special notes
+**Standard Template Locations:**
+- **GitHub**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
+- **Azure DevOps**: `.azuredevops/PULL_REQUEST_TEMPLATE.md`
 
-**Important:** Before filling out the template, carefully review the list of changed files and detailed changes obtained in Step 1 to ensure the PR description accurately reflects all modifications made in the branch. This is crucial for creating comprehensive and accurate PR descriptions, especially for complex changes involving multiple files or API updates.
+
+**Fill out the document by following the structure and fields from the repository's standard template:**
+- Follow all sections and fields defined in the template file
+- Complete each field with appropriate content based on the changes
+- Do not add, remove, or reorder sections from the template
+- Ensure all required fields are populated according to template specifications
+
+**Important:** Before creating the document, carefully review the list of changed files and detailed changes to ensure the PR description accurately reflects all modifications made in the branch.
 
 **Note:** The filename must be prefixed with the issue/task number (e.g., `123-pr-message.md` for issue #123).
 
-### Step 5: Push Branch
-Push the branch to remote:
+### Step 5: Push Branch (Optional)
+If ready to push changes to remote:
 ```powershell
 git push -u origin <branch-name>
 ```
 
-### Step 6: Create Pull Request with SDO
-Use the `sdo` tool to create the PR:
-```powershell
-sdo pr create --file .temp/<issue-number>-pr-message.md
-```
-
-**If work item ID is available:**
-```powershell
-sdo pr create --file .temp/<issue-number>-pr-message.md --work-item <id>
-```
-
-### Step 7: Verify PR Creation
-1. Display the PR URL from sdo output
-2. Confirm PR was created successfully
-3. Show next steps for the user
+### Step 6: Prepare for Submission
+Once the PR markdown document is created and reviewed:
+- Ensure all required fields are populated
+- Verify the branch is pushed if not already done
+- Confirm the document is ready for submission via your team's PR workflow
 
 ## Example Execution
 
-**Scenario 1: Direct PR creation (no issue created yet)**
+**Scenario 1: Create PR document for feature branch**
 
 ```powershell
-# 1. Check current state
+# 1. Review current changes
 git status
-# Output: On branch main, Changes not staged for commit: ...
+git diff --name-only
 
-# 2. Create feature branch
-git checkout -b feature/enhance-test-batch
+# 2. Create PR markdown document (.temp/123-pr-message.md)
+# Following the standard template format:
+# - Clear title describing the changes
+# - Detailed description and business value
+# - List of key changes
+# - Testing and validation details
+# - Related issue/work item links
 
-# 3. Commit changes
-git add .
-git commit -m "Enhance TEST_BATCH target with validation phases"
-
-# 4. Copy and edit PR template (.temp/123-pr-message.md)
-# Detect platform and copy appropriate template
-$remote = git remote -v | Select-Object -First 1
-if ($remote -match "github\.com") {
-    cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/123-pr-message.md
-} elseif ($remote -match "dev\.azure\.com") {
-    cp .azuredevops/PULL_REQUEST_TEMPLATE.md .temp/123-pr-message.md
-}
-# Edit .temp/123-pr-message.md with your PR details following the standard template format
-
-# 5. Push branch
-git push -u origin feature/enhance-test-batch
-
-# 6. Create PR
-sdo pr create --file .temp/123-pr-message.md
-
-# Output:
-# ✓ Pull request created successfully
-# URL: https://dev.azure.com/org/home/_git/home/pullrequest/123
+# 3. Document is ready for review and submission
+Write-Host "PR document created: .temp/123-pr-message.md"
+Write-Host "Ready for submission via team workflow"
 ```
 
-**Scenario 2: PR creation after issue was created**
+**Scenario 2: Create PR document after issue was created**
 
 ```powershell
-# Assuming issue #456 was already created and branch exists
-
-# 1. Check current state and verify on correct branch
+# 1. Verify on correct branch for the issue
 git status
 git branch --show-current
 # Output: issue/456-enhance-test-batch
 
-# 2. Skip branch creation (already on issue branch)
+# 2. Review changes on this branch
+git diff origin/main --name-only
 
-# 3. Commit any remaining changes
-git add .
-git commit -m "Complete TEST_BATCH enhancement for issue #456"
+# 3. Create PR markdown document (.temp/456-pr-message.md)
+# Following the standard template format:
+# - Clear title describing the changes
+# - Detailed description linked to issue #456
+# - List of key changes
+# - Testing and validation details
+# - Link to issue #456 in "Related Work Items"
 
-# 4. Copy and edit PR template (.temp/456-pr-message.md)
-# Detect platform and copy appropriate template
-$remote = git remote -v | Select-Object -First 1
-if ($remote -match "github\.com") {
-    cp .github/PULL_REQUEST_TEMPLATE/pull_request_template.md .temp/456-pr-message.md
-} elseif ($remote -match "dev\.azure\.com") {
-    cp .azuredevops/PULL_REQUEST_TEMPLATE.md .temp/456-pr-message.md
-}
-# Edit .temp/456-pr-message.md with your PR details following the standard template format
-
-# 5. Push branch
-git push -u origin issue/456-enhance-test-batch
-
-# 6. Create PR linked to the issue
-sdo pr create --file .temp/456-pr-message.md --work-item 456
-
-# Output:
-# ✓ Pull request created successfully
-# URL: https://dev.azure.com/org/home/_git/home/pullrequest/123
+# 4. Document is ready for review and submission
+Write-Host "PR document created: .temp/456-pr-message.md"
+Write-Host "Ready for submission via team workflow (linked to issue #456)"
 ```
 
-## Error Handling
+## Document Review Checklist
+
+### Before Finalizing:
+1. **Template existence**: Verified that the repository's PR template file exists
+2. **Format compliance**: Document structure EXACTLY matches the repository's standard template (not a generic format)
+3. **Content completeness**: All required fields are populated
+4. **Accuracy**: Description reflects all changes made
+5. **Clarity**: Title and description are clear and professional
+6. **Links**: Related issues/work items are correctly referenced
 
 ### Common Issues:
-1. **No changes detected**: Inform user and exit gracefully
-2. **Wrong branch when issue exists**: Verify you're on the correct issue branch
-3. **Already on feature branch with no new commits**: Check if PR already exists
-4. **Branch name conflicts**: Suggest alternative branch name
-5. **Push fails**: Check remote access and authentication
-6. **SDO command fails**: Verify sdo is installed and configured
+1. **Missing change details**: Review git diff to capture all changes
+2. **Vague descriptions**: Use specific technical details
+3. **Incomplete testing info**: Document all testing performed
+4. **Missing issue links**: Reference related work items
+5. **Formatting errors**: Ensure markdown syntax is valid
 
-### Recovery Steps:
-- If commit fails: Review commit message or check for empty commits
-- If push fails: Verify remote repository access
-- If PR creation fails: Check Azure DevOps/GitHub authentication
-
-## Post-Creation Actions
-1. Display PR URL to user
-2. Suggest next steps:
-   - Review the PR on the platform
+## Next Steps After Document Creation
+1. Review the PR markdown document for completeness and accuracy
+2. Submit the document via your team's PR management workflow
+3. Once submitted:
    - Request reviewers
+   - Monitor CI/CD checks
+   - Address any feedback or review comments
    - Link to related work items if not already done
-   - Monitor CI/CD pipeline status
 
 ## Notes
 - Always verify git repository before starting
@@ -199,23 +150,37 @@ sdo pr create --file .temp/456-pr-message.md --work-item 456
 - Preserve existing commit history if on feature branch
 - Use meaningful branch and commit messages
 - Follow repository's branching strategy
-- Link PRs to existing issues when possible using `--work-item` flag
+- Link PRs to existing issues when possible
 - Check for existing PRs to avoid duplicates
 
 ## Agent Execution Instructions
 
 To enable an AI agent (like the Copilot coding agent) to perform this task autonomously:
+Validate Template Exists**: FIRST, check if the repository's PR template file exists:
+   - Try to read `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md` for GitHub
+   - Try to read `.azuredevops/PULL_REQUEST_TEMPLATE.md` for Azure DevOps
+   - If NEITHER file exists, STOP and ask user to provide the PR template format. Do NOT proceed.
+   - If template exists, read its full contents to understand the exact structure and fields required.
 
-1. **Use Tools for Execution**: The agent should use the `run_in_terminal` tool to execute all git and sdo commands listed in the workflow steps. Set `isBackground=false` for sequential execution and monitor outputs for success.
+2. **Gather Context**: Use tools like `read_file` to access the repository's actual PR template and `list_dir`/`grep_search` to understand the repository structure and current branch state.
 
-2. **Gather Context First**: Before starting, use tools like `read_file` to access repository templates (e.g., PR templates) and `list_dir` or `grep_search` to understand the repository structure and current state.
+3. **Analyze Git State**: Use `run_in_terminal` to execute git commands (`git status`, `git diff`, `git branch`) to understand current changes and branch.
 
-3. **Handle Inputs Dynamically**: Infer inputs like repository name from the current workspace path, issue number from branch name or file naming conventions, and issue creation status from git history or branch patterns. Only prompt the user if information is ambiguous.
+4. **Handle Inputs Dynamically**: Infer inputs like issue number from branch name or file naming conventions. Only prompt the user if information is ambiguous.
 
-4. **Error Handling and Recovery**: If a command fails, analyze the output, attempt recovery steps (e.g., retry push, check authentication), and use tools like `get_errors` if applicable. Escalate to user only for unresolvable issues.
+5. **Create PR Document**: Generate the PR markdown document using `create_file` in the `.temp/` directory with appropriate naming (`<issue-number>-pr-message.md`). **The document structure MUST EXACTLY MATCH the repository's standard template** - follow the template fields, sections, and format precisely
+4. **Create PR Document**: Generate the PR markdown document using `create_file` in the `.temp/` directory with appropriate naming (`<issue-number>-pr-message.md`). Follow the standard template structure with:
+6. **Validation**: Review the created document to ensure:
+   - All required fields from the template are included
+   - Format exactly matches the repository's standard template
+   - Completeness and accuracy before providing to user
 
-5. **Validation at Each Step**: After commits, pushes, or PR creation, validate using commands like `git log`, `git status`, or checking sdo output for URLs. Ensure no regressions.
+7. **Complete End-to-End**: Execute all workflow steps sequentially, providing a final summary with document location, format valid
+   - Testing information
+   - Related issue/work item links
 
-6. **Complete End-to-End**: Execute all workflow steps sequentially without user intervention, providing a final summary with PR URL, success confirmation, and suggested next steps (e.g., review, assign reviewers).
+5. **Validation**: Review the created document to ensure completeness and accuracy before providing to user.
 
-This augmentation allows the agent to follow the workflow independently, using available tools to gather information and execute actions.
+6. **Complete End-to-End**: Execute all workflow steps sequentially, providing a final summary with document location, content review, and suggested next steps for submission.
+
+This augmentation allows the agent to create PR documents independently, using available tools to gather information and generate comprehensive PR documentation.
