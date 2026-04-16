@@ -1,12 +1,12 @@
-# Create Work Item Action
+# Create Work Item Document Action
 
-You are tasked with creating a work item (Issue, PBI, or Task) for the current repository changes using an automated workflow.
+You are tasked with creating a work item document (Issue, PBI, or Task) for the current repository changes.
 
 ## Overview
 
-This action provides a unified guide for creating work items across platforms (GitHub Issues, Azure DevOps PBIs/Tasks) using the SDO CLI tool. The work item type and platform are determined by the file content and metadata.
+This action provides a unified guide for creating work item markdown documents across platforms (GitHub Issues, Azure DevOps PBIs/Tasks). The work item type and platform are determined by the document content and metadata. Once created, these markdown files can be submitted for processing via your team's work item management workflow.
 
-**Important:** All work item files should be created in the `.temp/` directory at the root of the repository where the work item will be created. All `sdo` commands must be run from the repository root directory.
+**Important:** All work item files should be created in the `.temp/` directory at the root of the repository where the work item will be created.
 
 **Prerequisites:** Replace `[REPO_NAME]` with your actual repository name (e.g., `my-repo`) throughout this guide.
 
@@ -21,7 +21,7 @@ Used for bugs, features, or general tracking items.
 
 ## Target: <github|azure>
 ## Repository: <owner/repo>
-## Assignee: <username or leave blank>
+## Assignee:
 ## Labels: <comma-separated labels>
 
 ## Description
@@ -53,7 +53,7 @@ Used for high-level features, user stories, or epics representing business value
 ## Project: [FROM project-config.yaml: azure_devops.project]
 ## Area: [FROM project-config.yaml: azure_devops.area_path]
 ## Iteration: [FROM project-config.yaml: azure_devops.default_iteration]
-## Assignee: [Product Owner or value from project-config.yaml]
+## Assignee:
 ## Work Item Type: PBI
 
 ## Description
@@ -121,80 +121,21 @@ Used for specific, implementable work units that break down PBIs.
 
 **Note:** This is a temporary file. Azure DevOps is the source of truth after creation.
 
-## Command
-Use the `sdo` tool to create the work item. **Important:** Run these commands from the root directory of the repository where the work item will be created.
-```powershell
-sdo workitem create --file-path ./.temp/<filename>.md
-```
+## File Creation Workflow
 
-**Note:** The target platform (GitHub or Azure) and work item type are determined by the `## Target:` and `## Work Item Type:` fields in the file.
+### Step 1: Create the Markdown Document
+Create the appropriate markdown file in the `.temp/` directory:
+- **For Issues**: Create `[REPO_NAME]/.temp/issue-message.md` following the Issue format above
+- **For PBIs**: Create `[REPO_NAME]/.temp/pbi.md` following the PBI format above
+- **For Tasks**: Create `[REPO_NAME]/.temp/task.md` following the Task format above
 
-## Examples
+### Step 2: Review and Prepare for Submission
+- Ensure all required fields are populated correctly
+- Verify the `## Target:` field matches your intended platform (github or azure)
+- For Azure DevOps work items, confirm project-specific fields (Area, Iteration, etc.) are accurate
+- Include sufficient context and acceptance criteria for team review
 
-### Bug Report Issue
-```powershell
-# Create issue message file ([REPO_NAME]/.temp/issue-message.md)
-# Content follows the Issue format above
+### Step 3: Submit for Processing
+- Once the markdown file is created and reviewed, submit it via your team's work item management workflow
+- The target platform (GitHub or Azure) and work item type are determined by the `## Target:` and `## Work Item Type:` fields in the document
 
-# Create issue and get issue number (run from repository root)
-sdo workitem create --file-path ./.temp/issue-message.md
-# Output: ✓ Issue created successfully - URL: https://github.com/owner/repo/issues/123
-```
-
-### Feature Request Issue
-```powershell
-# Create issue message file ([REPO_NAME]/.temp/issue-message.md)
-# Content follows the Issue format above
-
-# Create issue (run from repository root)
-sdo workitem create --file-path ./.temp/issue-message.md
-# Output: ✓ Issue created successfully - URL: https://github.com/owner/repo/issues/456
-```
-
-### PBI Creation
-```powershell
-# Create PBI file ([REPO_NAME]/.temp/pbi.md)
-# Content follows the PBI format above
-
-# Create PBI (run from repository root)
-sdo workitem create --file-path ./.temp/pbi.md
-# Output: ✓ PBI created successfully - URL: https://dev.azure.com/org/project/_workitems/edit/789
-```
-
-### Task Creation
-```powershell
-# Create task file ([REPO_NAME]/.temp/task.md)
-# Content follows the Task format above
-
-# Create task (run from repository root)
-sdo workitem create --file-path ./.temp/task.md
-# Output: ✓ Task created successfully - URL: https://dev.azure.com/org/project/_workitems/edit/101
-```
-
-## Post-Creation Workflow
-After creation, follow platform-specific workflows:
-- **Issues**: 
-    1. Rename the temporary file from `.temp/issue-message.md` to `.temp/<issue-number>-issue.md` (e.g., `.temp/123-issue.md`)
-    2. Create a branch using the issue number (e.g., `git checkout -b 123-issue`)
-- **PBIs/Tasks**: 
-    1. Rename the temporary file from `.temp/pbi.md` to `.temp/<workitem-number>-pbi.md` or from `.temp/task.md` to `.temp/<workitem-number>-task.md`
-    2. Update in Azure DevOps for refinement and assignment
-
-
-## Error Handling
-
-### Common Issues:
-1. **SDO command fails**: Verify sdo is installed and configured
-2. **Authentication issues**: Check Azure DevOps/GitHub credentials
-3. **File format issues**: Ensure the file follows the specified format for the work item type
-
-### Recovery Steps:
-- If SDO fails: Verify tool installation and permissions
-- If authentication fails: Reconfigure credentials
-- If creation fails: Check file format and content
-
-## Notes
-- Work items require appropriate metadata for proper linking and tracking
-- Always include enough context for team members to understand the item
-- Follow repository's work item tracking conventions
-- Check for existing items to avoid duplicates
