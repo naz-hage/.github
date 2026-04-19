@@ -2,6 +2,39 @@
 
 This document provides standardized term mappings between the SDO CLI tool, Azure DevOps, and GitHub platforms. This ensures consistent terminology across all workflows and documentation.
 
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     SDO CLI Tool                             │
+│              (Simple DevOps Operations)                      │
+│                     (C# .NET 10.0)                           │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+         ┌───────────┴────────────┐
+         │                        │
+         ▼                        ▼
+  ┌─────────────────┐     ┌──────────────────┐
+  │  Azure DevOps   │     │     GitHub       │
+  │                 │     │                  │
+  │ • Work Items    │     │ • Issues         │
+  │ • Repositories  │     │ • Pull Requests  │
+  │ • Pipelines     │     │ • Releases       │
+  │ • Deployments   │     │ • Organizations  │
+  └─────────────────┘     └──────────────────┘
+```
+
+## How SDO Maps Platforms
+
+SDO provides a **unified command-line interface** that abstracts the differences between Azure DevOps and GitHub. Users write commands using SDO terminology, which automatically maps to the correct platform operations:
+
+```bash
+# Same command, different platforms (determined by config)
+sdo wi list                    # Lists work items from configured platform
+sdo pr create --title "Fix"   # Creates PR on configured platform
+sdo repo clone                 # Clones repo from configured platform
+```
+
 ## Work Items
 
 | SDO Term | Azure DevOps | GitHub |
