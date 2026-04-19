@@ -10,7 +10,7 @@ This repository contains **generic, reusable templates** that projects can copy 
 
 ### Key Features
 
-- **🔧 SDO CLI Integration**: Uses [SDO](https://github.com/naz-hage/sdo) as the primary CLI tool for unified project management across platforms
+- **🔧 SDO CLI Integration**: Uses [SDO](https://github.com/naz-hage/ntools) (C# version) as the primary CLI tool for unified project management across platforms
 - **🌍 Multi-Language Support**: Examples and patterns for Python, JavaScript/TypeScript, Java, and C#
 - **⚙️ Configurable**: All project-specific values are managed through configuration files
 - **📋 Generic Workflows**: Tool-agnostic workflows that work with any project management platform
@@ -56,13 +56,13 @@ README.md                          # This file
 
 3. **Setup SDO CLI**
    ```bash
-   # Install SDO CLI (if not already installed)
-   pip install sdo-cli
-
-   # Configure SDO for your platform
-   sdo config set platform azure-devops  # or github, jira
-   sdo config set organization your-org
-   sdo config set project your-project
+   # Build SDO (C# version from ntools)
+   git clone https://github.com/naz-hage/ntools.git
+   cd ntools/Sdo
+   dotnet build -c Release
+   
+   # Add to PATH or use full path to sdo executable
+   # On Windows: ntools\Sdo\bin\Release\net10.0\sdo.exe
    ```
 
 4. **Customize as Needed**

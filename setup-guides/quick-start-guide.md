@@ -45,12 +45,16 @@ tools:
 ### Step 3: Setup SDO CLI
 
 ```bash
-# Install NTools (choose appropriate option based on your needs)
+# Build C# SDO (from ntools repository)
 git clone https://github.com/naz-hage/ntools.git
 cd ntools
 
-# Option 1: Full development environment (recommended for contributors)
+# Build SDO CLI
 .\dev-setup\install.ps1
+
+# The executable is now available at:
+# Windows: bin\Release\net10.0\sdo.exe
+# Add to PATH or use the full path in commands
 
 # Set environment variables for authentication
 # Azure DevOps
@@ -60,17 +64,14 @@ $env:AZURE_DEVOPS_PAT = "your-personal-access-token"
 gh auth login
 
 # Test SDO connection
-sdo workitem list --type "Product Backlog Item"
+./bin/Release/net10.0/sdo wi list --type "Product Backlog Item"
 ```
 
 ### Step 4: Test Setup
 
 ```bash
 # Test SDO connection
-sdo wi list --assigned-to-me --top 3
-
-# Validate configuration
-python .github/validation/validate_configs.py
+./bin/Release/net10.0/sdo wi list --assigned-to-me --top 3
 ```
 
 **Done!** Your project now has comprehensive development workflows and guidelines.
@@ -80,7 +81,7 @@ python .github/validation/validate_configs.py
 ### Prerequisites
 
 - **Git** - Version control system
-- **Python 3.8+** - For SDO CLI and validation scripts
+- **.NET 10.0 SDK** - For building SDO CLI
 - **Access to project management platform** - Azure DevOps or GitHub
 
 ### Project Structure After Setup
@@ -245,13 +246,19 @@ If you have an existing `project-config.yaml` from the old structure:
 #### Installation
 
 ```bash
-# Install NTools (choose appropriate option based on your needs)
+# Build SDO CLI from ntools
 git clone https://github.com/naz-hage/ntools.git
-cd ntools
+cd ntools/Sdo
 
-# Option 1: Full development environment (recommended for contributors)
-.\dev-setup\install.ps1
+# Build the C# version
+dotnet build -c Release
 
+# The executable is located at:
+# bin\Release\net10.0\sdo.exe (Windows)
+# bin/Release/net10.0/sdo (Linux/macOS)
+
+# Add to PATH or use the full path for commands
+```
 
 ### Authentication
 
@@ -338,10 +345,10 @@ python .github/validation/check_hardcoded_values.py
 
 ```bash
 # Test SDO integration
-sdo workitem create --file-path .temp/test-pbi.md
+sdo wi create --file-path .temp/test-pbi.md
 
 # Verify the work item was created
-sdo workitem list --filter "Title contains 'Test'"
+sdo wi list --filter "Title contains 'Test'"
 ```
 
 ## 📞 Getting Help
@@ -360,7 +367,7 @@ echo $AZURE_DEVOPS_PAT  # Should show your PAT
 echo $GITHUB_TOKEN      # Should show your token
 
 # Test basic connectivity
-sdo workitem list --type "Product Backlog Item"
+sdo wi list --type "Product Backlog Item"
 ```
 
 **"Config section not found"**
@@ -376,7 +383,7 @@ sdo workitem list --type "Product Backlog Item"
 **"Authentication failed"**
 - Verify environment variables are set correctly
 - Check token permissions match the requirements listed above
-- Test with SDO directly: `sdo workitem list --type "Task"`
+- Test with SDO directly: `sdo wi list --type "Task"`
 
 **"Platform not configured"**
 - Set platform flag to `true` in `project_management.platforms`
@@ -441,8 +448,8 @@ python -c "import yaml; yaml.safe_load(open('.github/project-config.yaml'))"
 
 ```bash
 # SDO CLI
-sdo workitem list                    # List work items
-sdo workitem create --file-path pbi.md  # Create work item from markdown file
+sdo wi list                    # List work items
+sdo wi create --file-path pbi.md  # Create work item from markdown file
 sdo repo ls                         # List repositories
 
 # Validation
