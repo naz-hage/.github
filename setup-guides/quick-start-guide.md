@@ -56,9 +56,6 @@ cd ntools
 # Option 2: NTools only (cross-platform)
 python atools/install-ntools.py --version 1.32.0
 
-# Then install SDO specifically
-python install-sdo.py
-
 # Set environment variables for authentication
 # Azure DevOps
 $env:AZURE_DEVOPS_PAT = "your-personal-access-token"
@@ -262,14 +259,6 @@ cd ntools
 
 # Option 2: NTools only (cross-platform)
 python atools/install-ntools.py --version 1.32.0
-
-# Then install SDO specifically
-python install-sdo.py
-
-# Or install from source (alternative)
-git clone https://github.com/naz-hage/sdo.git
-cd sdo
-pip install -e .
 ```
 
 ### Authentication
