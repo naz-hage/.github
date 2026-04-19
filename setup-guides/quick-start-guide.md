@@ -45,16 +45,12 @@ tools:
 ### Step 3: Setup SDO CLI
 
 ```bash
-# Install NTools (which contains SDO CLI)
+# Install NTools (choose appropriate option based on your needs)
 git clone https://github.com/naz-hage/ntools.git
 cd ntools
 
-# Install NTools (choose appropriate option based on your needs)
 # Option 1: Full development environment (recommended for contributors)
 .\dev-setup\install.ps1
-
-# Option 2: NTools only (cross-platform)
-python atools/install-ntools.py --version 1.32.0
 
 # Set environment variables for authentication
 # Azure DevOps
@@ -249,17 +245,13 @@ If you have an existing `project-config.yaml` from the old structure:
 #### Installation
 
 ```bash
-# Install NTools (which contains SDO CLI)
+# Install NTools (choose appropriate option based on your needs)
 git clone https://github.com/naz-hage/ntools.git
 cd ntools
 
-# Install NTools (choose appropriate option based on your needs)
 # Option 1: Full development environment (recommended for contributors)
 .\dev-setup\install.ps1
 
-# Option 2: NTools only (cross-platform)
-python atools/install-ntools.py --version 1.32.0
-```
 
 ### Authentication
 
