@@ -95,13 +95,13 @@ git push -u origin [branch-name]
 **Update work item status:**
 ```bash
 # Mark as In Progress
-sdo workitem update --id [WORK_ITEM_ID] --state "In Progress"
+sdo wi update --id [WORK_ITEM_ID] --state "In Progress"
 ```
 
 **Create initial documentation:**
 ```bash
 # Create work item documentation in .temp/
-# File: .temp/start-[workitem-type]-[id].md
+# File: .temp/start-[wi-type]-[id].md
 ```
 
 ## Implementation Workflow
@@ -158,27 +158,27 @@ make format      # Format code with Black and isort
 ### Start Issue Work
 ```bash
 # Check issue details
-sdo workitem show --id 123
+sdo wi show --id 123
 
 # Create feature branch
 git checkout -b issue-123-networth-command
 git push -u origin issue-123-networth-command
 
 # Update status
-sdo workitem update --id 123 --state "In Progress"
+sdo wi update --id 123 --state "In Progress"
 ```
 
 ### Start PBI Work
 ```bash
 # Check PBI details
-sdo workitem show --id 456
+sdo wi show --id 456
 
 # Create feature branch
 git checkout -b pbi-456-reports-enhancement
 git push -u origin pbi-456-reports-enhancement
 
 # Update status
-sdo workitem update --id 456 --state "In Progress"
+sdo wi update --id 456 --state "In Progress"
 ```
 
 ## Post-Start Workflow
@@ -238,5 +238,4 @@ This action provides a streamlined workflow for starting work on work items acro
 3. Update work item status to "In Progress"
 4. Begin implementation work
 
-Use this action consistently across all work item starts to maintain quality standards and proper tracking.</content>
-<parameter name="filePath">c:\source\.github\.github\prompts\actions\start-workitem.md
+Use this action consistently across all work item starts to maintain quality standards and proper tracking.

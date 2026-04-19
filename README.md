@@ -191,11 +191,5 @@ sdo config set repository your-repo
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- [SDO CLI](https://github.com/naz-hage/sdo) - Unified project management CLI
-- Open source projects that inspired these patterns
-
----
 
 **Ready to get started?** Copy the templates to your project and configure for your specific needs!

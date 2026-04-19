@@ -39,10 +39,10 @@ sdo pr status [PR_NUMBER]
 **Check issue status:**
 ```bash
 # For GitHub issues
-sdo workitem show --id [ISSUE_NUMBER]
+sdo wi show --id [ISSUE_NUMBER]
 
 # For Azure DevOps work items
-sdo workitem show --id [WORK_ITEM_ID]
+sdo wi show --id [WORK_ITEM_ID]
 ```
 
 ## Work Item Types
@@ -193,7 +193,7 @@ Used for closing completed specific work units that implement PBI requirements.
 ## Command
 Use the `sdo` tool to close the work item:
 ```powershell
-sdo workitem update --id [WORK_ITEM_ID] --state Done
+sdo wi update --id [WORK_ITEM_ID] --state Done
 ```
 
 **Note:** SDO automatically determines the platform (GitHub or Azure DevOps) based on the work item ID and your authentication setup.
@@ -210,21 +210,21 @@ sdo workitem update --id [WORK_ITEM_ID] --state Done
 sdo pr show 123
 
 # Close the issue
-sdo workitem update --id 123 --state Done
+sdo wi update --id 123 --state Done
 # Output: ✓ Work item updated successfully - URL: https://github.com/owner/repo/issues/123
 ```
 
 ### Close Completed PBI
 ```powershell
 # Close the PBI
-sdo workitem update --id 789 --state Done
+sdo wi update --id 789 --state Done
 # Output: ✓ Work item updated successfully - URL: https://dev.azure.com/org/project/_workitems/edit/789
 ```
 
 ### Close Completed Task
 ```powershell
 # Close the task
-sdo workitem update --id 101 --state Done
+sdo wi update --id 101 --state Done
 # Output: ✓ Work item updated successfully - URL: https://dev.azure.com/org/project/_workitems/edit/101
 ```
 
@@ -263,9 +263,9 @@ git pull origin main
 ### Recovery Steps:
 - If SDO fails: Run `sdo --help` to verify installation
 - If authentication fails: Check `AZURE_DEVOPS_PAT` environment variable and GitHub CLI login
-- If work item not found: Use `sdo workitem show --id [ID]` to verify the work item exists
+- If work item not found: Use `sdo wi show --id [ID]` to verify the work item exists
 - If PR not merged: Use `sdo pr show [PR_ID]` to check PR status
-- If state transition fails: Check work item type and current state with `sdo workitem show --id [ID]`
+- If state transition fails: Check work item type and current state with `sdo wi show --id [ID]`
 
 ## Notes
 - Work items require appropriate closure documentation for tracking and auditing
@@ -290,7 +290,7 @@ This action provides a comprehensive workflow for closing work items across GitH
 1. Verify prerequisites and completion status
 2. Check PR status (for issues) or work item relationships (for PBIs/Tasks)
 3. Create appropriate closure documentation file
-4. Execute SDO workitem update command
+4. Execute SDO wi update command
 5. Perform branch cleanup and repository synchronization
 
 Use this action consistently across all work item closures to maintain quality standards and proper tracking.

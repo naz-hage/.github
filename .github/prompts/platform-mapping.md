@@ -80,4 +80,3 @@ sdo wi create --file-path pbi.md --title "New Feature"
 ```
 
 This mapping ensures that all documentation and tooling can work across multiple platforms while maintaining clarity and consistency.</content>
-<parameter name="filePath">c:\source\.github\.temp\prompts\platform-mapping.md
