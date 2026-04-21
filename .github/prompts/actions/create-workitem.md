@@ -83,8 +83,6 @@ Used for specific, implementable work units that break down PBIs.
 ```markdown
 # Task-XXX: [Descriptive Title]
 
-**Parent PBI:** #[PBI_ID] - [PBI Title]
-
 ## Target: azdo
 ## Project: Proto
 ## Area: Proto\Warriors
