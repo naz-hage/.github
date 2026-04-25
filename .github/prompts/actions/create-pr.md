@@ -55,6 +55,8 @@ Before creating the PR document, verify the repository's standard template exist
 - Complete each field with appropriate content based on the changes
 - Do not add, remove, or reorder sections from the template
 - Ensure all required fields are populated according to template specifications
+- **Title section**: Replace `[TASK/PBI-XXX]` with the actual issue number format (e.g., `[ISSUE-244]` for GitHub issues, `[TASK-123]` for Azure DevOps tasks)
+- **Title content**: Use a clear, descriptive title that summarizes the main changes
 
 **Important:** Before creating the document, carefully review the list of changed files and detailed changes to ensure the PR description accurately reflects all modifications made in the branch.
 
@@ -83,11 +85,11 @@ git diff --name-only
 
 # 2. Create PR markdown document (.temp/123-pr-message.md)
 # Following the standard template format:
-# - Clear title describing the changes
-# - Detailed description and business value
+# ## Title: [ISSUE-123] Brief description of changes
+# - Description: What changed and why
 # - List of key changes
+# - Business value or problem solved
 # - Testing and validation details
-# - Related issue/work item links
 
 # 3. Document is ready for review and submission
 Write-Host "PR document created: .temp/123-pr-message.md"
@@ -100,22 +102,23 @@ Write-Host "Ready for submission via team workflow"
 # 1. Verify on correct branch for the issue
 git status
 git branch --show-current
-# Output: issue/456-enhance-test-batch
+# Output: 244-issue
 
 # 2. Review changes on this branch
 git diff origin/main --name-only
 
-# 3. Create PR markdown document (.temp/456-pr-message.md)
+# 3. Create PR markdown document (.temp/244-pr-message.md)
 # Following the standard template format:
-# - Clear title describing the changes
-# - Detailed description linked to issue #456
-# - List of key changes
+# ## Title: [ISSUE-244] Feature/fix description
+# - Description: What changed and why (linked to issue #244)
+# - List of key changes with file names
+# - Business value or problem solved
 # - Testing and validation details
-# - Link to issue #456 in "Related Work Items"
+# - Link to issue #244
 
 # 4. Document is ready for review and submission
-Write-Host "PR document created: .temp/456-pr-message.md"
-Write-Host "Ready for submission via team workflow (linked to issue #456)"
+Write-Host "PR document created: .temp/244-pr-message.md"
+Write-Host "Ready for submission via team workflow (linked to issue #244)"
 ```
 
 ## Document Review Checklist
