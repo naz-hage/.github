@@ -3,7 +3,7 @@
 ## Target: azdo
 ## Project: Proto
 ## Area: Proto\Warriors
-## Iteration: Proto\Sprint 1
+## Iteration: Proto\Sprint 01
 ## Assignee: 
 ## Labels: enhancement, high-priority
 ## Work Item Type: PBI
