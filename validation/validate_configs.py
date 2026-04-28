@@ -268,9 +268,9 @@ class ConfigValidator:
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(description="Validate project configuration files")
-    parser.add_argument("config_path", nargs="?", default=".github/project-config.yaml",
-                       help="Path to configuration file (default: .github/project-config.yaml)")
+    parser = argparse.ArgumentParser(description="Validate SDO configuration files")
+    parser.add_argument("config_path", nargs="?", default=".temp/sdo-config.yaml",
+                       help="Path to configuration file (default: .temp/sdo-config.yaml)")
     parser.add_argument("--verbose", "-v", action="store_true",
                        help="Enable verbose output")
 
@@ -280,10 +280,10 @@ def main():
     if not Path(args.config_path).exists():
         # Try to find config in current directory or parent
         possible_paths = [
-            ".github/project-config.yaml",
-            "project-config.yaml",
-            ".github/project-config.yml",
-            "project-config.yml"
+            ".temp/sdo-config.yaml",
+            "sdo-config.yaml",
+            ".temp/sdo-config.yml",
+            "sdo-config.yml"
         ]
 
         for path in possible_paths:

@@ -24,7 +24,7 @@ This repository contains **generic, reusable templates** that projects can copy 
 ├── PULL_REQUEST_TEMPLATE/         # Pull request template
 ├── workflows/                     # GitHub Actions workflows
 └── .temp/                         # Generic templates (copy to project .github/)
-    ├── project-config.yaml         # Generic configuration template
+    ├── sdo-config.yaml             # SDO configuration for work items and tools
     ├── copilot-instructions.md     # GitHub Copilot instructions template
     ├── prompts/                    # Workflow and development guides
     │   ├── README.md              # Generic workflow overview
@@ -48,10 +48,10 @@ README.md                          # This file
 
 2. **Configure Project**
    ```bash
-   # Edit project-config.yaml with your project details
-   cd your-project/.github
-   # The config is generic and works for all languages
-   # Edit project-config.yaml with your specific values
+   # Edit sdo-config.yaml with your project details
+   cd your-project/.temp
+   # The config is for all projects
+   # Edit sdo-config.yaml with your specific values
    ```
 
 3. **Setup SDO CLI**
@@ -77,7 +77,7 @@ Follow the [Quick Start Guide](setup-guides/quick-start-guide.md) to adopt these
 
 ### Project Configuration
 
-The `project-config.yaml` file contains all project-specific settings:
+The `sdo-config.yaml` file contains all project-specific settings:
 
 ```yaml
 # Project Information
@@ -108,7 +108,7 @@ tools:
 
 The configuration is now **generic** and works for all project types:
 
-- `project-config.yaml` - Generic project configuration (works for all languages)
+- `sdo-config.yaml` - SDO configuration for work items, tools, and integrations
 
 ## 🛠️ Supported Platforms & Languages
 
@@ -183,7 +183,7 @@ sdo config set repository your-repo
 
 ### Adding New Language Support
 
-1. Update `project-config.yaml` with language-specific settings if needed
+1. Update `sdo-config.yaml` with your language and project-specific settings
 2. Modify workflow templates to support the new language
 3. Test with sample project
 

@@ -20,7 +20,7 @@ rm -rf temp-templates
 
 ### Step 2: Configure Project
 
-Edit `project-config.yaml` with your project details:
+Edit `.temp/sdo-config.yaml` with your project details:
 
 ```yaml
 project:
@@ -89,7 +89,7 @@ gh auth login
 ```
 your-project/
 ├── .github/
-│   ├── project-config.yaml          # Your project configuration
+│   ├── sdo-config.yaml              # SDO configuration file
 │   ├── copilot-instructions.md      # AI-assisted development guide
 │   ├── prompts/
 │   │   ├── README.md               # Workflow overview
@@ -182,7 +182,7 @@ export GITHUB_TOKEN="your-github-token-here"
 
 ### How Workflows Reference Config
 
-All workflow prompts are **project-agnostic** and reference `project-config.yaml` for project-specific metadata. This makes workflows easily transferable between projects.
+All workflow prompts reference `sdo-config.yaml` for project-specific metadata. This makes workflows easily transferable between projects.
 
 #### Pattern 1: Direct Reference
 Workflows indicate where to find values:
@@ -203,16 +203,16 @@ sdo wi create --file-path [TEMP_DIRECTORY]/pbi.md
 Workflows include a reference at the top:
 
 ```markdown
-> **Project Configuration**: See `.github/project-config.yaml` for project-specific settings
+> **Project Configuration**: See `.temp/sdo-config.yaml` for project-specific settings
 ```
 
 ### Configuration Examples
 
 **PBI Template (project-agnostic):**
 ```markdown
-## Project: [FROM project-config.yaml: azure_devops.project]
-## Area: [FROM project-config.yaml: azure_devops.area_path]
-## Iteration: [FROM project-config.yaml: azure_devops.default_iteration]
+## Project: [FROM sdo-config.yaml: azure_devops.project]
+## Area: [FROM sdo-config.yaml: azure_devops.area_path]
+## Iteration: [FROM sdo-config.yaml: azure_devops.default_iteration]
 ```
 
 **Resolved for a specific project:**
@@ -236,10 +236,10 @@ sdo wi create --file-path .temp/pbi.md
 
 #### From Old Config Structure
 
-If you have an existing `project-config.yaml` from the old structure:
+If you have an existing `sdo-config.yaml` from the old structure:
 
 1. **Backup your current config**
-2. **Use the simplified generic template** - the new `project-config.yaml` contains only essential SDO and platform settings
+2. **Use the simplified SDO template** - the new `sdo-config.yaml` contains only essential SDO and platform settings
 3. **Migrate only the required values** - most language-specific and quality tool settings have been removed as they're not referenced by prompts
 4. **Test workflows** to ensure they work with the simplified config
 
@@ -323,7 +323,7 @@ edit .github/prompts/workflows/workitem-start.md
 
 ```bash
 # Edit main configuration
-edit .github/project-config.yaml
+edit .temp/sdo-config.yaml
 
 # Validate changes
 python .github/validation/validate_configs.py
@@ -371,8 +371,8 @@ sdo wi list --type "Product Backlog Item"
 ```
 
 **"Config section not found"**
-- Check that required sections are present in `project-config.yaml`
-- Verify YAML syntax with: `python -c "import yaml; yaml.safe_load(open('project-config.yaml'))"`
+- Check that required sections are present in `sdo-config.yaml`
+- Verify YAML syntax with: `python -c "import yaml; yaml.safe_load(open('sdo-config.yaml'))"`
 - Ensure platform flags are set correctly in `project_management.platforms`
 
 **"SDO command not found"**
@@ -404,7 +404,7 @@ python .github/validation/validate_configs.py --verbose
 find .github/ -name "*.md" -o -name "*.yaml" | sort
 
 # Check configuration syntax
-python -c "import yaml; yaml.safe_load(open('.github/project-config.yaml'))"
+python -c "import yaml; yaml.safe_load(open('.temp/sdo-config.yaml'))"
 ```
 
 ### Support Channels
@@ -417,7 +417,7 @@ python -c "import yaml; yaml.safe_load(open('.github/project-config.yaml'))"
 
 ### Configuration Management
 
-1. **Version control**: Keep `project-config.yaml` in version control (but exclude secrets)
+1. **Version control**: Keep `sdo-config.yaml` in version control (but exclude secrets)
 2. **Environment separation**: Use different configs for dev/staging/prod
 3. **Documentation**: Comment complex configurations
 4. **Validation**: Test configs before committing
@@ -459,7 +459,7 @@ python .github/validation/check_hardcoded_values.py  # Check for hardcoded value
 
 ### Key Files
 
-- `.github/project-config.yaml` - Main configuration
+- `.temp/sdo-config.yaml` - Main SDO configuration
 - `.github/copilot-instructions.md` - AI development guide
 - `.github/prompts/workflows/` - Development workflow templates
 

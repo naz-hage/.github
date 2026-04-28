@@ -1,4 +1,4 @@
-# PROMPT: Update project-config.yaml
+# PROMPT: Update sdo-config.yaml
 # 1. Switch to project directory: cd /path/to/your/project
 # 2. Detect platform from git remote: git remote -v
 #    - If remote contains "dev.azure.com" → use azure_devops section
@@ -8,7 +8,7 @@
 #    - Replace [PROJECT_NAME], [ORG_NAME], etc. with real values
 #    - Remove unused platform section (azure_devops or github)
 # ============================================================================
-# PROJECT INFORMATION
+# SDO CONFIGURATION - All projects should use this single config file
 # ============================================================================
 project:
   name: "[PROJECT_NAME]"                    # e.g., "my-app", "api-service"
