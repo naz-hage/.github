@@ -46,6 +46,18 @@ authentication:
     env_var: "GITHUB_TOKEN"                # Environment variable for GitHub token
 
 # ============================================================================
+# WORK ITEM COMMAND DEFAULTS
+# ============================================================================
+commands:
+  wi:
+    list:
+      project: "Proto"                     # Filter to Proto project
+      area_path: "Proto\\Warriors"         # Filter to Warriors area
+      state: "New,To Do,In Progress"           # Exclude Done items - only show active work
+      # Usage: sdo wi list                 # Will use these defaults from config
+      # Usage: sdo wi list --state "Done" --area "Other\\Team"  # Override defaults
+
+# ============================================================================
 # Scrum Estimation
 # ============================================================================
 Estimation:
