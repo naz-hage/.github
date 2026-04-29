@@ -2,7 +2,7 @@
 """
 Configuration Validation Script
 
-Validates project-config.yaml files for the generic template system.
+Validates sdo-config.yaml files for the SDO system.
 Checks for required fields, data types, and configuration consistency.
 """
 

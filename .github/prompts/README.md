@@ -4,10 +4,10 @@ This directory contains structured prompts and instructions to guide Copilot (Gi
 
 ## 🎯 Project-Agnostic Workflows
 
-All workflows in this directory are **project-agnostic** and reference **`project-config.yaml`** for project-specific settings. This design enables easy transfer to other projects.
+All workflows in this directory are **project-agnostic** and reference **`sdo-config.yaml`** for project-specific settings. This design enables easy transfer to other projects.
 
 **Key Files:**
-- **`../project-config.yaml`** - Project-specific configuration (organization, project, tools, paths)
+- **`../sdo-config.yaml`** - SDO configuration (organization, project, tools, authentication, paths)
 - **`platform-mapping.md`** - Standardized term mappings between SDO, Azure DevOps, and GitHub
 - **`../copilot-instructions.md`** - Project-specific development guidelines
 
@@ -85,8 +85,7 @@ Each phase includes:
 
 ### For Copilot
 These prompts are designed to be referenced in your Copilot chat or used as context. For example:
-- "Follow the guidelines in `.github/prompts/workflows/implementation.md"`
-
+- "Follow the guidelines in `.github/prompts/workflows/implementation.md"`- Configuration is managed in `.temp/sdo-config.yaml`
 ## Workflow Integration
 
 These prompts integrate with our Azure DevOps workflow:
@@ -112,4 +111,5 @@ When adding new prompts:
 ## Related Files
 
 - `.github/copilot-instructions.md` - General Copilot instructions for this repository
+- `.temp/sdo-config.yaml` - SDO configuration file (master template)
 - `README.md` - Main repository documentation

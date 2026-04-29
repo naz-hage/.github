@@ -188,8 +188,8 @@ All workflow prompts reference `sdo-config.yaml` for project-specific metadata. 
 Workflows indicate where to find values:
 
 ```markdown
-## Project: [FROM project-config.yaml: azure_devops.project]
-## Area: [FROM project-config.yaml: azure_devops.area_path]
+## Project: [FROM sdo-config.yaml: azure_devops.project]
+## Area: [FROM sdo-config.yaml: azure_devops.area_path]
 ```
 
 #### Pattern 2: Variable Placeholders

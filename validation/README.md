@@ -34,7 +34,7 @@ Validates YAML configuration files to ensure they have the correct structure and
 python validation/validate_configs.py
 
 # Validate a specific config file
-python validation/validate_configs.py .temp/project-config.yaml
+python validation/validate_configs.py .temp/sdo-config.yaml
 ```
 
 ## Pattern File Format

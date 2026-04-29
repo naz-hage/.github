@@ -11,7 +11,7 @@ This documentation provides a comprehensive workflow system for managing develop
 - **Quality Workflows**: Cross-cutting validation processes
 
 **Primary Tool**: SDO CLI - Unified interface for Azure DevOps, GitHub, and Jira
-**Configuration**: See `project-config.yaml` for platform-specific settings
+**Configuration**: See `sdo-config.yaml` for platform-specific settings
 
 ## Quick Start Decision Tree
 
@@ -48,7 +48,7 @@ pip install sdo
 # or
 pip install -e .  # if developing SDO
 
-# Configure for your platform (see project-config.yaml for actual values)
+# Configure for your platform (see sdo-config.yaml for actual values)
 sdo config set azure_devops.organization "[AZURE_DEVOPS_ORG]"
 sdo config set azure_devops.pat "$AZURE_DEVOPS_PAT"
 ```

@@ -50,9 +50,9 @@ Used for high-level features, user stories, or epics representing business value
 # PBI-XXX: [Descriptive Title]
 
 ## Target: azdo
-## Project: [FROM project-config.yaml: azure_devops.project]
-## Area: [FROM project-config.yaml: azure_devops.area_path]
-## Iteration: [FROM project-config.yaml: azure_devops.default_iteration]
+## Project: [FROM sdo-config.yaml: azure_devops.project]
+## Area: [FROM sdo-config.yaml: azure_devops.area_path]
+## Iteration: [FROM sdo-config.yaml: azure_devops.default_iteration]
 ## Assignee:
 ## Work Item Type: PBI
 

@@ -1,6 +1,6 @@
 # Work Item Creation Workflow
 
-> **Project Configuration**: See `.github/project-config.yaml` for project-specific settings (organization, project, area paths, tools)
+> **Project Configuration**: See `.temp/sdo-config.yaml` for project-specific settings (organization, project, area paths, tools)
 
 This workflow guides the creation of work items in Azure DevOps, including Product Backlog Items (PBIs) representing high-level features and Tasks representing specific implementation units.
 
@@ -10,10 +10,10 @@ Work items are the core artifacts for tracking development work in Azure DevOps.
 
 ## Prerequisites
 
-- Access to Azure DevOps project (see `project-config.yaml` for organization/project details)
+- Access to Azure DevOps project (see `sdo-config.yaml` for organization/project details)
 - Understanding of business requirements (for PBIs) or parent PBI details (for Tasks)
-- `sdo` CLI tool installed and available in PATH (see `project-config.yaml`)
-- Azure DevOps authentication configured (see `project-config.yaml` for auth details)
+- `sdo` CLI tool installed and available in PATH (see `sdo-config.yaml`)
+- Azure DevOps authentication configured (see `sdo-config.yaml` for auth details)
 
 ## Work Item Creation Workflow
 
@@ -38,7 +38,7 @@ Create **INVEST** criteria: Testable, Specific, Independent, Negotiable, Valuabl
 ```
 
 #### 1.3 Estimate Effort
-**For PBIs**: Story points scale (see `project-config.yaml` for definitions):
+**For PBIs**: Story points scale (see `sdo-config.yaml` for definitions):
 - 1 point: <1 day
 - 2 points: 1-2 days
 - 3 points: 2-3 days
@@ -62,10 +62,10 @@ Create temporary file for creation:
 # PBI-XXX: [Descriptive Title]
 
 ## Target: azdo
-## Project: [FROM project-config.yaml: azure_devops.project]
-## Area: [FROM project-config.yaml: azure_devops.area_path]
-## Iteration: [FROM project-config.yaml: azure_devops.default_iteration]
-## Assignee: [Product Owner or value from project-config.yaml]
+## Project: [FROM sdo-config.yaml: azure_devops.project]
+## Area: [FROM sdo-config.yaml: azure_devops.area_path]
+## Iteration: [FROM sdo-config.yaml: azure_devops.default_iteration]
+## Assignee: [Product Owner or value from sdo-config.yaml]
 ## Work Item Type: PBI
 
 ## Description

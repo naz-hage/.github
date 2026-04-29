@@ -94,9 +94,9 @@ Used for closing completed high-level features, user stories, or epics.
 # PBI-XXX: [Descriptive Title] - CLOSED
 
 ## Target: azdo
-## Project: [FROM project-config.yaml: azure_devops.project]
-## Area: [FROM project-config.yaml: azure_devops.area_path]
-## Iteration: [FROM project-config.yaml: azure_devops.default_iteration]
+## Project: [FROM sdo-config.yaml: azure_devops.project]
+## Area: [FROM sdo-config.yaml: azure_devops.area_path]
+## Iteration: [FROM sdo-config.yaml: azure_devops.default_iteration]
 ## Work Item ID: [PBI_ID]
 ## Work Item Type: PBI
 
