@@ -36,31 +36,23 @@ Use git commands to understand your changes before documenting them:
 
 ### Step 4: Create PR Document
 
-**IMPORTANT - Template Validation:**
-Before creating the PR document, verify the repository's standard template exists:
+Create a PR document following the standard template format:
+
+**Template Location:**
 - **GitHub**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
 - **Azure DevOps**: `.azuredevops/PULL_REQUEST_TEMPLATE.md`
 
-**If the template file does NOT exist**, STOP and ask the user to provide the PR template format. Do not proceed with document creation.
+**File Naming:** Create `<issue-number>-pr-message.md` in the `.temp/` directory (e.g., `.temp/123-pr-message.md`)
 
-**If the template file EXISTS**, create a markdown file named `<issue-number>-pr-message.md` in the `.temp` directory (`.temp/<issue-number>-pr-message.md` from repo root). **Your PR document format MUST EXACTLY MATCH the structure of the repository's standard template** - do not deviate from the template format.
-
-**Standard Template Locations:**
-- **GitHub**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
-- **Azure DevOps**: `.azuredevops/PULL_REQUEST_TEMPLATE.md`
-
-
-**Fill out the document by following the structure and fields from the repository's standard template:**
-- Follow all sections and fields defined in the template file
-- Complete each field with appropriate content based on the changes
-- Do not add, remove, or reorder sections from the template
-- Ensure all required fields are populated according to template specifications
-- **Title section**: Replace `[TASK/PBI-XXX]` with the actual issue number format (e.g., `[ISSUE-244]` for GitHub issues, `[TASK-123]` for Azure DevOps tasks)
-- **Title content**: Use a clear, descriptive title that summarizes the main changes
-
-**Important:** Before creating the document, carefully review the list of changed files and detailed changes to ensure the PR description accurately reflects all modifications made in the branch.
-
-**Note:** The filename must be prefixed with the issue/task number (e.g., `123-pr-message.md` for issue #123).
+**Instructions:**
+1. Review the repository's standard PR template
+2. Create PR document following the template structure exactly
+3. Replace placeholder values with actual content:
+   - Title: `[WORKITEM-XXX]` + clear description of changes
+   - Description: Explain what changed and why
+   - Testing: How changes were validated
+   - Related work items: Link to issues/tasks
+4. Ensure all required fields are populated
 
 ### Step 5: Push Branch (Optional)
 If ready to push changes to remote:

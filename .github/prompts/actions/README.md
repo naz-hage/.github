@@ -15,13 +15,31 @@ While the `workflows/` directory contains comprehensive process guides (when, wh
   - Platform-specific handling
   - Post-creation workflow integration
 
-### PR Creation
+- **[start-workitem.md](start-workitem.md)** - Start work on tasks or PBIs
+  - Branch creation and naming conventions
+  - Linking to work items
+  - Local environment setup
+  - Integration with version control
+
+- **[close-workitem.md](close-workitem.md)** - Complete and close work items
+  - Work item validation and completion criteria
+  - Cleanup procedures
+  - Documentation and status updates
+  - Closure workflows for Tasks and PBIs
+
+### PR Management
 - **[create-pr.md](create-pr.md)** - Create pull requests for code changes
   - Uses repository's standard PR template (`.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`)
   - SDO CLI commands for PR creation
   - Work item linking and branch management
   - Files: `<issue-number>-pr-message.md` (e.g., `123-pr-message.md`)
   - Post-creation validation steps
+
+- **[pr-squash-merge.md](pr-squash-merge.md)** - Squash merge pull requests
+  - PR merge strategies
+  - Branch cleanup after merge
+  - Commit message conventions
+  - Post-merge verification
 
 ## Relationship to Workflows
 
@@ -30,47 +48,27 @@ These action prompts are referenced by the workflow guides:
 ```
 Workflow Level (High-level process)
 ├── PBI Creation Workflow
-│   └── create-issue.md (specific tool commands)
+│   └── create-workitem.md (specific tool commands)
 ├── Task Creation Workflow
-│   └── create-issue.md (specific tool commands)
+│   └── create-workitem.md (specific tool commands)
+├── Task Start Workflow
+│   └── start-workitem.md (branch and environment setup)
 ├── Code Review Workflow
-│   └── create-pr.md (specific tool commands)
-└── Task Implementation Workflow
-    └── create-pr.md (when task is ready for review)
+│   ├── create-pr.md (create pull request)
+│   └── pr-squash-merge.md (merge after review)
+├── Task Completion Workflow
+│   └── close-workitem.md (final closure)
+└── PBI Closure Workflow
+    └── close-workitem.md (PBI completion)
 ```
 
 ## File Format Standards
 
-All action prompts follow consistent formatting:
+See [templates/](../templates/) for detailed formatting examples and standards:
 
-### Issue Creation Format
-```markdown
-# [issue-number]: Issue Title
-
-## Target: <github|azure>
-## Repository: <owner/repo>
-## Assignee: <username or leave blank>
-## Labels: <comma-separated labels>
-
-## Description
-<Detailed description>
-
-## Acceptance Criteria
-- [ ] <Criteria 1>
-- [ ] <Criteria 2>
-```
-
-### PR Creation Format
-Uses the repository's standard PR template located at:
-- **GitHub**: `.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`
-- **Azure DevOps**: Repository's configured PR template
-
-**Process:**
-1. Copy the standard template to `.temp/<issue-number>-pr-message.md`
-2. Fill out the template sections with PR-specific details
-3. Use SDO CLI to create the PR
-
-**File Naming:** `<issue-number>-pr-message.md` (e.g., `123-pr-message.md` for issue #123)
+- **Azure DevOps Work Items**: `issue-azdo-*.md` examples (PBI, Task, Bug, Epic)
+- **GitHub Issues**: `issue-gh-example.md`
+- **Pull Request Templates**: See `.github/PULL_REQUEST_TEMPLATE/`
 
 ## Tool Integration
 
@@ -86,13 +84,11 @@ sdo pr create --file .temp/pr-message.md --work-item <id>
 
 ## Best Practices
 
-1. **Use temp files**: Always create action files in `.temp/` directory from repo root
-2. **Follow naming conventions**: Use descriptive, consistent file names
-   - Issue files: `issue-message.md`
-   - PR files: `<issue-number>-pr-message.md` (e.g., `123-pr-message.md`)
-3. **Link work items**: Always link issues/PRs to relevant work items
-4. **Clean up**: Remove temp files after successful creation (optional)
-5. **Validate**: Check creation results and update references
+For detailed guidance on implementing actions, refer to the individual action files:
+- Each action file contains step-by-step commands and workflows
+- Use files in `.temp/` directory for temporary work item and PR files
+- Always link work items and PRs to relevant tracking items
+- Follow naming conventions documented in each action file
 
 ## Related Documentation
 

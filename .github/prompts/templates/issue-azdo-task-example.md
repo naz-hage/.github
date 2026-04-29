@@ -1,4 +1,4 @@
-# Task-001: Implement Unit Tests for Parser Module
+# Implement Unit Tests for Parser Module
 
 ## Target: azdo
 ## Project: Proto

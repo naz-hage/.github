@@ -27,8 +27,11 @@ All workflows in this directory are **project-agnostic** and reference **`sdo-co
 │   └── testing.md              # Testing workflow and validation
 ├── actions/                     # Action-specific prompts (tool commands)
 │   ├── README.md               # Action prompts overview
-│   ├── create-issue.md         # Create issues in Azure DevOps/GitHub/Jira
-│   └── create-pr.md            # Create pull requests for code changes
+│   ├── create-workitem.md      # Create work items (Issues, PBIs, Tasks)
+│   ├── create-pr.md            # Create pull requests for code changes
+│   ├── start-workitem.md       # Start work on tasks or PBIs
+│   ├── close-workitem.md       # Complete and close work items
+│   └── pr-squash-merge.md      # Squash merge pull requests
 └── templates/                   # Reusable prompt templates
     └── pull_request_template.md # GitHub PR template for SDO development
 ```
@@ -46,36 +49,13 @@ High-level guidance for development processes covering the complete issue lifecy
 - **Testing**: Unit testing, integration testing, and CI/CD validation
 
 ### Actions Directory
-Specific, actionable prompts for executing individual development actions using CLI tools:
-- **Issue Creation**: Step-by-step instructions for creating issues in Azure DevOps, GitHub, or Jira
-- **PR Creation**: Detailed commands and file formats for creating pull requests with proper linking
+Specific, actionable prompts for executing individual development actions. See [actions/README.md](actions/README.md) for comprehensive documentation of all available action commands, file formats, and tool integration details.
 
 ### Templates Directory
 Reusable prompt templates with detailed step-by-step instructions for particular tools and workflows. These contain:
 - **Tool-specific guides**: Instructions for `sdo` CLI commands, PowerShell scripts, etc.
 - **Detailed workflows**: Step-by-step processes for specific scenarios
 - **Project-specific context**: References to Proto Azure DevOps project and local tooling
-
-## Complete Issue Lifecycle Coverage
-
-This prompt system provides comprehensive guidance for the **entire software development lifecycle**:
-
-```
-Work Item Creation → PBI Breakdown → PBI Implementation → Task Implementation → Code Review → Testing → PBI Closure
-     ↓                     ↓                ↓                 ↓            ↓         ↓            ↓
-workflows/            workflows/       workflows/       workflows/        workflows/ workflows/  workflows/
-workitem-creation     pbi-breakdown    pbi-implementation task-implementation code-review testing    pbi-closure
-     ↓                     ↓                ↓                 ↓            ↓         ↓            ↓
- actions/              actions/        actions/         actions/       actions/   actions/     actions/
-create-workitem       create-workitem create-workitem  create-pr      create-pr  create-pr    create-pr
-```
-
-Each phase includes:
-- **Clear objectives** and success criteria
-- **Step-by-step processes** with validation checkpoints
-- **Error handling** and recovery procedures
-- **Integration points** with other workflows
-- **Quality gates** and acceptance criteria
 
 ## How to Use These Prompts
 
@@ -85,13 +65,7 @@ Each phase includes:
 
 ### For Copilot
 These prompts are designed to be referenced in your Copilot chat or used as context. For example:
-- "Follow the guidelines in `.github/prompts/workflows/implementation.md"`- Configuration is managed in `.temp/sdo-config.yaml`
-## Workflow Integration
-
-These prompts integrate with our Azure DevOps workflow:
-- **PBIs** define high-level features and requirements
-- **Tasks** break down PBIs into implementable units
-- **Prompts** guide the implementation of each Task
+- "Follow the guidelines in `.github/prompts/workflows/workitem-start.md`"
 
 ## Contributing
 

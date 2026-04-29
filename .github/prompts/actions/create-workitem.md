@@ -12,128 +12,29 @@ This action provides a unified guide for creating work item markdown documents a
 
 ## Work Item Types
 
-### Issues (GitHub or Azure DevOps)
-Used for bugs, features, or general tracking items.
+For complete formatting examples and standards, see the [templates](../templates/) directory:
 
-**File Format:** Create `[REPO_NAME]/.temp/issue-message.md` with:
-```markdown
-# <Issue Title>
+- **GitHub Issues**: [issue-gh-example.md](../templates/issue-gh-example.md)
+- **Azure DevOps PBIs**: [issue-azdo-pbi-example.md](../templates/issue-azdo-pbi-example.md)
+- **Azure DevOps Tasks**: [issue-azdo-task-example.md](../templates/issue-azdo-task-example.md)
+- **Azure DevOps Bugs**: [issue-azdo-bug-example.md](../templates/issue-azdo-bug-example.md)
+- **Azure DevOps Epics**: [issue-azdo-epic-example.md](../templates/issue-azdo-epic-example.md)
 
-## Target: <github|azure>
-## Repository: <owner/repo>
-## Assignee:
-## Labels: <comma-separated labels>
-
-## Description
-
-<Detailed description of the issue, problem, or feature request>
-
-## Acceptance Criteria
-- [ ] <Clear, testable requirement 1>
-- [ ] <Clear, testable requirement 2>
-- [ ] <Include UI, logic, error handling, and test coverage as needed>
-```
-
-**Guidelines:**
-- Title: descriptive title
-- Target: Specify 'github' or 'azure' platform
-- Repository: Use 'owner/repo' format
-- Labels: Use relevant labels like 'backlog', 'bug', 'enhancement'
-- Description: Explain the problem or feature clearly and concisely
-- Acceptance Criteria: List specific, testable requirements with checkboxes
-
-### PBIs (Azure DevOps)
-Used for high-level features, user stories, or epics representing business value.
-
-**File Format:** Create `[REPO_NAME]/.temp/pbi.md` with:
-```markdown
-# PBI-XXX: [Descriptive Title]
-
-## Target: azdo
-## Project: [FROM sdo-config.yaml: azure_devops.project]
-## Area: [FROM sdo-config.yaml: azure_devops.area_path]
-## Iteration: [FROM sdo-config.yaml: azure_devops.default_iteration]
-## Assignee:
-## Work Item Type: PBI
-
-## Description
-[Clear description of business need and expected outcome]
-
-## Business Value
-[Why this PBI matters - impact on users/business]
-
-## Acceptance Criteria
-- [ ] [Specific, testable requirement]
-- [ ] [Cover functional, performance, usability]
-- [ ] [Include error handling scenarios]
-
-## Dependencies
-- [ ] [External systems/APIs required]
-- [ ] [Other PBIs that must complete first]
-
-## Story Points: [Estimate]
-```
-
-**Note:** This is a temporary file. Azure DevOps is the source of truth after creation.
-
-### Tasks (Azure DevOps)
-Used for specific, implementable work units that break down PBIs.
-
-**File Format:** Create `[REPO_NAME]/.temp/task.md` with:
-```markdown
-# Task-XXX: [Descriptive Title]
-
-## Target: azdo
-## Project: Proto
-## Area: Proto\Warriors
-## Iteration: Proto\Sprint [XX]
-## Parent ID: [PBI_ID]
-## Assignee: [Team Member]
-## Labels: task
-## Work Item Type: Task
-
-## Description
-[What needs to be implemented and why]
-
-## Implementation Details
-[Technical approach and design decisions]
-
-## Acceptance Criteria
-- [ ] [Specific completion condition]
-- [ ] [Include code, tests, documentation]
-
-## Dependencies
-- [ ] [Prerequisites from other tasks/systems]
-
-## Testing Requirements
-- [ ] [Unit/integration tests required]
-
-## Definition of Done
-- [ ] Code follows project standards
-- [ ] Tests pass with adequate coverage
-- [ ] Code reviewed and approved
-- [ ] Documentation updated
-
-## Effort Estimate: [X hours/days]
-```
-
-**Note:** This is a temporary file. Azure DevOps is the source of truth after creation.
+All work item files should be created in the `.temp/` directory following the format shown in the corresponding template example.
 
 ## File Creation Workflow
 
 ### Step 1: Create the Markdown Document
-Create the appropriate markdown file in the `.temp/` directory:
-- **For Issues**: Create `[REPO_NAME]/.temp/issue-message.md` following the Issue format above
-- **For PBIs**: Create `[REPO_NAME]/.temp/pbi.md` following the PBI format above
-- **For Tasks**: Create `[REPO_NAME]/.temp/task.md` following the Task format above
+Create the appropriate markdown file in the `.temp/` directory, following the template example for your work item type:
+- Refer to the corresponding example in [templates/](../templates/) for your specific work item type
 
 ### Step 2: Review and Prepare for Submission
 - Ensure all required fields are populated correctly
 - Verify the `## Target:` field matches your intended platform (github or azure)
-- For Azure DevOps work items, confirm project-specific fields (Area, Iteration, etc.) are accurate
+- For Azure DevOps work items, confirm project-specific fields are accurate (Area, Iteration, etc.)
 - Include sufficient context and acceptance criteria for team review
 
 ### Step 3: Submit for Processing
 - Once the markdown file is created and reviewed, submit it via your team's work item management workflow
-- The target platform (GitHub or Azure) and work item type are determined by the `## Target:` and `## Work Item Type:` fields in the document
+- The target platform and work item type are determined by the metadata fields in the document
 

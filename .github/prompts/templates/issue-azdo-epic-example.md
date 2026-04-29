@@ -1,4 +1,4 @@
-# Epic-001: Complete Parser Overhaul
+# Complete Parser Overhaul
 
 ## Target: azdo
 ## Project: Proto

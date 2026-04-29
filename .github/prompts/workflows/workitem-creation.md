@@ -55,79 +55,22 @@ Create **INVEST** criteria: Testable, Specific, Independent, Negotiable, Valuabl
 ### Phase 2: Work Item Documentation
 
 #### 2.1 Create Work Item File
-Create temporary file for creation:
+Create temporary file in `.temp/` directory following the format examples:
 
-**For PBIs** (`.temp/pbi.md`):
-```markdown
-# PBI-XXX: [Descriptive Title]
+**For different work item types**, see the formatting standards in [actions/create-workitem.md](../actions/create-workitem.md) and the template examples in [templates/](../templates/):
+- **PBIs**: See [issue-azdo-pbi-example.md](../templates/issue-azdo-pbi-example.md)
+- **Tasks**: See [issue-azdo-task-example.md](../templates/issue-azdo-task-example.md)
+- **GitHub Issues**: See [issue-gh-example.md](../templates/issue-gh-example.md)
+- **Bugs**: See [issue-azdo-bug-example.md](../templates/issue-azdo-bug-example.md)
+- **Epics**: See [issue-azdo-epic-example.md](../templates/issue-azdo-epic-example.md)
 
-## Target: azdo
-## Project: [FROM sdo-config.yaml: azure_devops.project]
-## Area: [FROM sdo-config.yaml: azure_devops.area_path]
-## Iteration: [FROM sdo-config.yaml: azure_devops.default_iteration]
-## Assignee: [Product Owner or value from sdo-config.yaml]
-## Work Item Type: PBI
-
-## Description
-[Clear description of business need and expected outcome]
-
-## Business Value
-[Why this PBI matters - impact on users/business]
-
-## Acceptance Criteria
-- [ ] [Specific, testable requirement]
-- [ ] [Cover functional, performance, usability]
-- [ ] [Include error handling scenarios]
-
-## Dependencies
-- [ ] [External systems/APIs required]
-- [ ] [Other PBIs that must complete first]
-
-## Story Points: [Estimate]
-```
-
-**For Tasks** (`.temp/task.md`):
-```markdown
-# Task-XXX: [Descriptive Title]
-
-**Parent PBI:** #[PBI_ID] - [PBI Title]
-
-## Target: azdo
-## Project: Proto
-## Area: Proto\Warriors
-## Iteration: Proto\Sprint [XX]
-## Parent ID: [PBI_ID]
-## Assignee: [Team Member]
-## Labels: task
-## Work Item Type: Task
-
-## Description
-[What needs to be implemented and why]
-
-## Implementation Details
-[Technical approach and design decisions]
-
-## Acceptance Criteria
-- [ ] [Specific completion condition]
-- [ ] [Include code, tests, documentation]
-- [ ] [Cover edge cases and errors]
-
-## Dependencies
-- [ ] [Prerequisites from other tasks/systems]
-
-## Testing Requirements
-- [ ] [Unit/integration tests required]
-
-## Definition of Done
-- [ ] Code follows project standards
-- [ ] Tests pass with adequate coverage
-- [ ] Code reviewed and approved
-- [ ] Documentation updated
-
-## Effort Estimate: [X hours/days]
-```
-
-**Note:** These are temporary files. Azure DevOps is the source of truth after creation.
+Key fields to populate:
+- **Target**: Platform (azure or github)
+- **Description**: Clear explanation of business need or implementation requirement
+- **Acceptance Criteria**: Specific, testable requirements
+- **Dependencies**: Any prerequisites or related work items
+- **For PBIs**: Include business value and story point estimate
+- **For Tasks**: Include parent PBI reference and effort estimate
 
 ### Phase 3: Azure DevOps Integration
 

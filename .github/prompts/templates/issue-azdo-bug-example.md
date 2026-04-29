@@ -1,4 +1,4 @@
-# Bug-001: Parser Fails on Malformed Markdown
+# Parser Fails on Malformed Markdown
 
 ## Target: azdo
 ## Project: Proto

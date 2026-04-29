@@ -1,4 +1,4 @@
-# PBI-001: Enhanced Markdown Parser for Copilot
+# Enhanced Markdown Parser for Copilot
 
 ## Target: github
 ## Repository: naz-hage/naz
