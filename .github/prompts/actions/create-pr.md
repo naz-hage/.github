@@ -48,7 +48,8 @@ Create a PR document following the standard template format:
 1. Review the repository's standard PR template
 2. Create PR document following the template structure exactly
 3. Replace placeholder values with actual content:
-   - Title: `[WORKITEM-XXX]` + clear description of changes
+   - Put the PR title on line 1, starting with `[WORKITEM-XXX]` followed by a clear description of the changes
+   - Do not keep a placeholder heading like "# Pull Request Template" - replace it with the actual title and content
    - Description: Explain what changed and why
    - Testing: How changes were validated
    - Related work items: Link to issues/tasks
