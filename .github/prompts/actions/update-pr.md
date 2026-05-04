@@ -14,8 +14,8 @@ Update pull request template with current branch changes.
 3. **Update template** (Preserve template structure):
    - **Title**: `###: ` + descriptive text of changes
    - **Description**: Explain what changed and why
-   - **Changes**: Preserve section. As bulleted items, list changes and note key files modified
-   - **Why**: Preserve section. As bulleted items, explain why the changes were made
+   - **Changes**: Preserve section name. As bulleted items, list changes and note key files modified
+   - **Why**: Preserve section name. As bulleted items, explain why the changes were made
 4. **Commit**: `git add .` and `git commit -m "Implementation: [description]"`
 5. **Verify**: All sections filled, markdown valid, ready for `sdo pr create`
 
