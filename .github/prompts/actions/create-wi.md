@@ -37,4 +37,4 @@ Create `.temp/wi.md` in the `.temp/` directory, following the template example f
 ### Step 3: Submit for Processing
 - Ensure `.temp/sdo-config.yaml` exists (defines work item type and platform)
 - Once the markdown file is created and reviewed, submit it via `sdo wi create`
-- The work item type and target platform are determined by the metadata fields in the document and the configuration in the document.
+- The work item type and target platform are determined by the metadata fields in the document and the configuration in the default `.temp/sdo-config.yaml`
