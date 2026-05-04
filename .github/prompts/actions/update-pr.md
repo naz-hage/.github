@@ -11,10 +11,11 @@ Update pull request template with current branch changes.
 
 1. **Verify template exists**: `.temp/<issue-number>-pr-message.md`
 2. **Analyze changes**: `git diff origin/main --name-only`, `git diff origin/main --stat`
-3. **Update template**:
-   - **Title**: Update with descriptive text, keep `[###]` prefix
+3. **Update template** (Preserve template structure):
+   - **Title**: `###: ` + descriptive text of changes
    - **Description**: Explain what changed and why
-   - **Changes**: List modified files and their purposes
+   - **Changes**: Preserve section. List changes and note key files modified
+   - **Why**: Preserve section. Explain why the changes were made
 4. **Commit**: `git add .` and `git commit -m "Implementation: [description]"`
 5. **Verify**: All sections filled, markdown valid, ready for `sdo pr create`
 
