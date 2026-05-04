@@ -4,11 +4,18 @@ You are tasked with creating a work item document (Issue, PBI, or Task) for the 
 
 ## Overview
 
-This action provides a unified guide for creating work item markdown documents across platforms (GitHub Issues, Azure DevOps PBIs/Tasks). The work item type and platform are determined by the document content and metadata. Once created, these markdown files can be submitted for processing via your team's work item management workflow.
+This action provides a unified guide for creating work item markdown documents across platforms (GitHub Issues, Azure DevOps PBIs/Tasks). The work item type and platform are determined by the document content and metadata. Once created, these markdown files can be submitted for processing via `sdo wi create`.
 
 **Important:** All work item files should be created in the `.temp/` directory at the root of the repository where the work item will be created.
 
-**Prerequisites:** Replace `[REPO_NAME]` with your actual repository name (e.g., `my-repo`) throughout this guide.
+## Naming Convention for `sdo wi create`
+
+Files must be named by work item type in `.temp/`:
+- `.temp/issue.md` - GitHub Issue
+- `.temp/task.md` - Azure DevOps Task
+- `.temp/pbi.md` - Azure DevOps PBI
+- `.temp/bug.md` - Azure DevOps Bug
+- `.temp/epic.md` - Azure DevOps Epic
 
 ## Work Item Types
 
@@ -25,7 +32,7 @@ All work item files should be created in the `.temp/` directory following the fo
 ## File Creation Workflow
 
 ### Step 1: Create the Markdown Document
-Create the appropriate markdown file in the `.temp/` directory, following the template example for your work item type:
+Create the appropriate markdown file in the `.temp/` directory using the naming convention above, following the template example for your work item type:
 - Refer to the corresponding example in [templates/](../templates/) for your specific work item type
 
 ### Step 2: Review and Prepare for Submission
@@ -35,6 +42,6 @@ Create the appropriate markdown file in the `.temp/` directory, following the te
 - Include sufficient context and acceptance criteria for team review
 
 ### Step 3: Submit for Processing
-- Once the markdown file is created and reviewed, submit it via your team's work item management workflow
-- The target platform and work item type are determined by the metadata fields in the document
+- Once the markdown file is created and reviewed, submit it via `sdo wi create`
+- The target platform and work item type are determined by the filename and metadata fields in the document
 
