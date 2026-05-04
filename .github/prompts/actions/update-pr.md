@@ -50,7 +50,7 @@ sdo pr create -f .temp/123-pr-message.md
 ```
 
 ## Notes
-- Always update title (keep issue prefix `[###]`)
+- Always update title (keep issue prefix `###`)
 - Fill all template sections with actual changes
 - Template file must exist before updating
 - Branch must match issue number
