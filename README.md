@@ -27,9 +27,9 @@ This repository contains **generic, reusable templates** that projects can copy 
     ├── sdo-config.yaml             # SDO configuration for work items and tools
     ├── copilot-instructions.md     # GitHub Copilot instructions template
     ├── prompts/                    # Workflow and development guides
-    │   ├── README.md              # Generic workflow overview
-    │   ├── workflows/             # Tool-agnostic workflow templates
-    │   ├── actions/               # Action-specific workflow templates
+    │   ├── README.md              # Prompts overview
+    │   ├── platform-mapping.md    # SDO/AzDO/GitHub term mappings
+    │   └── actions/               # Action-specific prompts (tool commands)
     └── PULL_REQUEST_TEMPLATE/     # Generic PR template
 setup-guides/                      # Project setup and migration guides
 validation/                        # Configuration validation tools
@@ -130,11 +130,10 @@ The configuration is now **generic** and works for all project types:
 
 ## 📋 Available Templates
 
-### Workflow Templates
-- **Task Implementation** - Breaking down user stories into tasks
-- **Code Review** - Structured code review processes
-- **Testing** - Test-driven development guidelines
-- **PBI Implementation** - Product backlog item workflows
+### Action Prompts
+- **create-wi.md** - Create work items via `sdo wi create`
+- **update-pr.md** - Update PR message templates
+- **pr-squash-merge.md** - Squash merge pull requests
 
 ### Development Guides
 - **Daily Standup Reference** - Effective standup meeting formats
@@ -168,7 +167,8 @@ sdo config set repository your-repo
 ## 📖 Documentation
 
 - **[Quick Start Guide](setup-guides/quick-start-guide.md)** - Complete setup and configuration guide
-- **[Workflow Guide](.temp/prompts/workflows/README.md)** - Available workflow templates
+- **[Action Prompts](.temp/prompts/actions/README.md)** - Available action commands and workflows
+- **[SDO CLI Reference](../ntools/docs/sdo-net.md)** - Complete SDO CLI documentation and command reference
 - **[Setup Guides](setup-guides/)** - Project setup and migration guides
 - **[Validation Tools](validation/)** - Configuration validation scripts
 
