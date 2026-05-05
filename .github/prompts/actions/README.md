@@ -9,31 +9,17 @@ While the `workflows/` directory contains comprehensive process guides (when, wh
 ## Action Prompts
 
 ### Work Item Management
-- **[create-workitem.md](create-workitem.md)** - Create work items (Issues, PBIs, Tasks) in Azure DevOps or GitHub
-  - File formats for different work item types
-  - SDO CLI commands for work item creation
-  - Platform-specific handling
-  - Post-creation workflow integration
-
-- **[start-workitem.md](start-workitem.md)** - Start work on tasks or PBIs
-  - Branch creation and naming conventions
-  - Linking to work items
-  - Local environment setup
-  - Integration with version control
-
-- **[close-workitem.md](close-workitem.md)** - Complete and close work items
-  - Work item validation and completion criteria
-  - Cleanup procedures
-  - Documentation and status updates
-  - Closure workflows for Tasks and PBIs
+- **[create-wi.md](create-wi.md)** - Create work items for `sdo wi create` command
+  - Single `.temp/wi.md` file format
+  - Requires `.temp/sdo-config.yaml` for platform and type configuration
+  - SDO CLI integration for work item creation
 
 ### PR Management
-- **[create-pr.md](create-pr.md)** - Create pull requests for code changes
-  - Uses repository's standard PR template (`.github/PULL_REQUEST_TEMPLATE/pull_request_template.md`)
-  - SDO CLI commands for PR creation
-  - Work item linking and branch management
-  - Files: `<issue-number>-pr-message.md` (e.g., `123-pr-message.md`)
-  - Post-creation validation steps
+- **[update-pr.md](update-pr.md)** - Update PR message template with branch changes
+  - Updates existing `.temp/<issue-number>-pr-message.md` template (created by `sdo wi start`)
+  - Preserves template structure while filling sections
+  - Updates: Title, Description, Changes, Why
+  - Ready for `sdo pr create` submission
 
 - **[pr-squash-merge.md](pr-squash-merge.md)** - Squash merge pull requests
   - PR merge strategies
@@ -47,19 +33,11 @@ These action prompts are referenced by the workflow guides:
 
 ```
 Workflow Level (High-level process)
-├── PBI Creation Workflow
-│   └── create-workitem.md (specific tool commands)
-├── Task Creation Workflow
-│   └── create-workitem.md (specific tool commands)
-├── Task Start Workflow
-│   └── start-workitem.md (branch and environment setup)
-├── Code Review Workflow
-│   ├── create-pr.md (create pull request)
-│   └── pr-squash-merge.md (merge after review)
-├── Task Completion Workflow
-│   └── close-workitem.md (final closure)
-└── PBI Closure Workflow
-    └── close-workitem.md (PBI completion)
+├── Work Item Creation
+│   └── create-wi.md (sdo wi create)
+└── PR Update and Creation
+    ├── update-pr.md (update template)
+    └── sdo pr create (submit PR)
 ```
 
 ## File Format Standards
@@ -75,11 +53,12 @@ See [templates/](../templates/) for detailed formatting examples and standards:
 All actions use the **SDO CLI tool** as the primary interface:
 
 ```bash
-# Issue creation
-sdo workitem create --file-path .temp/issue-message.md
+# Work item creation
+sdo wi create
 
-# PR creation
-sdo pr create --file .temp/pr-message.md --work-item <id>
+# PR update and creation workflow
+sdo wi start
+sdo pr create
 ```
 
 ## Best Practices
