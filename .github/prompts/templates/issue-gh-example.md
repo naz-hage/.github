@@ -4,7 +4,7 @@
 ## Repository: naz-hage/naz
 ## Assignee: 
 ## Labels: backlog
-## Work Item Type: 
+## Work Item Type: issue 
 
 
 ## Description
