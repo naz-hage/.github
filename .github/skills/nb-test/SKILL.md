@@ -19,7 +19,7 @@ Use `nb test` to run all unit tests in a C# project with the custom Nbuild test 
 
 Run the following command in the terminal from the project directory:
 
-```bash
+```powershell
 nb test
 ```
 
@@ -41,14 +41,14 @@ Tests are typically located in folders matching these patterns:
 
 After running `nb test`, check the results in `nbuild.log`:
 
-```bash
+```powershell
 Get-Content nbuild.log | Select-String "Test Run|Passed|Failed|Total tests" -Context 1
 ```
 
-Or view the full log:
+Or view the last lines:
 
-```bash
-cat nbuild.log
+```powershell
+Get-Content nbuild.log | Select-Object -Last 30
 ```
 
 Look for:
@@ -58,6 +58,22 @@ Look for:
 - **Coverage Report**: Code coverage percentage and location
 - **Failures**: Details of any failed tests with error messages
 - **Duration**: Total test execution time
+
+## ⚠️ WINDOWS ONLY - DO NOT USE UNIX COMMANDS
+
+**CRITICAL**: This workspace runs on Windows PowerShell. DO NOT use Unix/Linux commands:
+
+❌ **NEVER use**:
+- `tail` - does not exist on Windows
+- `grep` - use `Select-String` instead
+- `cat` - use `Get-Content` instead
+- `head` - use `Select-Object -First` instead
+- Any pipe to `tail` like `| tail -20` - use `| Select-Object -Last 20` instead
+
+✅ **ALWAYS use PowerShell equivalents**:
+- View end of file: `Get-Content file.log | Select-Object -Last 20`
+- Search file: `Get-Content file.log | Select-String "pattern"`
+- View beginning: `Get-Content file.log | Select-Object -First 20`
 
 ## Test Results Interpretation
 

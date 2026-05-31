@@ -87,3 +87,19 @@ Packages are typically published to:
 - Increment package version before republishing
 - Remove old version from local feed if needed
 - Clear NuGet cache before rebuilding
+
+## ⚠️ WINDOWS ONLY - DO NOT USE UNIX COMMANDS
+
+**CRITICAL**: This workspace runs on Windows PowerShell. DO NOT use Unix/Linux commands:
+
+❌ **NEVER use**:
+- `tail` - does not exist on Windows
+- `grep` - use `Select-String` instead
+- `cat` - use `Get-Content` instead
+- `head` - use `Select-Object -First` instead
+- Any pipe to `tail` like `| tail -20` - use `| Select-Object -Last 20` instead
+
+✅ **ALWAYS use PowerShell equivalents**:
+- View end of file: `Get-Content file.log | Select-Object -Last 20`
+- Search file: `Get-Content file.log | Select-String "pattern"`
+- View beginning: `Get-Content file.log | Select-Object -First 20`

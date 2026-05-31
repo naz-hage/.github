@@ -32,14 +32,14 @@ This command:
 
 After running `nb build`, check the results in `nbuild.log`:
 
-```bash
+```powershell
 Get-Content nbuild.log | Select-String "Build succeeded|Build failed|error|warning" -Context 2
 ```
 
-Or view the full log:
+Or view the last lines:
 
-```bash
-cat nbuild.log
+```powershell
+Get-Content nbuild.log | Select-Object -Last 20
 ```
 
 Look for:
@@ -47,6 +47,24 @@ Look for:
 - **Failures**: Error messages starting with "error" or "ERROR"
 - **Warnings**: Warning messages that need addressing
 - **Build Summary**: Section showing overall build status
+
+## ⚠️ WINDOWS ONLY - DO NOT USE UNIX COMMANDS
+
+**CRITICAL**: This workspace runs on Windows PowerShell. DO NOT use Unix/Linux commands:
+
+❌ **NEVER use**:
+- `tail` - does not exist on Windows
+- `grep` - use `Select-String` instead
+- `cat` - use `Get-Content` instead
+- `head` - use `Select-Object -First` instead
+- `wc -l` - use `Measure-Object -Line` instead
+- Any pipe to `tail` like `| tail -20` - use `| Select-Object -Last 20` instead
+
+✅ **ALWAYS use PowerShell equivalents**:
+- View end of file: `Get-Content file.log | Select-Object -Last 20`
+- Search file: `Get-Content file.log | Select-String "pattern"`
+- Count lines: `Get-Content file.log | Measure-Object -Line`
+- View beginning: `Get-Content file.log | Select-Object -First 20`
 
 ## What It Does
 

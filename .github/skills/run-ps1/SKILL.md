@@ -63,3 +63,23 @@ Executes PowerShell (.ps1) scripts directly in the terminal without requiring ex
 | Run tests | `.\.temp\test.ps1` or custom test runner |
 | Deploy | `scripts\deploy.ps1` |
 | Setup | `dev-setup\dev-setup.ps1` |
+
+## ⚠️ WINDOWS ONLY - DO NOT USE UNIX COMMANDS
+
+**CRITICAL**: This workspace runs on Windows PowerShell. DO NOT use Unix/Linux commands:
+
+❌ **NEVER use**:
+- `tail` - does not exist on Windows
+- `grep` - use `Select-String` instead
+- `cat` - use `Get-Content` instead
+- `head` - use `Select-Object -First` instead
+- `wc -l` - use `Measure-Object -Line` instead
+- Any pipe to `tail` like `| tail -20` - use `| Select-Object -Last 20` instead
+
+✅ **ALWAYS use PowerShell equivalents**:
+- View end of file: `Get-Content file.log | Select-Object -Last 20`
+- Search file: `Get-Content file.log | Select-String "pattern"`
+- Count lines: `Get-Content file.log | Measure-Object -Line`
+- View beginning: `Get-Content file.log | Select-Object -First 20`
+
+These utilities are not available in Windows PowerShell and will cause command failures.
