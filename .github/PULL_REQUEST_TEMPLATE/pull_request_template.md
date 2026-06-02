@@ -1,10 +1,7 @@
-# [WORKITEM-XXX] Brief description of changes
+# Brief description of changes
 
 ## Description
 Provide a clear and concise description of the changes made in this pull request.
-
-## Business Value
-Explain the business value or problem this change solves.
 
 ## Key Changes
 - Change 1: Description
@@ -47,5 +44,3 @@ This PR follows the standardized development workflows:
 ## Additional Notes
 Any additional context or notes for reviewers.
 
----
-*This PR template follows the standardized workflows defined in `.github/prompts/workflows/` and uses terminology from `.github/prompts/platform-mapping.md`*
