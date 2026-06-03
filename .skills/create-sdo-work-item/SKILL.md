@@ -74,11 +74,11 @@ repository-root/
 ## Template Reference
 
 Use these templates for consistency:
-- **GitHub**: `.github/skills/templates/issue-gh-example.md`
-- **Azure DevOps PBI**: `.github/skills/templates/issue-azdo-pbi-example.md`
-- **Azure DevOps Task**: `.github/skills/templates/issue-azdo-task-example.md`
-- **Azure DevOps Bug**: `.github/skills/templates/issue-azdo-bug-example.md`
-- **Azure DevOps Epic**: `.github/skills/templates/issue-azdo-epic-example.md`
+- **GitHub**: `.skills/templates/issue-gh-example.md`
+- **Azure DevOps PBI**: `.skills/templates/issue-azdo-pbi-example.md`
+- **Azure DevOps Task**: `.skills/templates/issue-azdo-task-example.md`
+- **Azure DevOps Bug**: `.skills/templates/issue-azdo-bug-example.md`
+- **Azure DevOps Epic**: `.skills/templates/issue-azdo-epic-example.md`
 
 ## Key Requirements
 

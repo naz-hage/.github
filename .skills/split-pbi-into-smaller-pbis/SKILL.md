@@ -76,8 +76,8 @@ OR (if starting fresh):
 ```
 
 **Template Format**: Use the appropriate template from `create-sdo-work-item` skill:
-- **GitHub**: `.github/skills/templates/issue-gh-example.md`
-- **Azure DevOps PBI**: `.github/skills/templates/issue-azdo-pbi-example.md`
+- **GitHub**: `.skills/templates/issue-gh-example.md`
+- **Azure DevOps PBI**: `.skills/templates/issue-azdo-pbi-example.md`
 
 Each generated `.temp\<num>-pbi.md` file must include:
 - Clear, independent title (not just "Part A")

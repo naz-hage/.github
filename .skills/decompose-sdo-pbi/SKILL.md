@@ -65,8 +65,8 @@ Create individual `.temp\wi<task#>.md` files for each decomposed task.
 ```
 
 **Template Format**: Use the appropriate template from `create-sdo-work-item` skill:
-- **GitHub**: `.github/skills/templates/issue-gh-example.md`
-- **Azure DevOps Task**: `.github/skills/templates/issue-azdo-task-example.md`
+- **GitHub**: `.skills/templates/issue-gh-example.md`
+- **Azure DevOps Task**: `.skills/templates/issue-azdo-task-example.md`
 
 Each generated `.temp\wi<task#>.md` file must include:
 - `parent-pbi-<num>` label (for traceability)
