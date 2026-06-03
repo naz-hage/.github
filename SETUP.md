@@ -34,24 +34,22 @@ source/
 │   ├── .copilot-instructions.md  # Master skills registry
 │   ├── WORKSPACE-AUTHORITY.md    # Authority & configuration structure
 │   ├── SETUP.md                  # This file
-│   ├── .github/
-│   │   ├── skills/
-│   │   │   ├── create-sdo-work-item/   # Create GitHub/Azure DevOps items
-│   │   │   ├── prepare-pr-document/    # Prepare PR templates
-│   │   │   ├── update-issue/           # Update issue status
-│   │   │   ├── nb-build/               # Build C# projects
-│   │   │   ├── nb-test/                # Run tests
-│   │   │   ├── nb-nuget/               # Publish NuGet packages
-│   │   │   └── run-ps1/                # Run PowerShell scripts
-│   │   ├── prompts/
-│   │   │   ├── README.md               # Prompts overview
-│   │   │   ├── actions/                # Action-specific prompts
-│   │   │   └── templates/              # Reusable templates
-│   │   └── README.md                   # Skills & prompts documentation
-│   ├── sdo-config.yaml                 # Workspace configuration
-│   └── README.md                       # Configuration overview
-├── ntools-launcher/                    # C# launcher project
-└── ntools/                             # Main C# project
+│   ├── .skills/                  # All reusable Copilot skills
+│   │   ├── create-sdo-work-item/      # Create GitHub/Azure DevOps items
+│   │   ├── decompose-sdo-pbi/         # Decompose PBI into tasks
+│   │   ├── split-pbi-into-smaller-pbis/ # Split oversized PBIs
+│   │   ├── prepare-pr-document/       # Prepare PR templates
+│   │   ├── pr-squash-merge/           # Squash and merge PR
+│   │   ├── update-issue/              # Update issue status
+│   │   ├── nb-build/                  # Build C# projects
+│   │   ├── nb-test/                   # Run tests
+│   │   ├── nb-nuget/                  # Publish NuGet packages
+│   │   ├── run-ps1/                   # Run PowerShell scripts
+│   │   └── templates/                 # Work item templates
+│   ├── sdo-config.yaml                # Workspace configuration
+│   └── README.md                      # Configuration overview
+├── ntools-launcher/                   # C# launcher project
+└── ntools/                            # Main C# project
 ```
 
 ## Available Copilot Skills
@@ -89,17 +87,17 @@ Just speak naturally, and Copilot recognizes the intent.
 ### Manual References
 If auto-invoke doesn't trigger, explicitly reference:
 ```
-See .github/.github/skills/prepare-pr-document/SKILL.md
+See .github/.skills/prepare-pr-document/SKILL.md
 ```
 
 ## Adding New Skills
 
 ### Step 1: Create the Skill
 ```
-.github/.github/skills/<skill-name>/SKILL.md
+.github/.skills/<skill-name>/SKILL.md
 ```
 
-Example: `.github/.github/skills/my-new-skill/SKILL.md`
+Example: `.github/.skills/my-new-skill/SKILL.md`
 
 ### Step 2: Register It
 Add to `.github/.copilot-instructions.md`:
@@ -110,7 +108,7 @@ Add to `.github/.copilot-instructions.md`:
 
 Description of what the skill does.
 
-**Skill:** [My New Skill](./.github/skills/my-new-skill/SKILL.md)
+**Skill:** [My New Skill](./.skills/my-new-skill/SKILL.md)
 ```
 
 ### Step 3: Done!
@@ -183,7 +181,7 @@ All master instructions are in `.github/.copilot-instructions.md`. That's the so
 See:
 - **`.github/WORKSPACE-AUTHORITY.md`** - How the workspace authority structure works
 - **`.github/.copilot-instructions.md`** - Complete skill registry
-- **`.github/.github/prompts/README.md`** - Detailed skill documentation
+- **`.github/.skills/templates/`** - Work item templates for GitHub and Azure DevOps
 
 ## Summary
 
@@ -192,8 +190,8 @@ See:
 | How do I open the workspace? | `code .code-workspace` |
 | Where are instructions? | `.github/.copilot-instructions.md` |
 | How do I use skills? | Say natural language commands (e.g., "create issue") |
-| Where are skill files? | `.github/.github/skills/` |
-| How do I add a new skill? | Create folder in `.github/.github/skills/`, register in master instructions |
+| Where are skill files? | `.github/.skills/` |
+| How do I add a new skill? | Create folder in `.github/.skills/`, register in master instructions |
 | What if I'm in `ntools/` folder? | You inherit all `.github/` instructions automatically |
 | Do I need to copy instructions elsewhere? | No—`.github/` is the single source of truth |
 
