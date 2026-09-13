@@ -59,7 +59,7 @@ Executes PowerShell (.ps1) scripts directly in the terminal without requiring ex
 
 | Purpose | Script Location |
 |---------|-----------------|
-| Build project | `nb build` or custom nbuild.ps1 |
+| Build project | `sdo build` or custom nbuild.ps1 |
 | Run tests | `.\.temp\test.ps1` or custom test runner |
 | Deploy | `scripts\deploy.ps1` |
 | Setup | `dev-setup\dev-setup.ps1` |

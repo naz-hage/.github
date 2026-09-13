@@ -40,9 +40,9 @@ All workflows in this directory leverage **Copilot skills** registered in `.copi
     ├── create-sdo-work-item/   # Create work item markdown documents
     ├── prepare-pr-document/    # Prepare PR templates for submission
     ├── update-issue/           # Update issue/task status
-    ├── nb-build/               # Build C# projects with nbuild
-    ├── nb-test/                # Run tests with nbuild
-    ├── nb-nuget/               # Publish NuGet packages
+    ├── sdo-solution/               # Build C# projects with nbuild
+    ├── sdo-test/                # Run tests with nbuild
+    ├── sdo-nuget/               # Publish NuGet packages
     └── run-ps1/                # Run PowerShell scripts
 ```
 
@@ -59,9 +59,9 @@ Reusable, auto-invocable Copilot skills for common development workflows. Each s
 - `create-sdo-work-item/` - Generate work items for GitHub Issues or Azure DevOps
 - `prepare-pr-document/` - Prepare PR templates for `sdo pr create`
 - `update-issue/` - Update issue status with acceptance criteria validation
-- `nb-build/` - Build C# projects with custom nbuild system
-- `nb-test/` - Run tests with custom nbuild system
-- `nb-nuget/` - Publish NuGet packages locally
+- `sdo-solution/` - Build C# projects with custom nbuild system
+- `sdo-test/` - Run tests with custom nbuild system
+- `sdo-nuget/` - Publish NuGet packages locally
 - `run-ps1/` - Execute PowerShell scripts
 
 Comprehensive skill registry: See `.copilot-instructions.md` for all available skills and triggers.

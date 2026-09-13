@@ -1,5 +1,5 @@
 ---
-name: nb-nuget
+name: sdo-nuget
 description: Build and publish NuGet packages locally using the custom Nbuild system
 triggers:
   - build nuget
@@ -24,7 +24,7 @@ Builds a C# project as a NuGet package and publishes it to a local NuGet feed fo
 
 ### Build and Publish Locally
 ```powershell
-nb nuget_add
+sdo nuget_add
 ```
 
 This command:
@@ -43,7 +43,7 @@ dotnet nuget search <package-name> --source <local-feed-path>
 ### ntools-launcher Package
 ```powershell
 cd c:\source\ntools-launcher
-nb nuget_add
+sdo nuget_add
 ```
 
 Result: Package published to local feed, ready for testing in sdo-e2e-test or other consumers.

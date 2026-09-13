@@ -1,11 +1,11 @@
 ---
-name: nb-test
+name: sdo-test
 description: "Run tests using the custom Nbuild test system. Use when: user says 'run tests', 'test', 'execute tests', or needs to verify that code works correctly. Works for any project with nbuild test configuration."
 ---
 
 # NB Test
 
-Use `nb test` to run all unit tests in a C# project with the custom Nbuild test system.
+Use `sdo test` to run all unit tests in a C# project with the custom Nbuild test system.
 
 ## When to Use
 
@@ -20,7 +20,7 @@ Use `nb test` to run all unit tests in a C# project with the custom Nbuild test 
 Run the following command in the terminal from the project directory:
 
 ```powershell
-nb test
+sdo test
 ```
 
 This command:
@@ -28,7 +28,7 @@ This command:
 - Uses the custom Nbuild test system
 - Reports test results (passed/failed counts)
 - Collects code coverage metrics
-- Logs results to `nbuild.log`
+- Logs results to `sdo.log`
 
 ## Test File Locations
 
@@ -39,16 +39,16 @@ Tests are typically located in folders matching these patterns:
 
 ## Checking Test Results
 
-After running `nb test`, check the results in `nbuild.log`:
+After running `sdo test`, check the results in `sdo.log`:
 
 ```powershell
-Get-Content nbuild.log | Select-String "Test Run|Passed|Failed|Total tests" -Context 1
+Get-Content sdo.log | Select-String "Test Run|Passed|Failed|Total tests" -Context 1
 ```
 
 Or view the last lines:
 
 ```powershell
-Get-Content nbuild.log | Select-Object -Last 30
+Get-Content sdo.log | Select-Object -Last 30
 ```
 
 Look for:
@@ -94,7 +94,7 @@ Look for:
 ## Common Issues
 
 - **Location**: Must run from a project directory that has `unit-tests.targets` or `e2e-tests.targets`
-- **Log File**: Always check `nbuild.log` in the project directory for detailed output
+- **Log File**: Always check `sdo.log` in the project directory for detailed output
 - **Skipped Tests**: Check test code for skip reasons (e.g., `[Ignore]`, platform-specific)
 - **Failures**: Review failure message and stack trace in log
 

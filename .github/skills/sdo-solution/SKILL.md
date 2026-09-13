@@ -1,11 +1,11 @@
 ---
-name: nb-build
-description: "Build a C# project using the custom Nbuild system. Use when: user says 'build project', 'build', 'compile', or needs to compile the C# code. Works for any project with nbuild.targets in the workspace."
+name: sdo-solution
+description: "Build a C# project using the custom Nbuild system. Use when: user says 'build project', 'build', 'compile', or needs to compile the C# code. Works for any project with sdo.targets in the workspace."
 ---
 
-# NB Build
+# sdo solution
 
-Use `nb build` to compile C# projects with the custom Nbuild build system.
+Use `sdo solution` to compile C# projects with the custom Nbuild build system.
 
 ## When to Use
 
@@ -19,27 +19,27 @@ Use `nb build` to compile C# projects with the custom Nbuild build system.
 Run the following command in the terminal from the project directory:
 
 ```bash
-nb build
+sdo solution
 ```
 
 This command:
 - Compiles the C# project
 - Runs the custom Nbuild system
 - Returns build status and any compilation errors
-- Logs results to `nbuild.log`
+- Logs results to `sdo.log`
 
 ## Checking Build Results
 
-After running `nb build`, check the results in `nbuild.log`:
+After running `sdo solution`, check the results in `sdo.log`:
 
 ```powershell
-Get-Content nbuild.log | Select-String "Build succeeded|Build failed|error|warning" -Context 2
+Get-Content sdo.log | Select-String "Build succeeded|Build failed|error|warning" -Context 2
 ```
 
 Or view the last lines:
 
 ```powershell
-Get-Content nbuild.log | Select-Object -Last 20
+Get-Content sdo.log | Select-Object -Last 20
 ```
 
 Look for:
@@ -76,8 +76,8 @@ Look for:
 
 ## Common Issues
 
-- **Location**: Must run from a project directory that has `nbuild.targets`
-- **Log File**: Always check `nbuild.log` in the project directory for detailed output
+- **Location**: Must run from a project directory that has `sdo.targets`
+- **Log File**: Always check `sdo.log` in the project directory for detailed output
 - **Errors**: Build errors will be listed with file and line number
 - **Warnings**: Can indicate potential issues that should be reviewed
 
@@ -86,4 +86,4 @@ Look for:
 Works with:
 - ✅ ntools-launcher
 - ✅ ntools
-- ✅ Any C# project with nbuild.targets configured
+- ✅ Any C# project with sdo.targets configured

@@ -22,8 +22,8 @@ That's it! All Copilot skills and instructions load automatically.
 Try one of these commands in Copilot chat:
 - "Create a GitHub issue for..." → Invokes `create-sdo-work-item` skill
 - "Prepare PR document" → Invokes `prepare-pr-document` skill
-- "Build project" → Invokes `nb-build` skill
-- "Run tests" → Invokes `nb-test` skill
+- "Build project" → Invokes `sdo-solution` skill
+- "Run tests" → Invokes `sdo-test` skill
 
 ## Workspace Structure
 
@@ -41,9 +41,9 @@ source/
 │   │   ├── prepare-pr-document/       # Prepare PR templates
 │   │   ├── pr-squash-merge/           # Squash and merge PR
 │   │   ├── update-issue/              # Update issue status
-│   │   ├── nb-build/                  # Build C# projects
-│   │   ├── nb-test/                   # Run tests
-│   │   ├── nb-nuget/                  # Publish NuGet packages
+│   │   ├── sdo-solution/                  # Build C# projects
+│   │   ├── sdo-test/                   # Run tests
+│   │   ├── sdo-nuget/                  # Publish NuGet packages
 │   │   ├── run-ps1/                   # Run PowerShell scripts
 │   │   └── templates/                 # Work item templates
 │   ├── sdo-config.yaml                # Workspace configuration
@@ -80,7 +80,7 @@ When you're working in any folder (`ntools/`, `ntools-launcher/`, etc.), Copilot
 Each skill has trigger patterns. For example:
 - "create issue" → auto-invokes `create-sdo-work-item` skill
 - "prepare PR" → auto-invokes `prepare-pr-document` skill
-- "build project" → auto-invokes `nb-build` skill
+- "build project" → auto-invokes `sdo-solution` skill
 
 Just speak naturally, and Copilot recognizes the intent.
 

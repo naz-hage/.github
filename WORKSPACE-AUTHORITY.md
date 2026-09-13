@@ -72,9 +72,9 @@ source/
 │   │   ├── prepare-pr-document/
 │   │   ├── pr-squash-merge/
 │   │   ├── update-issue/
-│   │   ├── nb-build/
-│   │   ├── nb-test/
-│   │   ├── nb-nuget/
+│   │   ├── sdo-solution/
+│   │   ├── sdo-test/
+│   │   ├── sdo-nuget/
 │   │   ├── run-ps1/
 │   │   └── templates/             # Work item templates
 │   └── sdo-config.yaml           # Shared configuration
