@@ -7,15 +7,15 @@ This `.github` folder is the **single source of truth** for all Copilot instruct
 When `.github` is cloned locally and added as a workspace folder:
 
 - **`.github/.copilot-instructions.md`** → Master instruction registry (all skills, triggers, workflows)
-- **`.github/.skills/`** → All reusable Copilot skills (11 available)
-- **`.github/.skills/templates/`** → Work item templates for GitHub and Azure DevOps
+- **`.github/.github/skills/`** → All reusable Copilot skills
+- **`.github/.github/skills/`** → Reusable skills and their templates
 - **`.github/sdo-config.yaml`** → Workspace-wide configuration
 
 ## How It Works
 
 1. **Copilot loads instructions** from `.github/.copilot-instructions.md` first
-2. **All skills in `.github/.skills/`** are available to ALL workspace folders
-3. **Templates in `.github/.skills/templates/`** are referenced by skills for consistent formatting
+2. **All skills in `.github/.github/skills/`** are available to ALL workspace folders
+3. **Templates in `.github/.github/skills/`** are referenced by skills for consistent formatting
 4. **Other folders** (ntools, ntools-launcher) inherit this configuration automatically
 5. **No duplication** - Instructions live in ONE place, accessible everywhere
 
@@ -35,9 +35,9 @@ Whether you're working in `ntools/`, `ntools-launcher/`, or `.github/`, Copilot 
 - Run PowerShell scripts
 
 ### Adding New Instructions
-All new Copilot skills and instructions go in:
+All new Copilot skills go in:
 ```
-.github/.skills/<skill-name>/SKILL.md
+.github/.github/skills/<skill-name>/SKILL.md
 ```
 
 Register them in:
@@ -65,7 +65,8 @@ source/
 │   ├── .copilot-instructions.md  # Master skills registry
 │   ├── WORKSPACE-AUTHORITY.md    # This file
 │   ├── SETUP.md                  # Setup & onboarding guide
-│   ├── .skills/                  # All reusable Copilot skills
+│   ├── .github/                  # Copilot configuration
+│   │   └── skills/               # All reusable Copilot skills
 │   │   ├── create-sdo-work-item/
 │   │   ├── decompose-sdo-pbi/
 │   │   ├── split-pbi-into-smaller-pbis/
@@ -76,7 +77,6 @@ source/
 │   │   ├── sdo-test/
 │   │   ├── sdo-nuget/
 │   │   ├── run-ps1/
-│   │   └── templates/             # Work item templates
 │   └── sdo-config.yaml           # Shared configuration
 ├── ntools-launcher/              # Project folder (inherits config)
 └── ntools/                        # Project folder (inherits config)
@@ -93,12 +93,12 @@ source/
 ### Instruction Resolution Order
 1. Copilot checks `.code-workspace` for `instructionsLocation`
 2. Loads `.github/.copilot-instructions.md`
-3. Discovers all skills in `.github/.skills/`
-4. References templates in `.github/.skills/templates/`
+3. Discovers all skills in `.github/.github/skills/`
+4. References templates in `.github/.github/skills/`
 5. Makes all skills available globally (for all folders)
 
 ### Skills Availability
-- Skills in `.github/.skills/` are **automatically accessible** from any workspace folder
+- Skills in `.github/.github/skills/` are **automatically accessible** from any workspace folder
 - Each skill has auto-invoke triggers (e.g., "create work item", "prepare PR")
 - Users don't need to know where skills are located—just speak naturally
 
