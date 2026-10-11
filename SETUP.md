@@ -14,8 +14,8 @@ That's it! All Copilot skills and instructions load automatically.
 ### 2. Verify Setup
 - You should see 3 folders in the Explorer:
   - 📋 Configuration (Source of Truth) ← `.github` folder
-  - ntools-launcher
-  - ntools
+  - sdo-launcher
+  - sdo
 - Copilot should be ready to use
 
 ### 3. Try a Skill
@@ -48,8 +48,8 @@ source/
 │   │   └── templates/                 # Work item templates
 │   ├── sdo-config.yaml                # Workspace configuration
 │   └── README.md                      # Configuration overview
-├── ntools-launcher/                   # C# launcher project
-└── ntools/                            # Main C# project
+├── sdo-launcher/                      # C# launcher project
+└── sdo/                               # Main C# project
 ```
 
 ## Available Copilot Skills
@@ -62,9 +62,9 @@ All these skills are auto-invocable from any workspace folder:
 - **Update Issue** - "update issue 35" / "mark issue done"
 
 ### Build & Test
-- **NB Build** - "build project" / "build" / "compile"
-- **NB Test** - "run tests" / "test" / "execute tests"
-- **NB NuGet** - "publish nuget" / "build package"
+- **sdo Build** - "build project" / "build" / "compile"
+- **sdo Test** - "run tests" / "test" / "execute tests"
+- **sdo NuGet** - "publish nuget" / "build package"
 - **Run PowerShell** - "run script" / "run ps1"
 
 See `.github/.copilot-instructions.md` for complete skill registry.
@@ -74,7 +74,7 @@ See `.github/.copilot-instructions.md` for complete skill registry.
 ### Single Source of Truth
 All Copilot instructions live in **one place**: `.github/.copilot-instructions.md`
 
-When you're working in any folder (`ntools/`, `ntools-launcher/`, etc.), Copilot loads instructions from `.github` automatically.
+When you're working in any folder (`sdo/`, `sdo-launcher/`, etc.), Copilot loads instructions from `.github` automatically.
 
 ### Auto-Invoke Triggers
 Each skill has trigger patterns. For example:
@@ -124,7 +124,7 @@ The skill is automatically available to all workspace folders.
 
 **Do NOT create** duplicate `.copilot-instructions.md` files in other folders.
 
-### `ntools/` & `ntools-launcher/` Folders
+### `sdo/` & `sdo-launcher/` Folders
 **Purpose:** Project code
 - Contains C# projects
 - Can have project-specific `.instructions.md` (optional, for local overrides only)
@@ -132,8 +132,8 @@ The skill is automatically available to all workspace folders.
 
 **Can have** local `.instructions.md` for project-specific guidance (optional):
 ```
-ntools/.instructions.md                # Optional: Project-specific notes only
-ntools-launcher/.instructions.md       # Optional: Project-specific notes only
+sdo/.instructions.md                   # Optional: Project-specific notes only
+sdo-launcher/.instructions.md          # Optional: Project-specific notes only
 ```
 
 But **master instructions** always come from `.github/`.
@@ -162,7 +162,7 @@ All master instructions are in `.github/.copilot-instructions.md`. That's the so
 - Reference `.github/` folder for all configuration questions
 
 ❌ **DON'T:**
-- Create duplicate instruction files in `ntools/` or `ntools-launcher/`
+- Create duplicate instruction files in `sdo/` or `sdo-launcher/`
 - Edit instructions in multiple places (maintenance nightmare)
 - Close individual folders and open them separately
 - Modify Copilot settings in VS Code settings (use `.code-workspace`)
@@ -192,7 +192,7 @@ See:
 | How do I use skills? | Say natural language commands (e.g., "create issue") |
 | Where are skill files? | `.github/.skills/` |
 | How do I add a new skill? | Create folder in `.github/.skills/`, register in master instructions |
-| What if I'm in `ntools/` folder? | You inherit all `.github/` instructions automatically |
+| What if I'm in `sdo/` folder? | You inherit all `.github/` instructions automatically |
 | Do I need to copy instructions elsewhere? | No—`.github/` is the single source of truth |
 
 ---

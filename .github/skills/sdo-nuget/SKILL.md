@@ -1,6 +1,6 @@
 ---
 name: sdo-nuget
-description: Build and publish NuGet packages locally using the custom Nbuild system
+description: Build and publish NuGet packages locally using sdo
 triggers:
   - build nuget
   - publish nuget
@@ -12,12 +12,12 @@ triggers:
 # NuGet Package Build Skill
 
 ## Purpose
-Builds a C# project as a NuGet package and publishes it to a local NuGet feed for testing. Uses the custom Nbuild system to ensure consistent builds.
+Builds a C# project as a NuGet package and publishes it to a local NuGet feed for testing. Uses sdo to ensure consistent builds.
 
 ## When to Use
 - User says "build nuget", "publish nuget", "pack nuget", or "nuget add"
 - Need to create a local NuGet package for testing before publishing to public feed
-- Rebuilding ntools-launcher or other packages after code changes
+- Rebuilding sdo-launcher or other packages after code changes
 - Testing package dependencies before publishing to NuGet.org
 
 ## How to Use
@@ -40,18 +40,18 @@ dotnet nuget search <package-name> --source <local-feed-path>
 
 ## Common Workflows
 
-### ntools-launcher Package
+### sdo-launcher Package
 ```powershell
-cd c:\source\ntools-launcher
+cd c:\source\sdo-launcher
 sdo nuget_add
 ```
 
 Result: Package published to local feed, ready for testing in sdo-e2e-test or other consumers.
 
 ### Update Consumer Project
-After publishing ntools-launcher locally:
+After publishing sdo-launcher locally:
 ```powershell
-cd c:\source\ntools
+cd c:\source\sdo
 dotnet build .\sdo-e2e-test\sdo-e2e-test.csproj
 ```
 
@@ -80,7 +80,7 @@ Packages are typically published to:
 
 **Dependency resolution issues:**
 - Ensure dependencies are declared in .nuspec or .csproj
-- Transitive dependencies (like YamlDotNet for ntools-launcher) must be explicit
+- Transitive dependencies (like YamlDotNet for sdo-launcher) must be explicit
 - Rebuild and republish after dependency changes
 
 **Version conflicts:**

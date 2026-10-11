@@ -10,7 +10,7 @@ This repository contains **generic, reusable templates** that projects can copy 
 
 ### Key Features
 
-- **🔧 SDO CLI Integration**: Uses [SDO](https://github.com/naz-hage/ntools) (C# version) as the primary CLI tool for unified project management across platforms
+- **🔧 SDO CLI Integration**: Uses [SDO](https://github.com/naz-hage/sdo) (C# version) as the primary CLI tool for unified project management across platforms
 - **🌍 Multi-Language Support**: Examples and patterns for Python, JavaScript/TypeScript, Java, and C#
 - **⚙️ Configurable**: All project-specific values are managed through configuration files
 - **📋 Generic Workflows**: Tool-agnostic workflows that work with any project management platform
@@ -56,13 +56,13 @@ README.md                          # This file
 
 3. **Setup SDO CLI**
    ```bash
-   # Build SDO (C# version from ntools)
-   git clone https://github.com/naz-hage/ntools.git
-   cd ntools/Sdo
+   # Build SDO from the SDO repository
+   git clone https://github.com/naz-hage/sdo.git
+   cd sdo/Sdo
    dotnet build -c Release
    
    # Add to PATH or use full path to sdo executable
-   # On Windows: ntools\Sdo\bin\Release\net10.0\sdo.exe
+   # On Windows: sdo\Sdo\bin\Release\net10.0\sdo.exe
    ```
 
 4. **Customize as Needed**
@@ -168,7 +168,7 @@ sdo config set repository your-repo
 
 - **[Quick Start Guide](setup-guides/quick-start-guide.md)** - Complete setup and configuration guide
 - **[Action Prompts](.temp/prompts/actions/README.md)** - Available action commands and workflows
-- **[SDO CLI Reference](../ntools/docs/sdo-net.md)** - Complete SDO CLI documentation and command reference
+- **[SDO CLI Reference](../sdo/docs/sdo-net.md)** - Complete SDO CLI documentation and command reference
 - **[Setup Guides](setup-guides/)** - Project setup and migration guides
 - **[Validation Tools](validation/)** - Configuration validation scripts
 

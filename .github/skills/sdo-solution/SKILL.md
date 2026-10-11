@@ -1,18 +1,18 @@
 ---
 name: sdo-solution
-description: "Build a C# project using the custom Nbuild system. Use when: user says 'build project', 'build', 'compile', or needs to compile the C# code. Works for any project with sdo.targets in the workspace."
+description: "Build a C# project using sdo. Use when: user says 'build project', 'build', 'compile', or needs to compile the C# code. Works for any project with sdo.targets in the workspace."
 ---
 
 # sdo solution
 
-Use `sdo solution` to compile C# projects with the custom Nbuild build system.
+Use `sdo solution` to compile C# projects with sdo.
 
 ## When to Use
 
 - User says "build project" or "build the code"
 - Code changes need to be compiled
 - Need to verify compilation before running tests
-- Working with ntools, ntools-launcher, or any nbuild-enabled project
+- Working with sdo, sdo-launcher, or any sdo-enabled project
 
 ## How to Run
 
@@ -24,7 +24,7 @@ sdo solution
 
 This command:
 - Compiles the C# project
-- Runs the custom Nbuild system
+- Runs sdo
 - Returns build status and any compilation errors
 - Logs results to `sdo.log`
 
@@ -84,6 +84,6 @@ Look for:
 ## Project Support
 
 Works with:
-- ✅ ntools-launcher
-- ✅ ntools
+- ✅ sdo-launcher
+- ✅ sdo
 - ✅ Any C# project with sdo.targets configured

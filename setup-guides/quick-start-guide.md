@@ -45,9 +45,9 @@ tools:
 ### Step 3: Setup SDO CLI
 
 ```bash
-# Build C# SDO (from ntools repository)
-git clone https://github.com/naz-hage/ntools.git
-cd ntools
+# Build C# SDO (from sdo repository)
+git clone https://github.com/naz-hage/sdo.git
+cd sdo
 
 # Build SDO CLI
 .\dev-setup\install.ps1
@@ -246,9 +246,9 @@ If you have an existing `sdo-config.yaml` from the old structure:
 #### Installation
 
 ```bash
-# Build SDO CLI from ntools
-git clone https://github.com/naz-hage/ntools.git
-cd ntools/Sdo
+# Build SDO CLI from sdo
+git clone https://github.com/naz-hage/sdo.git
+cd sdo/Sdo
 
 # Build the C# version
 dotnet build -c Release

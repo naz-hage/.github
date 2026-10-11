@@ -24,26 +24,31 @@ All workflows in this directory leverage **Copilot skills** registered in `.copi
 ## Directory Structure
 
 ```
-.github/
+.
 ├── .copilot-instructions.md     # Workspace skills registry and auto-invoke patterns
-├── prompts/
-│   ├── README.md                # This file - overview and usage guide
-│   ├── platform-mapping.md      # Standardized term mappings (SDO/AzDO/GitHub)
-│   ├── actions/                 # Action-specific prompts (tool commands)
-│   │   ├── README.md           # Action prompts overview
-│   │   ├── create-wi.md        # Create work items
-│   │   ├── update-pr.md        # Update PR message template
-│   │   └── pr-squash-merge.md  # Squash merge pull requests
-│   └── templates/              # Reusable prompt templates
-│       └── pull_request_template.md # GitHub PR template for SDO development
-└── skills/                      # Reusable Copilot skills for common workflows
-    ├── create-sdo-work-item/   # Create work item markdown documents
-    ├── prepare-pr-document/    # Prepare PR templates for submission
-    ├── update-issue/           # Update issue/task status
-    ├── sdo-solution/               # Build C# projects with nbuild
-    ├── sdo-test/                # Run tests with nbuild
-    ├── sdo-nuget/               # Publish NuGet packages
-    └── run-ps1/                # Run PowerShell scripts
+├── .github/
+│   ├── ISSUE_TEMPLATE/          # GitHub issue templates
+│   ├── PULL_REQUEST_TEMPLATE/   # GitHub pull request templates
+│   ├── prompts/                 # Copilot prompts and workflow documentation
+│   │   ├── README.md            # This file
+│   │   └── platform-mapping.md  # Standardized SDO/AzDO/GitHub term mappings
+│   ├── skills/                  # Reusable Copilot skills
+│   │   ├── create-sdo-work-item/
+│   │   ├── decompose-sdo-pbi/
+│   │   ├── prepare-pr-document/
+│   │   ├── pr-squash-merge/
+│   │   ├── run-ps1/
+│   │   ├── sdo-nuget/
+│   │   ├── sdo-solution/
+│   │   ├── sdo-test/
+│   │   ├── split-pbi-into-smaller-pbis/
+│   │   ├── templates/           # Reusable work item templates
+│   │   └── update-issue/
+│   ├── workflows/               # GitHub Actions workflows
+│   └── sdo-config.yaml          # SDO configuration
+├── guidelines/                  # Repository guidelines
+├── setup-guides/                # Setup and onboarding guides
+└── validation/                  # Configuration validation tools
 ```
 
 ## Directory Purposes
@@ -59,8 +64,8 @@ Reusable, auto-invocable Copilot skills for common development workflows. Each s
 - `create-sdo-work-item/` - Generate work items for GitHub Issues or Azure DevOps
 - `prepare-pr-document/` - Prepare PR templates for `sdo pr create`
 - `update-issue/` - Update issue status with acceptance criteria validation
-- `sdo-solution/` - Build C# projects with custom nbuild system
-- `sdo-test/` - Run tests with custom nbuild system
+- `sdo-solution/` - Build C# projects with sdo
+- `sdo-test/` - Run tests with sdo
 - `sdo-nuget/` - Publish NuGet packages locally
 - `run-ps1/` - Execute PowerShell scripts
 
@@ -81,7 +86,7 @@ Reusable prompt templates with detailed step-by-step instructions for particular
 1. **Creating work items**: Say "create a GitHub issue" or "create a work item" → auto-invokes create-sdo-work-item skill
 2. **Preparing PRs**: Say "prepare PR document" or "fill in PR template" → auto-invokes prepare-pr-document skill
 3. **Updating tasks**: Say "update issue 35" → auto-invokes update-issue skill
-4. **Building/Testing**: Say "build project", "run tests", or "publish nuget" → auto-invokes respective nbuild skills
+4. **Building/Testing**: Say "build project", "run tests", or "publish nuget" → auto-invokes respective sdo skills
 5. **Running scripts**: Say "run script" → auto-invokes run-ps1 skill
 
 ### For Copilot

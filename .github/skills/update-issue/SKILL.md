@@ -134,6 +134,6 @@ None - ready for review/merge
 ## Project Support
 
 Works with any project that follows the issue tracking convention:
-- ✅ ntools-launcher
-- ✅ ntools
+- ✅ sdo-launcher
+- ✅ sdo
 - ✅ Any project with `.temp/<number>-issue.md` issue files

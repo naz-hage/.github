@@ -16,7 +16,7 @@ When `.github` is cloned locally and added as a workspace folder:
 1. **Copilot loads instructions** from `.github/.copilot-instructions.md` first
 2. **All skills in `.github/.github/skills/`** are available to ALL workspace folders
 3. **Templates in `.github/.github/skills/`** are referenced by skills for consistent formatting
-4. **Other folders** (ntools, ntools-launcher) inherit this configuration automatically
+4. **Other folders** (sdo, sdo-launcher) inherit this configuration automatically
 5. **No duplication** - Instructions live in ONE place, accessible everywhere
 
 ## For Users & Developers
@@ -27,7 +27,7 @@ code .code-workspace
 ```
 
 ### Skills Available Everywhere
-Whether you're working in `ntools/`, `ntools-launcher/`, or `.github/`, Copilot has access to:
+Whether you're working in `sdo/`, `sdo-launcher/`, or `.github/`, Copilot has access to:
 - Create work items
 - Prepare PR documents
 - Update issues
@@ -78,8 +78,8 @@ source/
 │   │   ├── sdo-nuget/
 │   │   ├── run-ps1/
 │   └── sdo-config.yaml           # Shared configuration
-├── ntools-launcher/              # Project folder (inherits config)
-└── ntools/                        # Project folder (inherits config)
+├── sdo-launcher/                 # Project folder (inherits config)
+└── sdo/                          # Project folder (inherits config)
 ```
 
 ## Technical Details

@@ -1,18 +1,18 @@
 ---
 name: sdo-test
-description: "Run tests using the custom Nbuild test system. Use when: user says 'run tests', 'test', 'execute tests', or needs to verify that code works correctly. Works for any project with nbuild test configuration."
+description: "Run tests using sdo. Use when: user says 'run tests', 'test', 'execute tests', or needs to verify that code works correctly. Works for any project with sdo test configuration."
 ---
 
-# NB Test
+# sdo Test
 
-Use `sdo test` to run all unit tests in a C# project with the custom Nbuild test system.
+Use `sdo test` to run all unit tests in a C# project with sdo.
 
 ## When to Use
 
 - User says "run tests", "test the code", or "execute tests"
 - Need to verify that recent code changes work correctly
 - Want to check test coverage and results
-- Working with ntools, ntools-launcher, or any nbuild-enabled project
+- Working with sdo, sdo-launcher, or any sdo-enabled project
 - Before submitting code for review
 
 ## How to Run
@@ -25,7 +25,7 @@ sdo test
 
 This command:
 - Executes all unit tests in the project
-- Uses the custom Nbuild test system
+- Uses sdo
 - Reports test results (passed/failed counts)
 - Collects code coverage metrics
 - Logs results to `sdo.log`
@@ -101,6 +101,6 @@ Look for:
 ## Project Support
 
 Works with:
-- ✅ ntools-launcher (130+ tests)
-- ✅ ntools (Python + C# tests)
-- ✅ Any C# project with nbuild test configuration
+- ✅ sdo-launcher (130+ tests)
+- ✅ sdo (Python + C# tests)
+- ✅ Any C# project with sdo test configuration
