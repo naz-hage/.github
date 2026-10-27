@@ -25,13 +25,14 @@ Use an inclusive start and an exclusive end. Resolve "yesterday" and "today" fro
 
 ## Workflow
 
-1. Identify the workspace repository and destination folder from the request.
-2. Search repository activity within the time window:
+1. Identify the destination folder from the request, then enumerate **all repository roots attached to the current VS Code workspace**. The destination repository is not the scope limit; include every workspace repository, even when it has no commits.
+2. Search activity in every workspace repository within the time window:
    - Git commits, changed files, and relevant branch activity.
    - Current worktree changes when they help explain active work.
-3. Search the session history for agent conversations associated with the workspace repository and limited to the same time window.
+   - Inspect each repository's `.temp/` folder for files created or modified in the time window. These files may be ignored or untracked, so do not rely on `git status` to find them. Read only enough to identify relevant work-item drafts, logs, or other activity; do not treat unrelated or stale files as current work.
+3. Search the session history for agent conversations associated with **any repository in the VS Code workspace** and limited to the same time window. Do not restrict the query to the destination repository or the session's current working directory; match workspace repository metadata and relevant turns.
    - Use the session history query tool rather than guessing from unrelated conversations.
-   - Prefer exact workspace/repository matches and the relevant user/agent turns.
+   - Prefer exact matches to the enumerated workspace repositories and inspect the relevant user/agent turns.
 4. Combine the evidence into a concise summary. Omit implementation details, file lists, commit hashes, and long explanations.
 5. Write the result to:
 
@@ -97,3 +98,4 @@ Example output file, `C:\work\standups\daily-2026-10-13.md`:
 - Put unresolved ideas, follow-up discussions, or deferred decisions in the parking lot section.
 - Use `None identified` when there is no reliable evidence for blockers or parking-lot items.
 - Correct obvious wording errors in the headings while preserving the requested meaning.
+

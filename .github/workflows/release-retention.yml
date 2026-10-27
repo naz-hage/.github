@@ -27,7 +27,7 @@ jobs:
         with:
           github-token: ${{ secrets.API_GITHUB_KEY }}
           script: |
-            const keepReleases = 10;
+            const keepReleases = 10; // minimum number of stable releases to keep
             const keepWorkflowRuns = 25;
             const repositories = process.env.TARGET_REPOSITORIES
               .split(",")
@@ -58,7 +58,28 @@ jobs:
                 }
               );
 
-              for (const release of releases.slice(keepReleases)) {
+              // Protect stable releases independently of prereleases so a burst
+              // of prereleases cannot displace the retention window.
+              const stable = releases.filter((release) => !release.draft && !release.prerelease);
+              const protectedStableIds = new Set(
+                stable.slice(0, keepReleases).map((release) => release.id)
+              );
+
+              // Also retain the newest releases overall, including prereleases.
+              const protectedRecentIds = new Set(
+                releases.slice(0, keepReleases).map((release) => release.id)
+              );
+
+              const protectedIds = new Set([
+                ...protectedStableIds,
+                ...protectedRecentIds
+              ]);
+              const oldReleases = releases.filter((release) => !protectedIds.has(release.id));
+
+              core.info(`Found ${releases.length} releases in ${owner}/${repo}.`);
+              core.info(`Protecting ${protectedStableIds.size} stable and ${protectedRecentIds.size} recent releases.`);
+
+              for (const release of oldReleases) {
                 core.info(`Deleting release ${owner}/${repo}:${release.tag_name}`);
                 await github.rest.repos.deleteRelease({
                   owner,
